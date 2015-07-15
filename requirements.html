@@ -139,7 +139,8 @@
                 <div class="rst-content">
                     <div role="main" class="document">
                         <h1 id="system-requirements">System Requirements</h1>
-<p>The requirements for Snipe-IT are fairly standard for a modern web server, and if for some reason you don't have them installed, they are relatively easy to add.</p>
+<p>The requirements for Snipe-IT are fairly standard for a modern web server, and most servers will have most or all of these components already installed. If for some reason you don't have them installed, they are relatively easy to add.</p>
+<h2 id="general-system-requirements">General System Requirements</h2>
 <ul>
 <li>PHP 5.4 or later</li>
 <li>MCrypt PHP Extension</li>
@@ -149,11 +150,17 @@
 <li>php-mbstring</li>
 <li>MySQL or MariaDB</li>
 <li>SSH access to the server (if using Linux)</li>
+<li>GD Library (&gt;=2.0) or Imagick PHP extension (&gt;=6.3.8)</li>
 </ul>
-<p>And one of the following image libraries (for QR codes, asset model image and user avatar image uploads).</p>
+<h3><i class="fa fa-windows"></i> Requirements Specific to Windows Server</h3>
 <ul>
-<li>GD Library (&gt;=2.0) … or …</li>
-<li>Imagick PHP extension (&gt;=6.3.8)</li>
+<li>IIS</li>
+<li>IIS URL Rewrite</li>
+<li><a href="http://www.microsoft.com/web/gallery/install.aspx?appid=PHP54">PHP 5.4</a></li>
+<li>MariaDB 10.0.14 for Windows  <a href="https://downloads.mariadb.org/interstitial/mariadb-10.0.14/winx64-packages/mariadb-10.0.14-winx64.msi/from/http%3A//mirror.aarnet.edu.au/pub/MariaDB">64-bit</a> | <a href="https://downloads.mariadb.org/interstitial/mariadb-10.0.14/win32-packages/mariadb-10.0.14-win32.msi/from/http%3A//mirror.aarnet.edu.au/pub/MariaDB">32-bit</a></li>
+<li><a href="http://phpmanager.codeplex.com/">PHP Manager for IIS</a> (makes managing PHP on IIS much easier)</li>
+<li><a href="https://getcomposer.org/Composer-Setup.exe">Composer install with the shell menus</a></li>
+<li><a href="http://www.notepad-plus-plus.org/download/v6.6.6.html">Notepad++</a> for editing files</li>
 </ul>
                     </div>
 

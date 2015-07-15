@@ -46,7 +46,7 @@ a:visited {
 color: #b3b3b3;
 }
 
-.wy-side-nav-search a:visited {
+.wy-side-nav-search a:visited, .wy-nav-top a:visited {
 color: #ffffff;
 }
 
