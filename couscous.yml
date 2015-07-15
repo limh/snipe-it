@@ -3,10 +3,10 @@ template:
 
 github:
     user: CouscousPHP
-    repo: Template-Light
+    repo: Template-ReadTheDocs
 
-title: Couscous Light
-subTitle: An amazing template for Couscous.
+title: ReadTheDocs template
+subTitle: A template based on readthedocs.org
 
 # The left menu bar
 menu:
@@ -14,7 +14,13 @@ menu:
         home:
             text: Home page
             # You can use relative urls
-            relativeUrl: /
+            relativeUrl:
+        getting-started:
+            text: Getting Started
+            relativeUrl:
+        faq:
+            text: FAQ
+            relativeUrl:
         couscous:
             text: Couscous.io
             # Or absolute urls
