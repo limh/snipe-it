@@ -52,7 +52,7 @@
                                         Overview
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://snipe.github.io/snipe-it/installation/downloading.html">
                                         1. Downloading
                                     </a>
@@ -62,7 +62,7 @@
                                         2. Configuration
                                     </a>
                                 </li>
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/composer.html">
                                         3. Install Dependencies
                                     </a>
@@ -143,23 +143,12 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="install-dependencies-with-composer">Install Dependencies with Composer</h1>
-<p>Composer is a package manager for PHP that allows us to manage the dependencies for the various vendor packages we utilize in Snipe-IT. Vendor packages are PHP libraries that someone else wrote, and that we use in Snipe-IT to help make it awesome.</p>
-<p>These are not the same thing as the <a href="../requirements.html">system requirements</a>, which are technologies that the server itself needs in order to run Snipe-IT (such as a database, etc).</p>
-<h2><i class="fa fa-linux"></i> Linux / OSX</h2>
-<p>It is not required to install composer globally, however if you wish to, you can find instructions on how to do so on <a href="https://getcomposer.org/doc/00-intro.html#globally">the Composer website</a>.</p>
-<pre><code class="language-bash">cd &lt;install-dir&gt;
-curl -sS https://getcomposer.org/installer | php
-php composer.phar install --no-dev --prefer-source</code></pre>
-<h3 id="for-global-composer-installations">For global composer installations</h3>
-<pre><code class="language-bash">cd &lt;install-dir&gt;
-composer install --no-dev --prefer-source</code></pre>
-<h2><i class="fa fa-windows"></i> Windows</h2>
-<ul>
-<li><a href="https://getcomposer.org/Composer-Setup.exe">Download Composer-Setup.exe</a> from the Composer website.</li>
-<li>Open <code>C:\inetpub\wwwroot\snipe-it</code> in Windows Explorer</li>
-<li>Right click and select <code>Composer Install</code>. This will install the dependencies.</li>
-</ul>
+                        <h1 id="downloading">Downloading</h1>
+<p>The installation instructions provided here are for a production installation of Snipe-IT. If you are a developer looking to contribute to Snipe-IT, please see the Contributing page.</p>
+<h4 id="clone-the-repository">Clone the Repository</h4>
+<pre><code class="language-bash">git clone https://github.com/snipe/snipe-it your-folder</code></pre>
+<p>or</p>
+<h4 id="download-the-source-from">Download the source from <a href="https://github.com/snipe/snipe-it/archive/master.zip"><a href="https://github.com/snipe/snipe-it/archive/master.zip">https://github.com/snipe/snipe-it/archive/master.zip</a></a></h4>
                     </div>
 
                     <hr/>
