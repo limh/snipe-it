@@ -163,7 +163,7 @@
 <p><strong>Before opening an issue to report a bug or request help, make sure you've checked the <a href="common-issues.html">Common Issues</a> and <a href="getting-help.html">Getting Help</a> pages.</strong></p>
 <h2 id="developing-on-snipe-it">Developing on Snipe-IT</h2>
 <p>Please submit all pull requests to the <a href="http://github.com/snipe/snipe-it">snipe/snipe-it</a> repository in the <code>develop</code> branch!</p>
-<p><strong>As you're working on bug-fixes or features, please break them out into their own feature branches and open the pull request against your feature branch</strong>. It makes it <em>much</em> easier to decipher down the road, as you open multiple pull requests over time, and makes it much easier for me to approve pull requests quickly.</p>
+<p><strong>As you're working on bug-fixes or features, please break them out into their own feature branches and open the pull request against your feature branch</strong>. It makes it <em>much</em> easier to decipher down the road, as you open multiple pull requests over time, and makes it much easier for us to approve pull requests quickly.</p>
 <p>If you don't have a feature in mind, but would like to contribute back to the project, check out the <a href="https://github.com/snipe/snipe-it/issues?state=open">open issues</a> and see if there are any you can tackle.</p>
 <p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed. Issues that have been approved by the project maintainer are labeled &quot;ready for dev&quot;.</p>
 <p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+Development" alt="Stories in Ready" /></a></p>
@@ -177,6 +177,7 @@
 <p>If you run the command line tools without the local flag, it will default to the production environment, so you’ll want to make sure you run the commands as:</p>
 <pre><code>php artisan key:generate --env=local
 php artisan app:install --env=local</code></pre>
+<hr />
 <h2 id="set-up-the-debugbar">Set up the debugbar</h2>
 <p>In dev mode, we use the fabulous <a href="https://github.com/barryvdh/laravel-debugbar">Laravel Debugbar</a> by <a href="https://github.com/barryvdh">barryvdh</a>.</p>
 <p>The profiler is enabled by default if you have <code>debug</code> set to <code>true</code> in your <code>app.php</code>. You certainly don’t have to use it, but it’s pretty handy for troubleshooting queries, seeing how much memory your pages are using, making sure your code isn't introducing n+1 queries, etc.</p>
