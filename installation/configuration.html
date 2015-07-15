@@ -36,7 +36,7 @@
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="">
                                     <a href="http://snipe.github.io/snipe-it/security.html">
                                         Security
                                     </a>
@@ -52,7 +52,7 @@
                                         Downloading
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="active">
                                     <a href="http://snipe.github.io/snipe-it/installation/configuration.html">
                                         Configuration
                                     </a>
@@ -123,10 +123,48 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="some-notes-on-security">Some Notes on Security</h1>
-<p>Although this is web-based software and must run on a web server, you may want to consider whether you actually need it accessible to the outside world. Running it on an internal network with ports closed to the outside world, or on AWS using a security group that prevents access from outside a selected static IP range (like your company network IP), may be something to consider.</p>
-<p>While most use cases won't be storing Personally Identifiable Information (PII), someone with the right motivation could gain useful knowledge about the number of employees, types of assets, etc you maintain. While this information in and of itself isn't harmful, it could be helpful to Bad Guys in a targeted attack, so you should consider whether you want to limit access to it via IP or network rules.</p>
-<p>Also, running this over SSL is not required, but a good idea. (Running everything ever over SSL is a good idea at this point.)</p>
+                        <h1 id="snipe-it-configuration-files">Snipe-IT Configuration Files</h1>
+<div id="generated-toc"></div>
+<h3 id="adjust-environments">Adjust Environments</h3>
+<p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment.</p>
+<p>To find out your local machine’s hostname, type hostname from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. Please note that the hostname is NOT always the same as the domain name.</p>
+<p>So for example, if you’re installing this on your server named www.yourserver.com, the environmental variable section of bootstrap/start.php might look like this:</p>
+<pre><code class="language-php">$env = $app-&gt;detectEnvironment(array(
+    ...
+    'production'     =&gt; array('www.yourserver.com')
+));</code></pre>
+<h3 id="setup-your-database">Setup Your Database</h3>
+<p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
+<p>Copy the example database config from <code>app/config/production/database.example.php</code> to app/config/production/database.php. Update the file <code>app/config/production/database.php</code> with your database name and credentials:</p>
+<pre><code>'mysql'=&gt; array(
+    'driver'   =&gt; 'mysql',
+    'host'     =&gt; 'localhost',
+    'database' =&gt; 'snipeit_laravel',
+    'username' =&gt; 'travis',
+    'password' =&gt; '',
+    'charset'  =&gt; 'utf8',
+    'collation'=&gt; 'utf8_unicode_ci',
+    'prefix'   =&gt; '',
+),</code></pre>
+<h3 id="setup-mail-settings">Setup Mail Settings</h3>
+<p>Copy the example mail config from app/config/production/mail.example.php to app/config/production/mail.php:</p>
+<pre><code>cp app/config/production/mail.example.php app/config/production/mail.php</code></pre>
+<p>Update the file <code>app/config/production/mail.php</code> with your mail settings.</p>
+<p>This will be used to send emails to your users, when they register and when they request a password reset.</p>
+<p>If you don’t have easy access to a mail server, we suggest signing up for Mandrill. Their free tier allows for 12k free sends a month.</p>
+<h3 id="adjust-the-application-settings">Adjust the Application Settings</h3>
+<p>Copy the example app config from app/config/production/app.example.php to app/config/production/app.php:</p>
+<pre><code>cp app/config/production/app.example.php app/config/production/app.php</code></pre>
+<p>Update the file <code>app/config/production/app.php</code> with your URL settings.</p>
+<pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
+<p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the artisan key:generate command from the application root a little later in this process.</p>
+<h3 id="fix-permissions">Fix permissions</h3>
+<p>You’ll need to make sure that the app/storage directory is writable by your webserver, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your webserver configured. You also need to change permissions for your uploads directory for user avatars and model images.</p>
+<pre><code>chmod -R 755 app/storage
+chmod -R 755 app/private_uploads
+chmod -R 755 public/uploads</code></pre>
+<p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server.</p>
+<p><strong>Note: It should go without saying, but make sure the Snipe-IT project directory is not owned by root. Your webserver should be running as your webserver’s user (often apache, nobody, or www-data). But never, ever root. Ever.</strong></p>
                     </div>
 
                     <footer>
