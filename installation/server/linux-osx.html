@@ -239,6 +239,20 @@ sudo /sbin/swapon /var/swap.1</code></pre>
 <p>If you need more than 1024MB then change that to something higher.</p>
 <p>To enable it by default after reboot, add this line to /etc/fstab:</p>
 <pre><code>/var/swap.1 swap swap defaults 0 0</code></pre>
+<h2 id="notes-on-selinux">Notes on SELinux</h2>
+<p>If you’re running SELinux, you’ll need to change the security context in order for the web server to be able to write to files where needed (log files, image uploads, sessions, etc).</p>
+<p>If you’re not sure, don’t worry about it unless you’ve set up Snipe-IT and you’re hitting permission errors even after you’ve updated the directory permissions to be writable.</p>
+<p>To tell if you’re running SELinux, you can run:</p>
+<pre><code>cat /etc/sysconfig/selinux</code></pre>
+<p>or</p>
+<pre><code>sestatus</code></pre>
+<p>If it turns out you’re running SELinux, the syntax for changing the security context on a directory is:</p>
+<pre><code>chcon -type &lt;type&gt; &lt;file&gt;
+chcon --reference &lt;file1&gt; &lt;file2&gt;</code></pre>
+<p>So for example, you might do something like:</p>
+<pre><code>chcon -R --type httpd_sys_rw_content_t /srv/snipeit
+chcon -R --reference=/var/www/html /srv/snipeit</code></pre>
+<p>Depending on where your Snipe-IT files are located.</p>
                     </div>
 
                     <hr/>
