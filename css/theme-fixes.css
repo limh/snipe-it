@@ -35,12 +35,22 @@ p.menu-section {
 }
 
 li {
-list-style: square;
-padding-bottom: 5px;
+padding-bottom: 10px;
+}
+
+li:before {
+font-family: 'FontAwesome';
+content: '\f101';
+margin:0 5px 0 -15px;
 }
 
 li.navitems {
 padding-bottom: 0px;
+}
+
+li.navitems:before {
+margin:0px;
+content: '';
 }
 
 li.active {
@@ -49,8 +59,10 @@ background-color: #1b557a;
 
 ul {
     padding-bottom: 10px;
+    padding-left: 50px;
 }
 
 ul.nav {
     padding-bottom: 0px;
+    padding-left: 0px;
 }
