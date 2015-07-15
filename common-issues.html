@@ -146,35 +146,60 @@
                         <h1 id="common-issues">Common Issues</h1>
 <div id="generated-toc"></div>
 <p>While installation should be pretty simple, here are some of the more common questions/issues people have.</p>
-<ul>
-<li>404 File Not Found on Sub-Pages</li>
-<li>Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</li>
-<li>Call to undefined method Illuminate\Foundation\Application::registerCoreContainerAliases() in /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/start.php on line 106</li>
-<li>Symfony \ Component \ Debug \ Exception \ FatalErrorException. syntax error, unexpected '[', expecting ')'</li>
-</ul>
-<h3 id="404-file-not-found-on-sub-pages">404 File Not Found on Sub-Pages</h3>
-<p>If you can get to the index page without a problem, but you get a 404 on any of other pages, chances are that <code>mod_rewrite</code> is either not installed on your system, or has not been <a href="http://askubuntu.com/questions/423514/how-to-enable-mod-rewrite-for-virtual-host">configured correctly</a> for your virtualhost using <code>AllowOverride</code>.</p>
-<p><strong>Troubleshooting:</strong></p>
-<p>Add garbage text into the <code>public/.htaccess</code> file on your local install and hit the homepage again. If it bombs out (it should), then <code>mod_rewrite</code> is probably working. If it doesn't, it means your webserver isn't even looking for the <code>.htaccess</code> rules and you'll need to check your virtualhost config.</p>
-<p>(Make sure to take the garbage out of the <code>.htaccess</code> file once you've gotten it sorted!)</p>
-<h3 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h3>
-<p>In <code>app/&lt;environment&gt;/config/app.php</code>, find the key on line 43. Manually change that to a random string that is no more than 32 characters.</p>
+<hr />
+<h2 id="the-requested-url-authsignin-was-not-found-on-this-server">The requested URL /auth/signin was not found on this server</h2>
+<p>Chances are that <code>mod_rewrite</code> is either not installed on your system, or has not been configured correctly for your virtualhost using AllowOverride.</p>
+<p><strong>Troubleshooting:</strong>
+Add garbage text into the public/.htaccess file on your local install and hit the homepage again. If it bombs out (it should), then mod_rewrite is probably working. If it doesn't, it means your webserver isn't even looking for the .htaccess rules and you'll need to check your virtualhost config.</p>
+<p>(Make sure to take the garbage out of the .htaccess file once you've gotten it sorted!)</p>
+<hr />
+<h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
+<p>In <code>app/&lt;environment&gt;/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
 <p>You can also run</p>
 <pre><code>php artisan key:generate</code></pre>
 <p>to auto-generate a key for you.</p>
-<p>Remember that if you're running this as anything other than <code>production</code>, you should append the environment name to the command so that it updates the correct <code>app.php</code>. For example:</p>
-<pre><code>php artisan key:generate --env=local</code></pre>
-<h3 id="error-message-error-output-php-fatal-error--call-to-undefined-method-illuminatefoundationapplicationregistercorecontaineraliases--in-varwwwhtmlvendorlaravelframeworksrcilluminatefoundationstartphp-on-line-106">Error message: Error Output: PHP Fatal error:  Call to undefined method Illuminate\Foundation\Application::registerCoreContainerAliases()  in /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/start.php on line 106</h3>
-<p>Remove <code>bootstrap/compiled.php</code> and your vendors dir, and try re-running <code>php composer.phar update</code>.</p>
-<h3 id="symfony--component--debug--exception--fatalerrorexception-syntax-error-unexpected--expecting-">Symfony \ Component \ Debug \ Exception \ FatalErrorException. syntax error, unexpected '[', expecting ')'</h3>
-<p>This error occurs when you're using an older version of PHP and trying to run Snipe-IT.</p>
-<p>Per the <a href="http://php.net/manual/en/language.types.array.php">PHP manual</a>:</p>
-<blockquote>
-<p>As of PHP 5.4 you can also use the short array syntax,
-which replaces array() with [].</p>
-</blockquote>
-<p>PHP 5.4 is the minimum requirement in Snipe-IT, so you must upgrade your version of PHP to resolve this error.</p>
+<hr />
+<h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
+<p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within.</p>
+<hr />
+<h2 id="database--not-configured">Database [] not configured</h2>
+<p>This happens when you think you're running the app in a different environment than your app thinks it's running in. The most common reason for this is you either forgot to edit <code>bootstrap/start.php</code> to include your hostname in whichever environment you want to run it as, or the hostname you entered there is incorrect.
+Snipe-IT will always default to production if it can't figure out what mode to run in.</p>
+<p>To find your hostname, type <code>hostname</code> in a terminal prompt and copy the output to whichever of the environments in <code>bootstrap/start.php</code> that you want to run it in. The app examines this array, and if it finds a hostname there that matches the actual hostname, that's the environment it will run in.</p>
+<p>Alternatively, you can try just copying your config files over into <code>app/config/production</code> and just letting it default to production if you don't plan on doing any code development.</p>
+<hr />
+<h2 id="fatalerrorexception-syntax-error-unexpected--expecting-">FatalErrorException. Syntax error, unexpected '[', expecting ')'</h2>
+<p>This error occurs when you're using an older version of PHP and trying to run Snipe-IT.
+Per the PHP manual:</p>
+<p>As of PHP 5.4 you can also use the short array syntax, which replaces array() with [].
+PHP 5.4 is the minimum requirement in Snipe-IT, so you must upgrade your version of PHP to resolve this error.</p>
 <p>You should also delete the contents of the cached views in <code>app/storage/views</code> once you upgrade PHP, to resolve any cached issues.</p>
+<hr />
+<h2 id="error-message-error-output-php-fatal-error-call-to-undefined-method-illuminatefoundationapplicationregistercorecontaineraliases-in-srcilluminatefoundationstartphp-on-line-106">Error message: Error Output: PHP Fatal error: Call to undefined method IlluminateFoundationApplication::registerCoreContainerAliases() in ../src/Illuminate/Foundation/start.php on line 106</h2>
+<p>Remove <code>bootstrap/compiled.php</code> and your vendors dir, and try running <code>php composer.phar update</code>.</p>
+<hr />
+<h2 id="image-source-not-readable">Image Source not readable</h2>
+<p>This usually means that the temporary directory is not writable by the web server. Check the permissions section of the documentation for your server OS and make sure you've granted the user the ability to write to the temp directory.</p>
+<hr />
+<h2 id="while-running-composer-interventionimage-dev-master-requires-ext-fileinfo---gt-the-requested-php-extension-fileinfo-is-missing-or-not-enabled-on-your-system">While running composer: intervention/image dev-master requires ext-fileinfo * -&gt; the requested PHP extension fileinfo is missing or not enabled on your system.</h2>
+<p>As the error states, your server is missing the <code>fileinfo</code> extension, which is one of the requirements for running Snipe-IT.</p>
+<p>Windows users must include the bundled <code>php_fileinfo.dll</code>DLL file in <code>php.ini</code> to enable this extension. To enable Fileinfo, add or uncomment this line in your php.ini:</p>
+<pre><code>extension=php_fileinfo.dll</code></pre>
+<p>and restart the web server.</p>
+<p>Linux users need to add or uncomment the following in their <code>php.ini</code>:</p>
+<pre><code>extension=fileinfo.so</code></pre>
+<p>and restart the web server.</p>
+<hr />
+<h2 id="during-composer-install-its-asking-me-for-my-github-credentials">During composer install, it's asking me for my Github credentials</h2>
+<p>This is an artifact of Github having a very low API rate limit for unauthenticated accounts. Make sure you're using the <code>--prefer-source</code> flag when doing your composer installs and updates.</p>
+<hr />
+<h2 id="call-to-undefined-method-illuminatecookiecookiejarget">Call to undefined method IlluminateCookieCookieJar::get()</h2>
+<p>If you're using Snipe-IT 1.2.6 or earlier, grab the latest off of the develop branch and run <code>php composer install</code>, or edit your composer.json to use Sentry 2.1.* and then run <code>php composer update</code>.</p>
+<hr />
+<h2 id="installing-d11wtqboris-v108-downloading-connection-failed-to-download-d11wtqboris-from-dist">Installing d11wtq/boris (v1.0.8) Downloading: connection... Failed to download d11wtq/boris from dist</h2>
+<p>This error is due to the fact that the repo of the dependency required by one of the libraries has moved, and composer has cached it's old location (where it doesn't exist anymore.) Composer may be caching the vendor location, even though the entry on Packagist was updated by the REPL author.</p>
+<p>To solve this, clear your composer cache by running <code>php composer clear-cache</code>.</p>
+<p>If this doesn't work, Try removing the <code>composer.lock</code> file from the main Snipe-IT directory, and running <code>php composer install</code>.</p>
                     </div>
 
                     <hr/>
