@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="common-issues">Common Issues</h1>
+<p>While installation should be pretty simple, here are some of the more common questions/issues people have.</p>
+<ul>
+<li>404 File Not Found on Sub-Pages</li>
+<li>Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</li>
+<li>Call to undefined method Illuminate\Foundation\Application::registerCoreContainerAliases() in /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/start.php on line 106</li>
+<li>Symfony \ Component \ Debug \ Exception \ FatalErrorException. syntax error, unexpected '[', expecting ')'</li>
+</ul>
+<h3 id="404-file-not-found-on-sub-pages">404 File Not Found on Sub-Pages</h3>
+<p>If you can get to the index page without a problem, but you get a 404 on any of other pages, chances are that <code>mod_rewrite</code> is either not installed on your system, or has not been <a href="http://askubuntu.com/questions/423514/how-to-enable-mod-rewrite-for-virtual-host">configured correctly</a> for your virtualhost using <code>AllowOverride</code>.</p>
+<p><strong>Troubleshooting:</strong></p>
+<p>Add garbage text into the <code>public/.htaccess</code> file on your local install and hit the homepage again. If it bombs out (it should), then <code>mod_rewrite</code> is probably working. If it doesn't, it means your webserver isn't even looking for the <code>.htaccess</code> rules and you'll need to check your virtualhost config.</p>
+<p>(Make sure to take the garbage out of the <code>.htaccess</code> file once you've gotten it sorted!)</p>
+<h3 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h3>
+<p>In <code>app/&lt;environment&gt;/config/app.php</code>, find the key on line 43. Manually change that to a random string that is no more than 32 characters.</p>
+<p>You can also run</p>
+<pre><code>php artisan key:generate</code></pre>
+<p>to auto-generate a key for you.</p>
+<p>Remember that if you're running this as anything other than <code>production</code>, you should append the environment name to the command so that it updates the correct <code>app.php</code>. For example:</p>
+<pre><code>php artisan key:generate --env=local</code></pre>
+<h3 id="error-message-error-output-php-fatal-error--call-to-undefined-method-illuminatefoundationapplicationregistercorecontaineraliases--in-varwwwhtmlvendorlaravelframeworksrcilluminatefoundationstartphp-on-line-106">Error message: Error Output: PHP Fatal error:  Call to undefined method Illuminate\Foundation\Application::registerCoreContainerAliases()  in /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/start.php on line 106</h3>
+<p>Remove <code>bootstrap/compiled.php</code> and your vendors dir, and try re-running <code>php composer.phar update</code>.</p>
+<h3 id="symfony--component--debug--exception--fatalerrorexception-syntax-error-unexpected--expecting-">Symfony \ Component \ Debug \ Exception \ FatalErrorException. syntax error, unexpected '[', expecting ')'</h3>
+<p>This error occurs when you're using an older version of PHP and trying to run Snipe-IT.</p>
+<p>Per the <a href="http://php.net/manual/en/language.types.array.php">PHP manual</a>:</p>
+<blockquote>
+<p>As of PHP 5.4 you can also use the short array syntax,
+which replaces array() with [].</p>
+</blockquote>
+<p>PHP 5.4 is the minimum requirement in Snipe-IT, so you must upgrade your version of PHP to resolve this error.</p>
+<p>You should also delete the contents of the cached views in <code>app/storage/views</code> once you upgrade PHP, to resolve any cached issues.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="windows-iis">Windows IIS</h1>
+<h2 id="install-snipe-it-windows-2008-r2-with-iis">Install Snipe-IT Windows 2008 R2 With IIS</h2>
+<p>Prereq (Install all of these prior to continuing)</p>
+<ul>
+<li>IIS</li>
+<li>IIS URL Rewrite</li>
+<li><a href="http://www.microsoft.com/web/gallery/install.aspx?appid=PHP54">PHP 5.4</a></li>
+<li>MariaDB 10.0.14 for Windows <a href="https://downloads.mariadb.org/interstitial/mariadb-10.0.14/winx64-packages/mariadb-10.0.14-winx64.msi/from/http%3A//mirror.aarnet.edu.au/pub/MariaDB">64-bit</a> | <a href="https://downloads.mariadb.org/interstitial/mariadb-10.0.14/win32-packages/mariadb-10.0.14-win32.msi/from/http%3A//mirror.aarnet.edu.au/pub/MariaDB">32-bit</a></li>
+<li><a href="http://phpmanager.codeplex.com/">PHP Manager for IIS</a> (makes managing PHP on IIS much easier)</li>
+<li>[Composer install with the shell menus](<a href="https://getcomposer.org/Composer-Setup.exe">https://getcomposer.org/Composer-Setup.exe</a> )</li>
+<li>[Notepad++](<a href="http://www.notepad-plus-plus.org/download/v6.6.6.html">http://www.notepad-plus-plus.org/download/v6.6.6.html</a> ) for editing files</li>
+</ul>
+<h3 id="setting-up-an-iis-website">Setting Up an IIS Website</h3>
+<ol>
+<li><a href="http://snipeitapp.com/download.php">Download Snipe-IT</a></li>
+<li>Extract to <code>C:\inetpub\wwwroot\snipe-it</code> (folder name can be changed but we will reference it as is shown here)</li>
+<li>Run IIS Manager</li>
+<li>
+<p>Right Click <code>Sites</code> and <code>Add Website</code></p>
+<pre><code>Site name: Snipe IT
+Physical path: C:\inetpub\wwwroot\snipe-it\public
+Binding
+Type: http
+IP address: All Unassigned or a specific IP if you have one you will be using
+Port: 80 or any you wish to use
+Host name: assets.portal.local (this can be changed to suit your needs)</code></pre>
+</li>
+<li>Click <code>OK</code>
+Your site will now appear in the list</li>
+<li>Double click on your site</li>
+<li>Double Click <code>URL Rewrite</code>
+<ol>
+<li>In the action pane click <code>Import Rules...</code></li>
+<li>Click the <code>...</code> button</li>
+<li>Go to <code>C:\inetpub\wwwroot\snipe-it\public</code></li>
+<li>Select <code>.htaccess</code> file</li>
+<li>Click <code>Open</code> then <code>Import</code></li>
+<li>In the action pane click <code>Apply</code></li>
+</ol></li>
+</ol>
+<h3 id="configuring-snipe-it">Configuring Snipe IT</h3>
+<ol>
+<li>Open Windows Explorer and goto <code>C:\inetpub\wwwroot\snipe-it</code></li>
+<li>
+<p>Open <code>bootstrap/start.php</code> with notepad++
+Update the file <code>bootstrap/start.php</code> under the section <code>Detect The Application Environment</code>.</p>
+<p><strong>AS OF LARAVEL 4.1</strong>
+Per the <a href="http://laravel.com/docs/upgrade">Laravel 4.1 upgrade docs</a>:</p>
+<p><strong><em>&quot;For security reasons, URL domains may no longer be used to detect your application environment. These values    are easily spoofable and allow attackers to modify the environment for a request. You should convert your       environment detection to use machine host names (hostname command on Mac &amp; Ubuntu).&quot;</em></strong></p>
+<p>To find out your local machine's hostname, type <code>hostname</code> from a terminal prompt on the machine you're         installing it on. The command-line response is that machine's hostname. Please note that the hostname is NOT        always the same as the domain name.</p>
+<p>So for example, if you're installing this on your server named www.yourserver.com, the environmental variable       section of <code>bootstrap/start.php</code> might look like this:</p>
+<pre><code>$env = $app-&gt;detectEnvironment(array(
+    ...
+    'production'    =&gt; array('www.yourserver.com')
+));</code></pre>
+<p>If your development, staging and production sites all run on the same server (which is generally a terrible idea), <a href="http://words.weareloring.com/development/setting-up-multiple-environments-in-laravel-4-1/">see this example</a> of how to configure the app using environmental variables.</p>
+</li>
+<li>
+<p>Copy <code>app/config/local/database.example.php</code> to <code>app/config/local/database.php</code></p>
+<ol>
+<li>Open <code>app/config/local/database.php</code> in notepad++</li>
+<li>
+<p>Update <code>database.php</code> with your database name and credentials</p>
+<pre><code>
+'mysql' =&gt; array(
+    'driver'    =&gt; 'mysql',
+    'host'      =&gt; 'localhost',
+    'database'  =&gt; 'snipeit_laravel',
+    'username'  =&gt; 'travis',
+    'password'  =&gt; '',
+    'charset'   =&gt; 'utf8',
+    'collation' =&gt; 'utf8_unicode_ci',
+    'prefix'    =&gt; '',
+    ),</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>Copy <code>app/config/local/mail.example.php</code>  to <code>app/config/local/mail.php</code>.</p>
+<ol>
+<li>Open <code>app/config/local/mail.php</code> in notepad++</li>
+<li>Update <code>mail.php</code> with your mail settings</li>
+</ol>
+</li>
+<li>
+<p>Copy <code>app/config/local/app.example.php</code> to <code>app/config/local/app.php</code></p>
+<ol>
+<li>Open <code>app/config/local/app.php</code> in notepad++</li>
+<li>Update the file <code>app/config/production/app.php</code> with your URL settings.</li>
+</ol>
+<pre><code>'url' =&gt; 'http://www.yourserver.com',</code></pre>
+<p>You should also change your secret key here -- if you prefer to have your key randomly generated, run the artisan key:generate command from the application root.</p>
+<pre><code>php artisan key:generate --env=production</code></pre>
+</li>
+<li>Open <code>C:\inetpub\wwwroot\snipe-it</code> in Windows Explorer
+<ol>
+<li>Right Click and select <code>Composer Install</code>.
+This will install the dependencies. Once completed move to next step</li>
+<li>Right Click and select <code>Use Composer here</code></li>
+<li>Type <code>php artisan app:install</code> and follow the prompts</li>
+</ol></li>
+<li>Add permissions for the IIS user for the <code>storage</code> folder:
+<ol>
+<li>Goto <code>C:\inetpub\wwwroot\snipe-it\app</code></li>
+<li>Right Click <code>storage</code> -&gt; <code>Properties</code></li>
+<li>Goto <code>Security Tab</code> -&gt; <code>Edit</code></li>
+<li>Click <code>Add</code> and change location to local machine</li>
+<li>Type <code>IUSR</code> in object name box</li>
+<li>Click <code>OK</code></li>
+<li>Give <code>IUSR</code> full control</li>
+<li>Click <code>OK</code> twice</li>
+</ol></li>
+<li>Add permissions for the IIS user for the <code>uploads</code> folder:
+<ol>
+<li>Goto <code>C:\inetpub\wwwroot\snipe-it\app</code></li>
+<li>Right Click <code>uploads</code> -&gt; <code>Properties</code></li>
+<li>Goto <code>Security Tab</code> -&gt; <code>Edit</code></li>
+<li>Click <code>Add</code> and change location to local machine</li>
+<li>Type <code>IUSR</code> in object name box</li>
+<li>Click <code>OK</code></li>
+<li>Give <code>IUSR</code> full control</li>
+<li>Click <code>OK</code> twice</li>
+</ol></li>
+</ol>
+<p>Special thanks to <a href="http://github.com/madd15">@madd15</a> for writing up the Windows installation guide!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="snipe-it-installation-guide-amp-users-manual">Snipe-IT Installation Guide &amp; User's Manual</h1>
+<p>Snipe-IT is a Free Open Source (FOSS) project for asset management in IT Operations. Knowing who has which laptop, when it was purchased in order to depreciate it correctly, handling software licenses, etc.</p>
+<p>It is built on <a href="http://laravel.com">Laravel 4.1</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
+<p>This project is being actively developed and we're <a href="https://github.com/snipe/snipe-it/releases">releasing quite frequently</a>. (<a href="http://snipeitapp.com/demo.php">Check out the live demo here</a>.)</p>
+<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any Mac OSX, flavor of Linux, as well as Windows.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>PHP 5.4 or later</li>
+<li>MCrypt PHP Extension</li>
+<li>Fileinfo Extension</li>
+</ul>
+<p>And <em>one</em> of the following image libraries (for QR codes, asset model image and user avatar image uploads).</p>
+<ul>
+<li>GD Library (&gt;=2.0) … or …</li>
+<li>Imagick PHP extension (&gt;=6.3.8)</li>
+</ul>
+<hr />
+<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
+<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
+<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
+<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready&amp;title=Ready" alt="Stories in Ready" /></a></p>
+<hr />
+<h3 id="announcement-list">Announcement List</h3>
+<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+<hr />
+<h3 id="translations">Translations!</h3>
+<p>If you're not a coder but want to give back to the project and you're fluent in other languages, consider helping out with the translations. We use <a href="https://crowdin.com">CrowdIn</a> to manage translations, and it makes it super-simple for you to add translations to the project without messing with code. Check out <a href="https://crowdin.com/project/snipe-it/">the Snipe-IT CrowdIn translation project here</a>.</p>
+<p>We currently have English and Spanish completed, and are looking for lots more!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

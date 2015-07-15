@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="upgrading">Upgrading</h1>
+<h3 id="important-notes-on-updating">Important Notes on Updating</h3>
+<p><strong>Always backup your database before upgrading.</strong> We try very hard to make sure that all database changes are non-destructive, but you should always backup beforehand anyway. You will never regret backing up your database. You may regret not doing so, so just better to get into the habit.</p>
+<p>Whenever you pull down a new version from <code>master</code> or <code>develop</code>, or when you grab the <a href="https://github.com/snipe/snipe-it/releases">latest official release</a>, make sure to run the following commands via command line:</p>
+<pre><code>php composer.phar dump-autoload
+php artisan migrate</code></pre>
+<p>Forgetting to do this can mean your DB might end up out of sync with the new files you just pulled, or you may have some funky cached autoloader values.</p>
+<p>It's a good idea to get into the habit of running these every time you pull anything new down. If there are no database changes to migrate, it won't hurt anything to run migrations anyway.</p>
+<p><strong>IMPORTANT: If you're upgrading from v.0.3.0-alpha or earlier, make sure to update your hostname information in <code>bootstrap/start.php</code>, per the <a href="https://github.com/snipe/snipe-it#21-adjust-environments">new requirements in Laravel 4.1</a></strong>.</p>
+<p>If you run into a weird error like</p>
+<pre><code>Error Output: PHP Fatal error:  Call to undefined method Illuminate\Foundation\Application::registerCoreContainerAliases() in /var/www/
+html/vendor/laravel/framework/src/Illuminate/Foundation/start.php on line 106</code></pre>
+<p>Then try removing <code>bootstrap/compiled.php</code> and your vendors dir, and re-running <code>php composer.phar update</code>.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

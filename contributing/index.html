@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="contribution-guidelines">Contribution Guidelines</h1>
+<p>Please submit all issues and pull requests to the <a href="http://github.com/snipe/snipe-it">snipe/snipe-it</a> repository in the <code>develop</code> branch!</p>
+<p><strong>As you're working on bug-fixes or features, please break them out into their own feature branches and open the pull request against your feature branch</strong>. It makes it <em>much</em> easier to decipher down the road, as you open multiple pull requests over time, and makes it much easier for me to approve pull requests quickly.</p>
+<p>If you don't have a feature in mind, but would like to contribute back to the project, check out the <a href="https://github.com/snipe/snipe-it/issues?state=open">open issues</a> and see if there are any you can tackle.</p>
+<hr />
+<h2 id="translations">Translations!</h2>
+<p>If you're not a coder but want to give back to the project and you're fluent in other languages, that's okay too. We use <a href="https://crowdin.com">CrowdIn</a> to manage translations, and it makes it super-simple for you to add translations (or validate proposed translations) to the project without messing with code. <strong>Check out <a href="https://crowdin.com/project/snipe-it/">the Snipe-IT CrowdIn translation project here</a></strong>.</p>
+<p>Thanks!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
