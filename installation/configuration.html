@@ -63,28 +63,33 @@
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/linux-osx.html">
-                                        Linux/OSX
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/index.html">
+                                        Server Configuration
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/windows.html">
-                                        Windows
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/linux-osx.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Linux/OSX</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/wamp.html">
-                                        WAMP
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/windows.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Windows</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/xampp.html">
-                                        XAMPP
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/wamp.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> WAMP</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/docker.html">
-                                        Docker
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/xampp.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> XAMPP</span>
+                                    </a>
+                                </li>
+                                                            <li class="navitems">
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/docker.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Docker</span>
                                     </a>
                                 </li>
                                                     </ul>
@@ -158,11 +163,9 @@
 <p>This will be used to send emails to your users, when they register and when they request a password reset.</p>
 <p>If you don’t have easy access to a mail server, we suggest signing up for Mandrill. Their free tier allows for 12k free sends a month.</p>
 <h2 id="adjust-the-application-settings">Adjust the Application Settings</h2>
-<p>Copy the example app config from app/config/production/app.example.php to app/config/production/app.php:</p>
-<pre><code>cp app/config/production/app.example.php app/config/production/app.php</code></pre>
-<p>Update the file <code>app/config/production/app.php</code> with your URL settings.</p>
+<p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
 <pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
-<p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the artisan key:generate command from the application root a little later in this process.</p>
+<p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the <code>php artisan key:generate</code> command from the application root a little later in this process.</p>
 <h2 id="fix-permissions">Fix permissions</h2>
 <p>You’ll need to make sure that the app/storage directory is writable by your webserver, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your webserver configured. You also need to change permissions for your uploads directory for user avatars and model images.</p>
 <pre><code>chmod -R 755 app/storage
@@ -173,9 +176,19 @@ chmod -R 755 public/uploads</code></pre>
                     </div>
 
                     <hr/>
-                    <p><span class="bottom-note"><i class="fa fa-exclamation-triangle"></i> <strong>See an error in this documentation?</span> </strong>
-                        <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
-                    </p>
+                    <div class="blue-alert">
+                            <div style="float: left; padding-right: 10px">
+                                <i class="fa fa-exclamation-triangle fa-2x"></i>
+                            </div>
+                            <div style="float: left;">
+                            <strong>
+                                See an error in this documentation?
+                            </strong>
+                            <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
 
 
                     <footer>

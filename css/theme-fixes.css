@@ -31,7 +31,7 @@ p.menu-section {
 }
 
 .bottom-note {
-    color: #b96229;
+    color: white;
 }
 
 li {
@@ -65,4 +65,28 @@ ul {
 ul.nav {
     padding-bottom: 0px;
     padding-left: 0px;
+}
+
+.blue-alert {
+    background-color: #77b7e1;
+    border: 1px solid #57a6da;
+    padding: 15px;
+    color: white;
+    min-height: 65px;
+    margin-bottom: 20px;
+}
+
+.clear {
+     clear: both;
+}
+
+.subnav-indent {
+    margin-left: 15px;
+}
+
+.grey-alert {
+    border: 1px solid #e1e4e5;
+    background: #fff;
+    margin: 1px 0 24px 0;
+    padding: 10px;
 }

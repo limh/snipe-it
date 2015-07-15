@@ -63,28 +63,33 @@
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/linux-osx.html">
-                                        Linux/OSX
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/index.html">
+                                        Server Configuration
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/windows.html">
-                                        Windows
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/linux-osx.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Linux/OSX</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/wamp.html">
-                                        WAMP
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/windows.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Windows</span>
+                                    </a>
+                                </li>
+                                                            <li class="navitems active">
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/wamp.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> WAMP</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/xampp.html">
-                                        XAMPP
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/xampp.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> XAMPP</span>
                                     </a>
                                 </li>
                                                             <li class="navitems">
-                                    <a href="http://snipe.github.io/snipe-it/installation/docker.html">
-                                        Docker
+                                    <a href="http://snipe.github.io/snipe-it/installation/server/docker.html">
+                                        <span class='subnav-indent'><i class='fa fa-caret-right'></i> Docker</span>
                                     </a>
                                 </li>
                                                     </ul>
@@ -128,66 +133,25 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="installing-snipe-it-on-docker">Installing Snipe-IT on Docker</h1>
-<div id="generated-toc"></div>
-<p>Build the snipeit image using the Dockerfile at the root directory of Snipe-IT by doing this:</p>
-<p><code>docker build -t snipeit .</code></p>
-<p>Then you can use your newly built image as <code>snipeit</code>.</p>
-<h2 id="how-to-get-up-and-running">How to get up and running</h2>
-<p>First get a MySQL container running...</p>
-<p>Figure out what you want for your:</p>
-<ul>
-<li>MySQL root password</li>
-<li>MySQL Database name for Snipe-IT</li>
-<li>MySQL User name for the user who will access Snipe-IT</li>
-<li>MySQL Password for that user</li>
-</ul>
-<pre><code>docker run --name mysql -e MYSQL_ROOT_PASSWORD=SUPERDUPERSECRETPASSWORD -e MYSQL_DATABASE=snipeit -e MYSQL_USER=snipeit -e MYSQL_PASSWORD=tinglewingler -d -p $(boot2docker ip)::3306 mysql</code></pre>
-<p>That should set you up with your database to use. (You can also use an environment file using <code>`--env-file</code>; see docker run --help for details)</p>
-<p>You’ll want to handle E-Mail – you can do this with a Docker container (not documented here), or point to any other external mail server. If you did want to do it using Docker, make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</p>
-<p>Regardless, the environment variables necessary are:</p>
-<ul>
-<li>MAIL_PORT_587_TCP_ADDR – the hostname/IP address of your mailserver</li>
-<li>MAIL_PORT_587_TCP_PORT – the port for the mailserver (probably 587, could be another)</li>
-<li>MAIL_ENV_FROM_ADDR, MAIL_ENV_FROM_NAME – the default from address, and from name for emails</li>
-<li>MAIL_ENV_ENCRYPTION – pick ‘tls’ for SMTP-over-SSL, ‘tcp’ for unencrypted</li>
-<li>MAIL_ENV_USERNAME – SMTP username</li>
-<li>MAIL_ENV_PASSWORD – SMTP password</li>
-</ul>
-<p>You can assemble these options into an env-file, or specify them on the command line when you run your Snipe-IT container.</p>
-<p>Now you can start your Snipe-IT container:</p>
-<pre><code>```docker run -d -p $(boot2docker ip)::80 --name="snipeit" --link mysql:mysql [--env-file or -e options...] snipeit```</code></pre>
-<p>You can find out what port Snipe-IT is running on with:</p>
-<p><code>docker port snipeit</code></p>
-<p>And finally, you can initialize the application and database like this:</p>
-<p>d<code>ocker exec -i -t snipeit php artisan app:install</code></p>
-<p>(Go ahead and answer the questions however you like. Type <code>y</code> when asked whether or not you want to run migrations.)</p>
-<p>NOTE:</p>
-<p>You may have to run:</p>
-<p><code>docker exec -i -t snipeit php artisan key:generate --env=production</code></p>
-<p>to get the production application key set correctly.</p>
-<p>If you want to seed</p>
-<p>You can load out some initial data into the DB if you like by doing this:</p>
-<p><code>`~~docker -p $(boot2docker ip):8000:80 --link mysql:mysql php artisan db:seed~~</code></p>
-<h4 id="for-developers">For Developers</h4>
-<p>When you call <code>docker run</code> – make sure to mount your own snipe-it directory over the <code>`/var/www/html</code> directory.</p>
-<p>Something like:</p>
-<p><code>docker run -d -v /Path/To/My/snipe-it/checkout:/var/www/html -p $(boot2docker ip)::80  --name="snipeit" --link mysql:mysql snipeit</code></p>
-<p>Then your local changes to the code will be reflected. You will have to re-run <code>composer install</code>:</p>
-<p><code>docker exec -i -t snipeit composer install</code></p>
-<p>You’ll need to copy the docker/database.php file to <code>app/config/production/</code> , and copy the <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>.</p>
-<p>And also <code>app:install</code>:</p>
-<p><code>docker exec -i -t snipeit php artisan app:install</code></p>
-<p>And you may still need to generate the key with:</p>
-<p><code>docker exec -i -t snipeit php artisan key:generate --env=production</code></p>
-<p>While you’re developing, you may need to occasionally run:</p>
-<p><code>docker exec snipeit composer dump-autoload</code></p>
+                        <h1 id="installing-snipe-it-on-wamp">Installing Snipe-IT on WAMP</h1>
+<p>To install Snipe-IT on WAMP, see the video below on how to set up its and database on WAMP, and then proceed to the documentation on <a title="Installing on Linux/OSX" href="http://snipeitapp.com/documentation/installing-on-linuxosx/">installing Snipe-IT for Linux</a>.</p></p>
+<iframe src="https://www.youtube.com/embed/DqEdTWjSnAQ?rel=0" width="480" height="360" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                     </div>
 
                     <hr/>
-                    <p><span class="bottom-note"><i class="fa fa-exclamation-triangle"></i> <strong>See an error in this documentation?</span> </strong>
-                        <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
-                    </p>
+                    <div class="blue-alert">
+                            <div style="float: left; padding-right: 10px">
+                                <i class="fa fa-exclamation-triangle fa-2x"></i>
+                            </div>
+                            <div style="float: left;">
+                            <strong>
+                                See an error in this documentation?
+                            </strong>
+                            <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
 
 
                     <footer>
