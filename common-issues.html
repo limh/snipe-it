@@ -157,10 +157,10 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
 <p>You can also run</p>
 <pre><code>php artisan key:generate</code></pre>
-<p>to auto-generate a key for you.</p>
+<p>to auto-generate a key for you. Put the generated key in as the value of <code>key</code> in your config.</p>
 <hr />
 <h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
-<p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within.</p>
+<p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within to be writable by the web server.</p>
 <hr />
 <h2 id="database--not-configured">Database [] not configured</h2>
 <p>This happens when you think you're running the app in a different environment than your app thinks it's running in. The most common reason for this is you either forgot to edit <code>bootstrap/start.php</code> to include your hostname in whichever environment you want to run it as, or the hostname you entered there is incorrect.
@@ -169,11 +169,10 @@ Snipe-IT will always default to production if it can't figure out what mode to r
 <p>Alternatively, you can try just copying your config files over into <code>app/config/production</code> and just letting it default to production if you don't plan on doing any code development.</p>
 <hr />
 <h2 id="fatalerrorexception-syntax-error-unexpected--expecting-">FatalErrorException. Syntax error, unexpected '[', expecting ')'</h2>
-<p>This error occurs when you're using an older version of PHP and trying to run Snipe-IT.
-Per the PHP manual:</p>
-<p>As of PHP 5.4 you can also use the short array syntax, which replaces array() with [].
-PHP 5.4 is the minimum requirement in Snipe-IT, so you must upgrade your version of PHP to resolve this error.</p>
-<p>You should also delete the contents of the cached views in <code>app/storage/views</code> once you upgrade PHP, to resolve any cached issues.</p>
+<p>The version of PHP you're using is too old to run Snipe-IT, which <a href="requirements.html">requires</a> PHP 5.4 or later. <a href="http://php.net/manual/en/language.types.array.php">Per the PHP manual</a>:</p>
+<blockquote>As of PHP 5.4 you can also use the short array syntax, which replaces array() with [].
+PHP 5.4 is the minimum requirement in Snipe-IT, so you must upgrade your version of PHP to resolve this error.</blockquote>
+<p>After upgrading PHP, you should also delete the contents of the cached views in <code>app/storage/views</code> once you upgrade PHP, to resolve any cached issues.</p>
 <hr />
 <h2 id="error-message-error-output-php-fatal-error-call-to-undefined-method-illuminatefoundationapplicationregistercorecontaineraliases-in-srcilluminatefoundationstartphp-on-line-106">Error message: Error Output: PHP Fatal error: Call to undefined method IlluminateFoundationApplication::registerCoreContainerAliases() in ../src/Illuminate/Foundation/start.php on line 106</h2>
 <p>Remove <code>bootstrap/compiled.php</code> and your vendors dir, and try running <code>php composer.phar update</code>.</p>
