@@ -26,17 +26,17 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/index.html">
                                         Introduction
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/requirements.html">
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/security.html">
                                         Security
                                     </a>
@@ -47,37 +47,42 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/index.html">
                                         Downloading
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="navitems active">
                                     <a href="http://snipe.github.io/snipe-it/installation/configuration.html">
                                         Configuration
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
+                                    <a href="http://snipe.github.io/snipe-it/installation/command-line.html">
+                                        The CLI Installer
+                                    </a>
+                                </li>
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/linux-osx.html">
                                         Linux/OSX
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/windows.html">
                                         Windows
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/wamp.html">
                                         WAMP
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/xampp.html">
                                         XAMPP
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/docker.html">
                                         Docker
                                     </a>
@@ -88,17 +93,17 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/translations.html">
                                         Translations
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/common-issues.html">
                                         Common Issues
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/getting-help.html">
                                         Getting Help
                                     </a>
@@ -125,7 +130,7 @@
                     <div role="main" class="document">
                         <h1 id="snipe-it-configuration-files">Snipe-IT Configuration Files</h1>
 <div id="generated-toc"></div>
-<h3 id="adjust-environments">Adjust Environments</h3>
+<h2 id="adjust-environments">Adjust Environments</h2>
 <p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment.</p>
 <p>To find out your local machine’s hostname, type hostname from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. Please note that the hostname is NOT always the same as the domain name.</p>
 <p>So for example, if you’re installing this on your server named www.yourserver.com, the environmental variable section of bootstrap/start.php might look like this:</p>
@@ -133,7 +138,7 @@
     ...
     'production'     =&gt; array('www.yourserver.com')
 ));</code></pre>
-<h3 id="setup-your-database">Setup Your Database</h3>
+<h2 id="setup-your-database">Setup Your Database</h2>
 <p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
 <p>Copy the example database config from <code>app/config/production/database.example.php</code> to app/config/production/database.php. Update the file <code>app/config/production/database.php</code> with your database name and credentials:</p>
 <pre><code>'mysql'=&gt; array(
@@ -146,19 +151,19 @@
     'collation'=&gt; 'utf8_unicode_ci',
     'prefix'   =&gt; '',
 ),</code></pre>
-<h3 id="setup-mail-settings">Setup Mail Settings</h3>
+<h2 id="setup-mail-settings">Setup Mail Settings</h2>
 <p>Copy the example mail config from app/config/production/mail.example.php to app/config/production/mail.php:</p>
 <pre><code>cp app/config/production/mail.example.php app/config/production/mail.php</code></pre>
 <p>Update the file <code>app/config/production/mail.php</code> with your mail settings.</p>
 <p>This will be used to send emails to your users, when they register and when they request a password reset.</p>
 <p>If you don’t have easy access to a mail server, we suggest signing up for Mandrill. Their free tier allows for 12k free sends a month.</p>
-<h3 id="adjust-the-application-settings">Adjust the Application Settings</h3>
+<h2 id="adjust-the-application-settings">Adjust the Application Settings</h2>
 <p>Copy the example app config from app/config/production/app.example.php to app/config/production/app.php:</p>
 <pre><code>cp app/config/production/app.example.php app/config/production/app.php</code></pre>
 <p>Update the file <code>app/config/production/app.php</code> with your URL settings.</p>
 <pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
 <p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the artisan key:generate command from the application root a little later in this process.</p>
-<h3 id="fix-permissions">Fix permissions</h3>
+<h2 id="fix-permissions">Fix permissions</h2>
 <p>You’ll need to make sure that the app/storage directory is writable by your webserver, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your webserver configured. You also need to change permissions for your uploads directory for user avatars and model images.</p>
 <pre><code>chmod -R 755 app/storage
 chmod -R 755 app/private_uploads
@@ -167,9 +172,16 @@ chmod -R 755 public/uploads</code></pre>
 <p><strong>Note: It should go without saying, but make sure the Snipe-IT project directory is not owned by root. Your webserver should be running as your webserver’s user (often apache, nobody, or www-data). But never, ever root. Ever.</strong></p>
                     </div>
 
+                    <hr/>
+                    <p><span class="bottom-note"><i class="fa fa-exclamation-triangle"></i> <strong>See an error in this documentation?</span> </strong>
+                        <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
+                    </p>
+
+
                     <footer>
-                        <hr/>
-                        <small>Documentation built with <a href="http://couscous.io/">Couscous</a> using a <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> based on <a href="https://readthedocs.org/">Read the Docs</a>.</small>
+                        <small>
+                            This documentation was built using <a href="http://couscous.io/">Couscous</a>. This <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> is based on <a href="https://readthedocs.org/">Read the Docs</a>.
+                        </small>
                     </footer>
 
                 </div>

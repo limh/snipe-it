@@ -36,7 +36,7 @@
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/security.html">
                                         Security
                                     </a>
@@ -128,12 +128,20 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="some-notes-on-security">Some Notes on Security</h1>
-<p>Snipe-IT was built with security in mind. We utilize bcrypt to handle passwords, which is an adaptive hash function based on the Blowfish symmetric block cipher cryptographic algorithm. Additionally, the software is designed in such a way to prevent brute forcing the password, with IP addresses and usernames locked out for 10 minutes after a specified number of login attempts.</p>
-<h2 id="additional-security">Additional Security</h2>
-<p>Although this is web-based software and must run on a web server, you may want to consider whether you actually need it accessible to the outside world. Running it on an internal network with ports closed to the outside world, or on AWS using a security group that prevents access from outside a selected static IP range (like your company network IP), may be something to consider.</p>
-<p>While most use cases won't be storing Personally Identifiable Information (PII), someone with the right motivation could gain useful knowledge about the number of employees, types of assets, etc you maintain. While this information in and of itself isn't harmful, it could be helpful to Bad Guys in a targeted attack, so you should consider whether you want to limit access to it via IP or network rules.</p>
-<p>Also, running this over SSL is not required, but a good idea. (Running everything ever over SSL is a good idea at this point.)</p>
+                        <h1 id="using-the-cli-installer">Using the CLI Installer</h1>
+<p>Now, you need to create yourself a user.</p>
+<p>Use the following command to create your default user, user groups and run all the necessary migrations.</p>
+<pre><code>php artisan app:install --env=production</code></pre>
+<p>When it asks you if you’re sure you want to run the migrations, type in <code>y</code>. You may have to do this a few times, but then you’re just about done!</p>
+<h3 id="seed-the-database-optional">Seed the Database (Optional)</h3>
+<p>During the <code>php artisan app:install</code> process, it will ask you if you wish to seed the database.</p>
+<p>Loading up the sample data will give you an idea of how this should look, how your info should be structured, etc. It only pre-loads a handful of items, so you won’t have to spend an hour deleting sample data, but this step is optional. If you don’t wish to seed the database, type in <code>n</code> when the installer asks you whether you want to seed.</p>
+<p>If you answer no, but change your mind after the installer is complete, you can run the database seeder by running:</p>
+<pre><code>php artisan db:seed --env=production</code></pre>
+<p>If you run this command on a database that already has your own production asset data in it, IT WILL OVER-WRITE YOUR ENTIRE DATABASE. ALL of your data will be gone forever. NEVER run the db seeder on production after on your initial install.</p>
+<h3 id="update-your-secret-key-if-you-didnt-already">Update Your Secret Key (If you didn’t already)</h3>
+<p>After running the <code>php artisan app:install --env=production</code> command above, the output of your terminal window should show you a generated secret key. If you missed it in all the scrollback, that’s okay, you can manually run <code>php artisan key:generate --env=production</code>.</p>
+<p>Update the value of <code>'key'</code> in your <code>app/config/production/app.php</code> file with the newly generated secret key.</p>
                     </div>
 
                     <hr/>

@@ -26,17 +26,17 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/index.html">
                                         Introduction
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/requirements.html">
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/security.html">
                                         Security
                                     </a>
@@ -47,37 +47,42 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/index.html">
                                         Downloading
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/configuration.html">
                                         Configuration
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
+                                    <a href="http://snipe.github.io/snipe-it/installation/command-line.html">
+                                        The CLI Installer
+                                    </a>
+                                </li>
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/linux-osx.html">
                                         Linux/OSX
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/windows.html">
                                         Windows
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/wamp.html">
                                         WAMP
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/xampp.html">
                                         XAMPP
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/installation/docker.html">
                                         Docker
                                     </a>
@@ -88,17 +93,17 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/translations.html">
                                         Translations
                                     </a>
                                 </li>
-                                                            <li class="">
+                                                            <li class="navitems">
                                     <a href="http://snipe.github.io/snipe-it/common-issues.html">
                                         Common Issues
                                     </a>
                                 </li>
-                                                            <li class="active">
+                                                            <li class="navitems active">
                                     <a href="http://snipe.github.io/snipe-it/getting-help.html">
                                         Getting Help
                                     </a>
@@ -125,21 +130,32 @@
                     <div role="main" class="document">
                         <h1 id="getting-help">Getting Help</h1>
 <p>If you're having trouble setting up Snipe-IT, don't worry! Simply post a new issue in the <a href="https://github.com/snipe/snipe-it/issues">Github Issues for Snipe-IT</a> and we'll try to get you sorted out.</p>
+<h3 id="enable-debug-mode">Enable debug mode</h3>
+<p>In your <code>app/config/app.php</code>, set <code>debug</code> to true. You'll switch this back to false once we're done debugging your issue, but this will turn on verbode errors on the screen and will help you see what's breaking.</p>
+<h3 id="posting-an-issue-to-github">Posting an issue to Github</h3>
 <p>When posting a new issue, please be SURE to include the following:</p>
 <ul>
-<li>Version of Snipe-IT you're running. (If you didn't grab an official release, let us know which branch you pulled from.)</li>
-<li>What OS and web server you're running this on</li>
-<li>If you're getting an error in your browser, include that error.</li>
+<li>Version of Snipe-IT you’re running. (If you didn’t grab an official release, let us know which branch you pulled from.)</li>
+<li>What OS and web server you’re running this on</li>
+<li>If you’re getting an error in your browser, include that error.</li>
 <li>If a stacktrace is provided in the error, include that too.</li>
-<li>Include any additional information you can find in <code>app/storage/logs</code>.</li>
+<li>Include any additional information you can find in app/storage/logs and your webserver’s logs.</li>
+<li>Include what you’ve done so far in the installation, and if you got any error messages along the way.</li>
 </ul>
-<p>It will be nearly impossible for us to help you without this info, so please try to be sure to include it with every help request so that we can try to get your problem sorted quickly.</p>
-<p>Please do not email for support. Github Issues allows us to share solutions so that other people can learn from them, which gives the community the most benefit.</p>
+<p><strong>It will be nearly impossible for us to help you without this info, so please try to be sure to include it with every help request so that we can try to get your problem sorted quickly.</strong></p>
+<p><strong><strong>Please do not email for support. Github Issues allows us to share solutions so that other people can learn from them, which gives the community the most benefit.</strong></strong></p>
                     </div>
 
+                    <hr/>
+                    <p><span class="bottom-note"><i class="fa fa-exclamation-triangle"></i> <strong>See an error in this documentation?</span> </strong>
+                        <br>Submit a pull request on the <a href="https://github.com/snipe/snipe-it/tree/documentation">documentation branch</a> of <a href="https://github.com/snipe/snipe-it">Snipe-IT</a>.
+                    </p>
+
+
                     <footer>
-                        <hr/>
-                        <small>Documentation built with <a href="http://couscous.io/">Couscous</a> using a <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> based on <a href="https://readthedocs.org/">Read the Docs</a>.</small>
+                        <small>
+                            This documentation was built using <a href="http://couscous.io/">Couscous</a>. This <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> is based on <a href="https://readthedocs.org/">Read the Docs</a>.
+                        </small>
                     </footer>
 
                 </div>
