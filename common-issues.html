@@ -150,11 +150,11 @@
 <h2 id="the-requested-url-authsignin-was-not-found-on-this-server">The requested URL /auth/signin was not found on this server</h2>
 <p>Chances are that <code>mod_rewrite</code> is either not installed on your system, or has not been configured correctly for your virtualhost using AllowOverride.</p>
 <p><strong>Troubleshooting:</strong>
-Add garbage text into the public/.htaccess file on your local install and hit the homepage again. If it bombs out (it should), then mod_rewrite is probably working. If it doesn't, it means your webserver isn't even looking for the .htaccess rules and you'll need to check your virtualhost config.</p>
+Add garbage text into the <code>public/.htaccess</code> file on your local install and hit the homepage again. If it bombs out (it should), then mod_rewrite is probably working. If it doesn't, it means your webserver isn't even looking for the .htaccess rules and you'll need to check your virtualhost config.</p>
 <p>(Make sure to take the garbage out of the .htaccess file once you've gotten it sorted!)</p>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
-<p>In <code>app/&lt;environment&gt;/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
 <p>You can also run</p>
 <pre><code>php artisan key:generate</code></pre>
 <p>to auto-generate a key for you.</p>
