@@ -231,7 +231,7 @@ server {
 }</code></pre>
 <p>Note that with the SSL configuration you will need to adjust the path to your SSL certificate or it will not work.  You can use a proper certificate generated from a CA or a self-signed certificate.  For more information on creating a self-signed certificate, <a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-nginx-for-ubuntu-12-04">click here</a>.</p>
 <hr />
-<h4 id="running-this-on-an-ec2-micro-instance">Running this on an EC2 Micro Instance</h4>
+<h2 id="running-this-on-an-ec2-micro-instance">Running this on an EC2 Micro Instance</h2>
 <p>Depending on your needs, you could probably run this system in an EC2 micro instance. It doesn't take up very much memory and typically won't be a super-high-traffic application. EC2 micros fall into the free/dirt-cheap tier, which might make this a nice option. One thing to note though - composer can be a little memory-intensive while you're running updates, and you may have trouble with it failing on a micro. You can crank the memory_limit up in php.ini, but EC2 micros have swap disabled by default, so even that may not cut it. If you run into totally unhelpful error messages while running composer updates (like simply 'Killed') or fatal memory issues mentioning phar, your best bet will be to enable swap:</p>
 <pre><code>sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 sudo /sbin/mkswap /var/swap.1
