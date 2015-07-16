@@ -187,8 +187,15 @@
                         <h1 id="using-the-cli-installer">Using the CLI Installer</h1>
 <p>Now, you need to create yourself a user.</p>
 <p>Use the following command to create your default user, user groups and run all the necessary migrations.</p>
+<h4 id="lti-classquotfa-fa-linuxgt">&lt;i class=&quot;fa fa-linux&gt;</i> Linux</h4>
 <pre><code>php artisan app:install --env=production</code></pre>
-<p>When it asks you if you’re sure you want to run the migrations, type in <code>y</code>. You may have to do this a few times, but then you’re just about done!</p>
+<h4><i class="fa fa-windows"></i>Windows</h4>
+<p>Open <code>C:\inetpub\wwwroot\snipe-it</code> in Windows Explorer</p>
+<ul>
+<li>Right Click and select <code>Use Composer here</code></li>
+<li>Type <code>php artisan app:install --env=production</code> and follow the prompts</li>
+</ul>
+<p>When it asks you if you’re sure you want to run the migrations, type in <code>y</code>. You may have to do this a few times.</p>
 <h3 id="seed-the-database-optional">Seed the Database (Optional)</h3>
 <p>During the <code>php artisan app:install</code> process, it will ask you if you wish to seed the database.</p>
 <p>Loading up the sample data will give you an idea of how this should look, how your info should be structured, etc. It only pre-loads a handful of items, so you won’t have to spend an hour deleting sample data, but this step is optional. If you don’t wish to seed the database, type in <code>n</code> when the installer asks you whether you want to seed.</p>
