@@ -179,24 +179,30 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="developing-amp-contributing">Developing &amp; Contributing</h1>
-<div id="generated-toc"></div>
-<p>Please be sure to see the <a href="https://github.com/snipe/snipe-it/blob/develop/contributing.html">contributing guidelines</a> before submitting pull requests.</p>
-<p>The only real difference in setting Snipe-IT up for local development versus setting it up for production usage is the configuration files, and remembering to add the local environment flag on the artisan commands.</p>
-<p>You'll notice in your <code>app/config</code> directory, you have directories such as <code>local</code>, <code>staging</code>, and <code>production</code>. (The <code>testing</code> directory is reserved for unit tests, so don't mess with that one.)</p>
-<p>You'll want to make sure you have the configuration files updated for whichever environment you're in, which will most likely be <code>local</code>.</p>
-<p>If you run the command line tools without the local flag, it will default to the production environment, so you'll want to make sure you run the commands as:</p>
-<pre><code>php artisan key:generate --env=local
-php artisan app:install --env=local</code></pre>
-<h3 id="set-up-the-debugbar">Set up the debugbar</h3>
-<p>In dev mode, I use the fabulous <a href="https://github.com/barryvdh/laravel-debugbar">Laravel Debugbar</a> by <a href="https://github.com/barryvdh">barryvdh</a>. After you've installed/updated composer, you'll need to publish the assets for the debugbar:</p>
-<pre><code>php artisan debugbar:publish</code></pre>
-<p>The profiler is enabled by default if you have debug set to true in your app.php. You certainly don't have to use it, but it's pretty handy for troubleshooting queries, seeing how much memory your pages are using, etc.</p>
-<hr />
-<h3 id="purging-the-autoloader">Purging the autoloader</h3>
-<p>If you're doing any development on this, make sure you purge the auto-loader if you see any errors stating the new model you created can't be found, etc, otherwise your new models won't be grokked.</p>
-<pre><code>php composer.phar dump-autoload</code></pre>
-<hr />
+                        <h1 id="snipe-it-users-manual">Snipe-IT User's Manual</h1>
+<p>(This manual is a work in progress - please check back often.)</p>
+<h2 id="basic-concepts">Basic concepts</h2>
+<h3 id="checkincheckout">Checkin/Checkout</h3>
+<p>Checking in and checking out are two primary concepts behind Snipe-IT. When you checkout an asset, license or accessory, you’re marking them as being in the possession of someone else. This means that they cannot subsequently be checked out to another person until they are checked back in. This prevents “double-booking” assets, where one asset has been promised to or assigned to multiple people.</p>
+<p>When an employee leaves your company, or if an asset, license or accessory is not functioning properly, you would check it back in. Checking it back in indicates that it’s back in your possession, or potentially out for repair. It’s up to you to decide what status to assign it, based on the condition of the asset.</p>
+<h3 id="status-labels">Status Labels</h3>
+<p>Status labels are used to describe the state of the asset. You can add as many status labels as you’d like. Each status label will have one of four characteristics that describe the state of assets with that status label:</p>
+<p>Undeployable: these assets cannot be assigned to anyone.</p>
+<p>Deployable: these assets can be assigned to people</p>
+<p>Archived: these assets cannot be assigned to people, and will only show up in the Archived view</p>
+<p>Pending – these assets can not yet be assigned to anyone.</p>
+<p>Use status labels however you see fit. You can just keep the starter labels we set up for you, or you can flesh out a detailed set of statuses that will make sure your team always knows exactly what’s going on with each asset.</p>
+<p>If you set up your status labels well, they can be enormously useful. A status label that is a pending label named “Awaiting Re-Imaging” tells your team that this item can’t be deployed because it’s still in the re-imaging stage and isn’t ready yet. Once it’s ready, your team can update the status to “Ready to Deploy”, and then it’s added to the pool of available deployable resources.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="setting-up-locations">Setting up Locations</h3>
+<p>If you have a fresh install of Snipe-IT, it can be confusing on where to get started. The best place to start is to set up your locations. Even if you only have one location, you’ll want to get that set up first, since users, assets and many other things within the Snipe-IT system rely on it.</p>
+<p>From here you can start adding users if you want, or move on to adding asset models and assets.</p>
+<h3 id="asset-categories">Asset Categories</h3>
+<p>Asset categories are used by both assets and accessories. Categories describe the general type of asset or accessory, such as “wireless keyboards”, “laptops”, and so on. Categories are important because they contain attributes that are inherited by both the assets and accessories that long to them, such as whether to require the user to click on a link to show that they have received the asset or accessory, and whether or not the user should be emailed a EULA.</p>
+<p>Every asset and accessory needs to belong to a category, so you’ll need to set these up before adding assets.</p>
+<h3 id="asset-models">Asset Models</h3>
+<p>Every asset needs an asset model, so setting these up next will help you start adding assets. Asset models can be things like the make and model of a laptop or desktop machine (Apple 13″ Retina, for example). When you create new assets, you’ll select whichever asset model makes sense.</p>
+<p>Asset models are important because they carry certain attributes which are inherited by the assets you, such as depreciation type, end of life, and whether or not to show MAC address fields on the asset.</p>
                     </div>
 
                     <hr/>
