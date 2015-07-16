@@ -291,7 +291,7 @@
 </table>
 <p>If you're interested in additional languages, or would like to help us translate some of the incomplete existing languages, please see the <a href="../translations.html">Traslations</a> page.</p>
 <hr />
-<h2 id="add-your-database-settings">Add Your Database Settings</h2>
+<h2 id="edit-database-settings">Edit Database Settings</h2>
 <p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
 <p>Copy the example database config from <code>app/config/production/database.example.php</code> to <code>app/config/production/database.php</code>. Update the file <code>app/config/production/database.php</code> with your database name and credentials:</p>
 <pre><code>'mysql'=&gt; array(
@@ -305,11 +305,16 @@
     'prefix'   =&gt; '',
 ),</code></pre>
 <hr />
-<h2 id="setup-mail-settings">Setup Mail Settings</h2>
-<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>:</p>
-<pre><code>cp app/config/production/mail.example.php app/config/production/mail.php</code></pre>
-<p>Update the file <code>app/config/production/mail.php</code> with your mail settings.</p>
-<p>This will be used to send emails to your users, when they register and when they request a password reset.</p>
+<h2 id="edit-mail-settings">Edit Mail Settings</h2>
+<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your mail settings.</p>
+<p>These settings will be used to send emails to your users, when they register and when they request a password reset.</p>
+<p>While your mail settings will vary depending on how you've set up your server, the one line you must change regardless of your configuration is:</p>
+<pre><code>'from' =&gt; array('address' =&gt; null, 'name' =&gt; null),</code></pre>
+<p><strong>Make sure as you edit this section that you change the <strong>values</strong>, not the <strong>keys</strong>.</strong> For example,</p>
+<pre><code>'from' =&gt; array('address' =&gt; 'me@example.com', 'name' =&gt; 'John Smith'),</code></pre>
+<p>is <strong>correct</strong>, while</p>
+<pre><code>'from' =&gt; array('me@example.com' =&gt; null, 'John Smith' =&gt; null),</code></pre>
+<p>is <strong>incorrect</strong> and will cause errors when it tries to send email.</p>
 <p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
 <hr />
 <h2 id="application-settings">Application Settings</h2>
