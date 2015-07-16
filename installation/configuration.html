@@ -161,12 +161,12 @@
                         <h1 id="snipe-it-configuration-files">Snipe-IT Configuration Files</h1>
 <div id="generated-toc" class="generate_from_h2"></div>
 <h2 id="set-your-environment">Set Your Environment</h2>
-<p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment.</p>
-<p>To find out your local machine’s hostname, type hostname from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. Please note that the hostname is NOT always the same as the domain name.</p>
-<p>So for example, if you’re installing this on your server named www.yourserver.com, the environmental variable section of bootstrap/start.php might look like this:</p>
+<p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment to include your server's hostname in the <code>production</code> array. This configuration option tells Snipe-IT whether it should run in development mode (local), staging, or production mode. <strong>Unless you are a PHP developer setting up a local installation so that you can contribute code towards Snipe-IT, you should be running Snipe-IT in production mode</strong>.</p>
+<p>To find out your local machine’s hostname, type <code>hostname</code> from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. <strong>Please note that the hostname is usually NOT the same as the domain name</strong>.</p>
+<p>So for example, if you’re installing this on your server named <code>CentOS-ip-9875</code>, the environmental variable section of <code>bootstrap/start.php</code> might look like this:</p>
 <pre><code class="language-php">$env = $app-&gt;detectEnvironment(array(
     ...
-    'production'     =&gt; array('www.yourserver.com')
+    'production'     =&gt; array('CentOS-ip-9875')
 ));</code></pre>
 <hr />
 <h2 id="set-timezone-and-language-preferences">Set Timezone and Language Preferences</h2>
