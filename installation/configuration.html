@@ -330,9 +330,10 @@
     'collation'=&gt; 'utf8_unicode_ci',
     'prefix'   =&gt; '',
 ),</code></pre>
+<p>You can generally leave <code>charset</code>, <code>collation</code> and <code>prefix</code> as they are.</p>
 <hr />
 <h2 id="edit-mail-settings">Edit Mail Settings</h2>
-<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your settings for SMTP server, username and password.</p>
+<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your settings for SMTP server, email username and password.</p>
 <p>These settings will be used to send emails to your users, when they register and when they request a password reset.</p>
 <p>While your mail settings will vary depending on how you've set up your server, the one line you must change regardless of your configuration is:</p>
 <pre><code>'from' =&gt; array('address' =&gt; null, 'name' =&gt; null),</code></pre>
