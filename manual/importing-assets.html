@@ -187,12 +187,39 @@
                         <h1 id="importing-users-and-assets">Importing Users and Assets</h1>
 <p>There is a basic asset import tool in later versions of Snipe-IT. It is available through the command-line only, as vry large file uploading and processing will cause memory exhaustion issues on many servers. We'll be working on a way to make this web-based and chunk data in the future.</p>
 <h3 id="usage">Usage:</h3>
-<pre><code>php artisan import:csv path/to/your/file.csv --domain=yourdomain.com</code></pre>
+<pre><code>php artisan import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Values</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td>a domain name string formattd as yourdomain.com</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>email_format</code></td>
+<td><code>firstname</code>, <code>firstname.lastname</code>, or <code>filastname</code> (for first initial, last name)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <p>The importer will be looking for a CSV in the format of:</p>
-<pre><code>Assigned To, Category, Asset Model Name, Manufacturer, Model Number,Serial Number, Asset Tag, Location</code></pre>
-<p>It will split the user's name, creating firstname and lastname, will generate an email address using your domain and the FirstInitialLastName@yourdomain.com pattern, will generate a password for them, and will create the asset models, locations, category, etc if they don't currently exist.</p>
+<pre><code>Name, Email, Asset Category, Asset Model, Manufacturer, Asset Model Number, Asset Serial, Asset Tag, Location, Asset Notes</code></pre>
+<p>When you execute this command with a valid path to your CSV, the importer will:</p>
+<ul>
+<li>Split the user's name, creating <code>firstname</code> and <code>lastname</code>,</li>
+<li>Generate an email address using your domain and the whatever pattern you specified in <code>email_format</code></li>
+<li>Generate a password for them</li>
+<li>Create the user if they don't exist (based on their email address)</li>
+<li>Create the asset models, locations, category, etc if they don't currently exist, skip them if they do.</li>
+</ul>
 <p>It currently does not do any validation other than checking to see if the record already exists in the database.</p>
-<p>It determines if the user exists by looking up the email address (which has been generated as FirstInitialLastName@yourdomain.com, and may not be correct for all email naming conventions.)</p>
 <p>When using this, <strong>BACK UP YOUR DATABASE FIRST</strong>. This is experimental, and it might cause unexpected results with your data. We have successfully used this cli tool to import a CSV of over 2,000 assets, but there's some data cleansing and checking that needs to be built in before it's bulletproof.</p>
                     </div>
 
