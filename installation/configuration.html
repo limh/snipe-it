@@ -160,7 +160,7 @@
                     <div role="main" class="document">
                         <h1 id="snipe-it-configuration-files">Snipe-IT Configuration Files</h1>
 <div id="generated-toc" class="generate_from_h2"></div>
-<h2 id="adjust-environments">Adjust Environments</h2>
+<h2 id="set-your-environment">Set Your Environment</h2>
 <p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment.</p>
 <p>To find out your local machine’s hostname, type hostname from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. Please note that the hostname is NOT always the same as the domain name.</p>
 <p>So for example, if you’re installing this on your server named www.yourserver.com, the environmental variable section of bootstrap/start.php might look like this:</p>
@@ -168,7 +168,130 @@
     ...
     'production'     =&gt; array('www.yourserver.com')
 ));</code></pre>
-<h2 id="setup-your-database">Setup Your Database</h2>
+<hr />
+<h2 id="set-timezone-and-language-preferences">Set Timezone and Language Preferences</h2>
+<p>Open up <code>app/config/app.php</code> and edit the <code>timezone</code> and <code>language</code> settings to reflect your desired timezone and language. The default timezone is UTC. The timezone you use should be formatted as <a href="http://php.net/manual/en/timezones.php">an accepted PHP timezone</a>, so for example, for Pacific Time, you could use <code>America/Los_Angeles</code>:</p>
+<pre><code>'timezone' =&gt; 'America/Los_Angeles',</code></pre>
+<p>The default language is US English, however we have additional language translations available, thanks to a great community of people <a href="../translations.html">helping us translate Snipe-IT</a>.</p>
+<pre><code>'locale' =&gt; 'en',</code></pre>
+<p>If you wish to use one of the other available languages, simply replace the default value of <code>local</code> from <code>en</code> to one of the values listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arabic</td>
+<td><code>ar</code></td>
+</tr>
+<tr>
+<td>Chinese Simplified</td>
+<td><code>zh-CN</code></td>
+</tr>
+<tr>
+<td>Czech</td>
+<td><code>cs</code></td>
+</tr>
+<tr>
+<td>Danish</td>
+<td><code>nl</code></td>
+</tr>
+<tr>
+<td>Dutch</td>
+<td><code>nl</code></td>
+</tr>
+<tr>
+<td>English</td>
+<td><code>en</code></td>
+</tr>
+<tr>
+<td>English, UK</td>
+<td><code>en-GB</code></td>
+</tr>
+<tr>
+<td>Finnish</td>
+<td><code>fi</code></td>
+</tr>
+<tr>
+<td>French</td>
+<td><code>fr</code></td>
+</tr>
+<tr>
+<td>German</td>
+<td><code>de</code></td>
+</tr>
+<tr>
+<td>Hungarian</td>
+<td><code>hu</code></td>
+</tr>
+<tr>
+<td>Italian</td>
+<td><code>it</code></td>
+</tr>
+<tr>
+<td>Japanese</td>
+<td><code>ja</code></td>
+</tr>
+<tr>
+<td>Korean</td>
+<td><code>ko</code></td>
+</tr>
+<tr>
+<td>Malay</td>
+<td><code>ms</code></td>
+</tr>
+<tr>
+<td>Norwegian</td>
+<td><code>no</code></td>
+</tr>
+<tr>
+<td>Polish</td>
+<td><code>pl</code></td>
+</tr>
+<tr>
+<td>Portuguese</td>
+<td><code>pr-PT</code></td>
+</tr>
+<tr>
+<td>Portuguese, Brazilian</td>
+<td><code>pr-BT</code></td>
+</tr>
+<tr>
+<td>Romanian</td>
+<td><code>ro</code></td>
+</tr>
+<tr>
+<td>Russian</td>
+<td><code>ru</code></td>
+</tr>
+<tr>
+<td>Spanish</td>
+<td><code>es-ES</code></td>
+</tr>
+<tr>
+<td>Swedish</td>
+<td><code>sv-SE</code></td>
+</tr>
+<tr>
+<td>Thai</td>
+<td><code>th</code></td>
+</tr>
+<tr>
+<td>Turkish</td>
+<td><code>tr</code></td>
+</tr>
+<tr>
+<td>Vietnamese</td>
+<td><code>vi</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you're interested in additional languages, or would like to help us translate some of the incomplete existing languages, please see the <a href="../translations.html">Traslations</a> page.</p>
+<hr />
+<h2 id="add-your-database-settings">Add Your Database Settings</h2>
 <p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
 <p>Copy the example database config from <code>app/config/production/database.example.php</code> to <code>app/config/production/database.php</code>. Update the file <code>app/config/production/database.php</code> with your database name and credentials:</p>
 <pre><code>'mysql'=&gt; array(
@@ -181,16 +304,19 @@
     'collation'=&gt; 'utf8_unicode_ci',
     'prefix'   =&gt; '',
 ),</code></pre>
+<hr />
 <h2 id="setup-mail-settings">Setup Mail Settings</h2>
 <p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>:</p>
 <pre><code>cp app/config/production/mail.example.php app/config/production/mail.php</code></pre>
 <p>Update the file <code>app/config/production/mail.php</code> with your mail settings.</p>
 <p>This will be used to send emails to your users, when they register and when they request a password reset.</p>
-<p>If you don’t have easy access to a mail server, we suggest signing up for Mandrill. Their free tier allows for 12k free sends a month.</p>
-<h2 id="adjust-the-application-settings">Adjust the Application Settings</h2>
+<p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
+<hr />
+<h2 id="application-settings">Application Settings</h2>
 <p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
 <pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
 <p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the <code>php artisan key:generate</code> command from the application root a little later in this process.</p>
+<hr />
 <h2 id="fix-permissions">Fix permissions</h2>
 <p>You’ll need to make sure that the app/storage directory is writable by your webserver, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your webserver configured. You also need to change permissions for your uploads directory for user avatars and model images.</p>
 <pre><code>chmod -R 755 app/storage
