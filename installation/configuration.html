@@ -319,7 +319,7 @@
 <hr />
 <h2 id="edit-database-settings">Edit Database Settings</h2>
 <p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
-<p>Copy the example database config from <code>app/config/production/database.example.php</code> to <code>app/config/production/database.php</code>. Update the file <code>app/config/production/database.php</code> with your database name and credentials:</p>
+<p>Copy the example database config from <code>app/config/production/database.example.php</code> to <code>app/config/production/database.php</code>. Update the file <code>app/config/production/database.php</code> with your database name and credentials, replacing <code>snipeit_laravel</code> with your database name, <code>travis</code> with your database username, and so on:</p>
 <pre><code>'mysql'=&gt; array(
     'driver'   =&gt; 'mysql',
     'host'     =&gt; 'localhost',
@@ -332,7 +332,7 @@
 ),</code></pre>
 <hr />
 <h2 id="edit-mail-settings">Edit Mail Settings</h2>
-<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your mail settings.</p>
+<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your settings for SMTP server, username and password.</p>
 <p>These settings will be used to send emails to your users, when they register and when they request a password reset.</p>
 <p>While your mail settings will vary depending on how you've set up your server, the one line you must change regardless of your configuration is:</p>
 <pre><code>'from' =&gt; array('address' =&gt; null, 'name' =&gt; null),</code></pre>
