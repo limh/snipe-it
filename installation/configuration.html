@@ -329,7 +329,7 @@
 chmod -R 755 app/private_uploads
 chmod -R 755 public/uploads</code></pre>
 <p>For help fixing permissions on IIS, see the <a href="server/windows.html">Windows Installation guide</a>.</p>
-<p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server.</p>
+<p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server so that the web server itself (Apache, IIS, etc) can write to files owned by the Snipe-IT user.</p>
 <p><strong>Note: It should go without saying, but make sure the Snipe-IT project directory is not owned by root. Your webserver should be running as your webserver’s user (often apache, nobody, or www-data). But never, ever root. Ever.</strong></p>
                     </div>
 
