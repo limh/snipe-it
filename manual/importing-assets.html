@@ -210,7 +210,7 @@
 </tbody>
 </table>
 <p>The importer will be looking for a CSV in the format of:</p>
-<pre><code>Name, Email, Asset Category, Asset Model, Manufacturer, Asset Model Number, Asset Serial, Asset Tag, Location, Asset Notes</code></pre>
+<pre><code>Name, Email, Asset Category, Asset Model, Manufacturer, Asset Model Number, Asset Serial, Asset Tag, Location Name, Asset Notes</code></pre>
 <p>The importer will ignore the first line of your CSV, so if you don't have a header row, you should add one.</p>
 <p><a href="http://snipeitapp.com/wp-content/uploads/2015/07/sample.csv"><strong>Download a sample CSV with dummy data</strong></a></p>
 <table>
@@ -225,7 +225,7 @@
 <tr>
 <td>Name</td>
 <td>No</td>
-<td>Firstname Lastname</td>
+<td>Firstname Lastname (no commas)</td>
 </tr>
 <tr>
 <td>Email</td>
@@ -238,12 +238,12 @@
 <td>Will be created if it doesn't exist in the database</td>
 </tr>
 <tr>
-<td>Manufacturer</td>
+<td>Manufacturer Name</td>
 <td>Yes</td>
 <td>Will be created if it doesn't exist in the database</td>
 </tr>
 <tr>
-<td>Asset Model Number</td>
+<td>Asset Model #</td>
 <td>Yes</td>
 <td></td>
 </tr>
@@ -254,16 +254,16 @@
 </tr>
 <tr>
 <td>Asset Tag</td>
-<td>No</td>
+<td>Yes</td>
 <td></td>
 </tr>
 <tr>
-<td>Location</td>
+<td>Location Name</td>
 <td>Yes</td>
 <td>Will be created if it doesn't exist in the database</td>
 </tr>
 <tr>
-<td>Notes</td>
+<td>Asset Notes</td>
 <td>No</td>
 <td></td>
 </tr>
@@ -272,7 +272,7 @@
 <p>When you execute this command with a valid path to your CSV, the importer will:</p>
 <ul>
 <li>Split the user's name, creating <code>firstname</code> and <code>lastname</code>,</li>
-<li>Generate an email address using your domain and the whatever pattern you specified in <code>email_format</code></li>
+<li>If no email is provided, it will generate an email address using your domain and the whatever pattern you specified in <code>email_format</code></li>
 <li>Generate a password for them</li>
 <li>Create the user if they don't exist (based on their email address)</li>
 <li>Create the asset models, locations, category, etc if they don't currently exist, skip them if they do.</li>
