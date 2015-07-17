@@ -211,7 +211,64 @@
 </table>
 <p>The importer will be looking for a CSV in the format of:</p>
 <pre><code>Name, Email, Asset Category, Asset Model, Manufacturer, Asset Model Number, Asset Serial, Asset Tag, Location, Asset Notes</code></pre>
+<p>The importer will ignore the first line of your CSV, so if you don't have a header row, you should add one.</p>
 <p><a href="http://snipeitapp.com/wp-content/uploads/2015/07/sample.csv"><strong>Download a sample CSV with dummy data</strong></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>No</td>
+<td>Firstname Lastname</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>No</td>
+<td>Will be generated if no email is provided</td>
+</tr>
+<tr>
+<td>Asset Category</td>
+<td>Yes</td>
+<td>Will be created if it doesn't exist in the database</td>
+</tr>
+<tr>
+<td>Manufacturer</td>
+<td>Yes</td>
+<td>Will be created if it doesn't exist in the database</td>
+</tr>
+<tr>
+<td>Asset Model Number</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Asset Serial</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Asset Tag</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Yes</td>
+<td>Will be created if it doesn't exist in the database</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>When you execute this command with a valid path to your CSV, the importer will:</p>
 <ul>
 <li>Split the user's name, creating <code>firstname</code> and <code>lastname</code>,</li>
@@ -219,6 +276,7 @@
 <li>Generate a password for them</li>
 <li>Create the user if they don't exist (based on their email address)</li>
 <li>Create the asset models, locations, category, etc if they don't currently exist, skip them if they do.</li>
+<li>If no user is provided, the asset gets created as ready to deploy instead of checked out to a user</li>
 </ul>
 <p>It currently does not do any validation other than checking to see if the record already exists in the database.</p>
 <p>When using this, <strong>BACK UP YOUR DATABASE FIRST</strong>. This is experimental, and it might cause unexpected results with your data. We have successfully used this cli tool to import a CSV of over 2,000 assets, but there's some data cleansing and checking that needs to be built in before it's bulletproof.</p>
