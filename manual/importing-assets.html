@@ -209,6 +209,7 @@
 </tr>
 </tbody>
 </table>
+<h3 id="csv-format">CSV Format</h3>
 <p>The importer will be looking for a CSV in the format of:</p>
 <pre><code>Name, Email, Asset Category, Asset Model, Manufacturer, Asset Model Number, Asset Serial, Asset Tag, Location Name, Asset Notes</code></pre>
 <p>The importer will ignore the first line of your CSV, so if you don't have a header row, you should add one.</p>
@@ -269,6 +270,7 @@
 </tr>
 </tbody>
 </table>
+<h3 id="what-it-does">What It Does</h3>
 <p>When you execute this command with a valid path to your CSV, the importer will:</p>
 <ul>
 <li>Split the user's name, creating <code>firstname</code> and <code>lastname</code>,</li>
@@ -278,8 +280,9 @@
 <li>Create the asset models, locations, category, etc if they don't currently exist, skip them if they do.</li>
 <li>If no user is provided, the asset gets created as ready to deploy instead of checked out to a user</li>
 </ul>
-<p>It currently does not do any validation other than checking to see if the record already exists in the database.</p>
 <p>When using this, <strong>BACK UP YOUR DATABASE FIRST</strong>. This is experimental, and it might cause unexpected results with your data. We have successfully used this cli tool to import a CSV of over 2,000 assets, but there's some data cleansing and checking that needs to be built in before it's bulletproof.</p>
+<h3 id="limitations-amp-notes">Limitations &amp; Notes</h3>
+<p>The importer isn't very smart. It currently does not do any validation other than checking to see if the record already exists in the database. It doesn't know that <code>Dell Inspiron</code> is the same asset as <code>Dell Insprion</code>. The quality of your data will make a big difference in the results you get, so if there's a lot of inconsistency, you're going to end up with with duplicates because the app has no way of knowing what you <strong>meant</strong> from what you wrote.</p>
                     </div>
 
                     <hr/>
