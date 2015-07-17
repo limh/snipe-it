@@ -185,7 +185,7 @@
                 <div class="rst-content">
                     <div role="main" class="document">
                         <h1 id="importing-users-and-assets">Importing Users and Assets</h1>
-<p>There is a basic asset import tool in later versions of Snipe-IT. It is available through the command-line only, as very large file uploading and processing will cause memory exhaustion issues on many servers. We'll be working on a way to make this web-based and chunk data in the future.</p>
+<p>There is an asset import tool in later versions of Snipe-IT ( &gt; <code>1.2.8</code>). It is available through the command-line only, as very large file uploading and processing will cause memory exhaustion issues on many servers. We'll be working on a way to make this web-based and chunk data in the future.</p>
 <h3 id="usage">Usage:</h3>
 <pre><code>php artisan import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname</code></pre>
 <table>
@@ -231,7 +231,7 @@
 <tr>
 <td>Email</td>
 <td>No</td>
-<td>Will be generated if no email is provided</td>
+<td>Will be generated using the <code>email_format</code> and the <code>domain</code> you provide in the import command</td>
 </tr>
 <tr>
 <td>Asset Category</td>
