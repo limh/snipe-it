@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="http://snipe.github.io/snipe-it/css/theme.css" type="text/css"/>
     <link rel="stylesheet" href="http://snipe.github.io/snipe-it/css/theme-fixes.css" type="text/css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link href="http://snipe.github.io/snipe-it/css/tipuesearch.css" rel="stylesheet">
+
+
+
 </head>
 <body class="wy-body-for-nav">
 
@@ -231,6 +237,23 @@
             hljs.initHighlightingOnLoad();
         });
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://snipe.github.io/snipe-it/js/tipuesearch_set.js"></script>
+    <script src="http://snipe.github.io/snipe-it/js/tipuesearch.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+         $('#tipue_search_input').tipuesearch({
+              'mode': 'live',
+              'liveDescription': 'h1',
+              'liveContent': '.document'
+         });
+    });
+    </script>
+
+
+
 
 </body>
 </html>
