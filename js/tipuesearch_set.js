@@ -24,6 +24,11 @@ var tipuesearch_replace = {'words': [
 ]};
 
 
+// Pages to index
+var tipuesearch_pages = ["http://docs.snipeitapp.com/index.html", "http://docs.snipeitapp.com/index.html", "http://docs.snipeitapp.com/requirements.html/"];
+
+
+
 // Weighting
 
 var tipuesearch_weight = {'weight': [
