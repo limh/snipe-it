@@ -50,7 +50,6 @@ var tipuesearch_pages = [
     "http://docs.snipeitapp.com/translations.html",
     "http://docs.snipeitapp.com/license.html"
 
-
 ];
 
 
