@@ -25,7 +25,33 @@ var tipuesearch_replace = {'words': [
 
 
 // Pages to index
-var tipuesearch_pages = ["http://docs.snipeitapp.com/index.html", "http://docs.snipeitapp.com/index.html", "http://docs.snipeitapp.com/requirements.html/"];
+var tipuesearch_pages = [
+    "http://docs.snipeitapp.com/index.html",
+    "http://docs.snipeitapp.com/security.html",
+    "http://docs.snipeitapp.com/requirements.html",
+    "http://docs.snipeitapp.com/installation/index.html",
+    "http://docs.snipeitapp.com/installation/downloading.html",
+    "http://docs.snipeitapp.com/installation/configuration.html",
+    "http://docs.snipeitapp.com/installation/composer.html",
+    "http://docs.snipeitapp.com/installation/command-line.html",
+    "http://docs.snipeitapp.com/installation/server/index.html",
+    "http://docs.snipeitapp.com/installation/server/linux-osx.html",
+    "http://docs.snipeitapp.com/installation/server/windows.html",
+    "http://docs.snipeitapp.com/installation/server/wamp.html",
+    "http://docs.snipeitapp.com/installation/server/xampp.html",
+    "http://docs.snipeitapp.com/installation/server/docker.html",
+    "http://docs.snipeitapp.com/manual/index.html",
+    "http://docs.snipeitapp.com/manual/importing-assets.html",
+    "http://docs.snipeitapp.com/manual/alerts.html",
+    "http://docs.snipeitapp.com/common-issues.html",
+    "http://docs.snipeitapp.com/getting-help.html",
+    "http://docs.snipeitapp.com/upgrading.html",
+    "http://docs.snipeitapp.com/contributing.html",
+    "http://docs.snipeitapp.com/translations.html",
+    "http://docs.snipeitapp.com/license.html"
+
+
+];
 
 
 
