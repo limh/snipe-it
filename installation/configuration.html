@@ -361,6 +361,8 @@
 <pre><code>'from' =&gt; array('me@example.com' =&gt; null, 'John Smith' =&gt; null),</code></pre>
 <p>is <strong>incorrect</strong> and will cause errors when it tries to send email.</p>
 <p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
+<p>If you use a discount shared hosting provider like GoDaddy, or if you don't have an SMTP server to use, you can set the <code>driver</code> to <code>mail</code>:</p>
+<pre><code>'driver' =&gt; 'mail',</code></pre>
 <hr />
 <h2 id="application-settings">Application Settings</h2>
 <p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
