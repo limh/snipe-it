@@ -387,7 +387,7 @@ chmod -R 755 public/uploads</code></pre>
 <p>If you have this option set to <code>true</code> in your session config, your users will not be able to login if they access Snipe-IT over the non-HTTPS connection.</p>
 <p><strong>Note: If you are NOT running Snipe-IT over SSL and you enable this option, your users will not be able to login. Only use this option if you are running Snipe-IT over SSL.</strong></p>
 <hr />
-<h2 id="optional-set-your">Optional: Set Your <code>.htaccess</code> to Redirect to SSL</h2>
+<h2 id="optional-set-your-htaccess-to-redirect-to-ssl">Optional: Set Your htaccess to Redirect to SSL</h2>
 <p>If you are running Snipe-IT over HTTPS and wish to automatically redirect the user to the HTTPS version if they accidentally go to the HTTP version, uncomment the following lines from the <code>public/.htaccess</code> file:</p>
 <pre><code>RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]</code></pre>
