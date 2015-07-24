@@ -380,14 +380,14 @@ chmod -R 755 public/uploads</code></pre>
 <p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server so that the web server itself (Apache, IIS, etc) can write to files owned by the Snipe-IT user.</p>
 <p><strong>Note: It should go without saying, but make sure the Snipe-IT project directory is not owned by root. Your webserver should be running as your webserver’s user (often apache, nobody, or www-data). But never, ever root. Ever.</strong></p>
 <hr />
-<h2 id="optional-set-cookies-to-https-only">Optional: Set cookies to HTTPS-only</h2>
+<h2 id="optional-set-cookies-to-https-only">Optional: Set Cookies to HTTPS-only</h2>
 <p>As an extra security feature, Snipe-IT allows you to set your cookies to HTTPS-only, which will ensure that session cookies will only be sent back to the server if the browser has a HTTPS connection.</p>
 <p>If you are running Snipe-IT over SSL and wish to use this feature, copy the example session config from <code>app/config/production/session.example.php</code> to <code>app/config/production/session.php</code>, and then update your new <code>app/config/production/session.php</code> file to reflect:</p>
 <pre><code>'secure' =&gt; true,</code></pre>
 <p>If you have this option set to <code>true</code> in your session config, your users will not be able to login if they access Snipe-IT over the non-HTTPS connection.</p>
 <p><strong>Note: If you are NOT running Snipe-IT over SSL and you enable this option, your users will not be able to login. Only use this option if you are running Snipe-IT over SSL.</strong></p>
 <hr />
-<h2 id="optional-set-your">Optional: Set your <code>.htaccess</code> to redirect to SSL</h2>
+<h2 id="optional-set-your">Optional: Set Your <code>.htaccess</code> to Redirect to SSL</h2>
 <p>If you are running Snipe-IT over HTTPS and wish to automatically redirect the user to the HTTPS version if they accidentally go to the HTTP version, uncomment the following lines from the <code>public/.htaccess</code> file:</p>
 <pre><code>RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]</code></pre>
