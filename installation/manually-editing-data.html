@@ -120,7 +120,7 @@
                                         <span class='subnav-indent'><i class='fa fa-caret-right'></i> Docker</span>
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/installation/manually-editing-data.html">
                                         Manually Editing Data
                                     </a>
@@ -131,7 +131,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/manual/index.html">
                                         Basic Concepts
                                     </a>
@@ -212,32 +212,15 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-users-manual">Snipe-IT User's Manual</h1>
-<p>(This manual is a work in progress - please check back often.)</p>
-<h2 id="basic-concepts">Basic concepts</h2>
-<h3 id="checkincheckout">Checkin/Checkout</h3>
-<p>Checking in and checking out are two primary concepts behind Snipe-IT. When you checkout an asset, license or accessory, you’re marking them as being in the possession of someone else. This means that they cannot subsequently be checked out to another person until they are checked back in. This prevents “double-booking” assets, where one asset has been promised to or assigned to multiple people.</p>
-<p>When an employee leaves your company, or if an asset, license or accessory is not functioning properly, you would check it back in. Checking it back in indicates that it’s back in your possession, or potentially out for repair. It’s up to you to decide what status to assign it, based on the condition of the asset.</p>
-<hr />
-<h3 id="status-labels">Status Labels</h3>
-<p>Status labels are used to describe the state of the asset. You can add as many status labels as you’d like. Each status label will have one of four characteristics that describe the state of assets with that status label:</p>
-<p>Undeployable: these assets cannot be assigned to anyone.</p>
-<p>Deployable: these assets can be assigned to people</p>
-<p>Archived: these assets cannot be assigned to people, and will only show up in the Archived view</p>
-<p>Pending – these assets can not yet be assigned to anyone.</p>
-<p>Use status labels however you see fit. You can just keep the starter labels we set up for you, or you can flesh out a detailed set of statuses that will make sure your team always knows exactly what’s going on with each asset.</p>
-<p>If you set up your status labels well, they can be enormously useful. A status label that is a pending label named “Awaiting Re-Imaging” tells your team that this item can’t be deployed because it’s still in the re-imaging stage and isn’t ready yet. Once it’s ready, your team can update the status to “Ready to Deploy”, and then it’s added to the pool of available deployable resources.</p>
-<hr />
-<h2 id="getting-started">Getting Started</h2>
-<h3 id="setting-up-locations">Setting up Locations</h3>
-<p>If you have a fresh install of Snipe-IT, it can be confusing on where to get started. The best place to start is to set up your locations. Even if you only have one location, you’ll want to get that set up first, since users, assets and many other things within the Snipe-IT system rely on it.</p>
-<p>From here you can start adding users if you want, or move on to adding asset models and assets.</p>
-<h3 id="asset-categories">Asset Categories</h3>
-<p>Asset categories are used by both assets and accessories. Categories describe the general type of asset or accessory, such as “wireless keyboards”, “laptops”, and so on. Categories are important because they contain attributes that are inherited by both the assets and accessories that long to them, such as whether to require the user to click on a link to show that they have received the asset or accessory, and whether or not the user should be emailed a EULA.</p>
-<p>Every asset and accessory needs to belong to a category, so you’ll need to set these up before adding assets.</p>
-<h3 id="asset-models">Asset Models</h3>
-<p>Every asset needs an asset model, so setting these up next will help you start adding assets. Asset models can be things like the make and model of a laptop or desktop machine (Apple 13″ Retina, for example). When you create new assets, you’ll select whichever asset model makes sense.</p>
-<p>Asset models are important because they carry certain attributes which are inherited by the assets you, such as depreciation type, end of life, and whether or not to show MAC address fields on the asset.</p>
+                        <h1 id="manually-editing-data-in-the-database">Manually Editing Data in the Database</h1>
+<p>The short version:</p>
+<h2 id="dont">Don't.</h2>
+<p>If you start deleting records from tables manually, you will almost assuredly mangle your data in a way that will cause real problems. This software uses a relational database system, which means that some tables exist just to establish relationships between other pieces of data. When you delete part of that equation, Bad Things Happen&#0153;.</p>
+<p>We utilize soft deletes in Snipe-IT, which means records are never really deleted, they are simply marked as deleted. This is by design, so that you don't lose history on an asset when, for example, you delete a user. Just because the user is no longer at your organization, that doesn't mean you would want to wipe the previous history of the assets they had while they were there.</p>
+<h2 id="if-you-decide-to-do-it-anyway">If you decide to do it anyway</h2>
+<p><strong>ALWAYS back up your database before you start manually editing database records</strong>, so that when it breaks everything (and it probably will), you will be able to restore it.</p>
+<p>If you absolutely insist on deleting data directly, make sure the corresponding records in the <code>asset_logs</code> table are also deleted. The <code>asset_logs</code> table holds all of the history for assets, accessories and users, and if you delete the assets, accessories, or users it ties together, things break.</p>
+<p>If all else fails, delete the contents of <code>asset_logs</code>. This should be considered an absolute last resort, as you will be wiping out the history of every checkin, checkout and file upload in the history of the app. </p>
                     </div>
 
                     <hr/>
