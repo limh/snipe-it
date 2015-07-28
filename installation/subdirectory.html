@@ -244,7 +244,7 @@
 &lt;/VirtualHost&gt;</code></pre>
 <p>(Make sure to restart the webserver after making configuration changes to the Apache configs.)</p>
 <h2 id="modify-your-htaccess">Modify Your .htaccess</h2>
-<p>You'll need to add one line to your <code>.htaccess</code> file to make this work. Immediately beneath the <code>RewriteEngine On</code>, add the option <code>RewriteBase /snipe-it</code>, once again assuming that your subdirctory URL is  <code>http://yourserver.com/snipe-it</code>.</p>
+<p>You'll need to add one line to your <code>.htaccess</code> file to make this work. Immediately beneath the <code>RewriteEngine On</code>, add the option <code>RewriteBase /snipe-it</code>, once again assuming that your subdirectory URL is  <code>http://yourserver.com/snipe-it</code>.</p>
 <pre><code> &lt;IfModule mod_rewrite.c&gt;
     &lt;IfModule mod_negotiation.c&gt;
         Options -MultiViews
