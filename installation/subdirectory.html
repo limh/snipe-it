@@ -225,7 +225,7 @@
                 <div class="rst-content">
                     <div role="main" class="document">
                         <h1 id="installing-snipe-it-into-a-subdirectory">Installing Snipe-IT Into a Subdirectory</h1>
-<p>If you wish to run Snipe-IT in a subdirectory (<a href="https://yourserver.com/snipe-it">https://yourserver.com/snipe-it</a>) instead of at a primary domain (<a href="http://yourserver.com">http://yourserver.com</a>) or a sub-domain (<a href="https://snipe-it.yourserver.com">https://snipe-it.yourserver.com</a>), you'll need to go through the standard install steps 1-5, and then make a few  small configuration changes to your server configuration and <code>.htaccess</code> file.</p>
+<p>If you wish to run Snipe-IT in a subdirectory (<code>https://yourserver.com/snipe-it</code>) instead of at a primary domain (<code>http://yourserver.com</code>) or a sub-domain (<code>https://snipe-it.yourserver.com</code>), you'll need to go through the standard install steps 1-5, and then make a few  small configuration changes to your server configuration and <code>.htaccess</code> file.</p>
 <h2 id="add-an-alias-directive">Add an Alias Directive</h2>
 <p>In a standard Apache virtualhost setup, you'll need to add an <code>Alias</code> attribute to the virtualhost in your <code>httpd.conf</code>. That might look something like this, if your path to the Snipe-IT files were <code>/var/www/html/snipe-it/public</code>:</p>
 <pre><code>&lt;VirtualHost *:80&gt;
