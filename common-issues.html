@@ -236,6 +236,7 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <hr />
 <h2 id="php-warning-requirevarwwwhtmlasset2bootstrapvendorautoloadphp-failed-to-open-stream-no-such-file-or-directory">PHP Warning: require(/var/www/html/asset2/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory</h2>
 <p>When you see this error, it means that you either forgot to install or run composer, or you did and it failed somewhere and didn't complete. See the docs on <a href="installation/composer.html">installing and running composer</a>, and check for any errors composer might return when you attempt to run <code>composer install</code>.</p>
+<p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
 <p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
