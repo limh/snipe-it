@@ -55,7 +55,7 @@
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/security.html">
                                         Security
                                     </a>
@@ -183,7 +183,7 @@
                                         Importing Assets
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/manual/importing-licenses.html">
                                         Importing Assets
                                     </a>
@@ -234,13 +234,140 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="some-notes-on-security">Some Notes on Security</h1>
-<p>Snipe-IT was built with security in mind. We utilize bcrypt to handle passwords, which is an adaptive hash function based on the Blowfish symmetric block cipher cryptographic algorithm. Additionally, the software is designed in such a way to prevent brute forcing the password, with IP addresses and usernames locked out for 10 minutes after a specified number of login attempts.</p>
-<h2 id="additional-security">Additional Security</h2>
-<p>Although this is web-based software and must run on a web server, you may want to consider whether you actually need it accessible to the outside world. Running it on an internal network with ports closed to the outside world, or on AWS using a security group that prevents access from outside a selected static IP range (like your company network IP), may be something to consider.</p>
-<p>While most use cases won't be storing Personally Identifiable Information (PII), someone with the right motivation could gain useful knowledge about the number of employees, types of assets, etc you maintain. While this information in and of itself isn't harmful, it could be helpful to Bad Guys in a targeted attack, so you should consider whether you want to limit access to it via IP or network rules.</p>
-<p>Also, running Snipe-IT over SSL is not required, but a good idea. (Running everything ever over SSL is a good idea at this point.)</p>
-<p>There are some optional configuration options that you can enable if you run Snipe-IT over HTTPS, such as <a href="http://docs.snipeitapp.com/installation/configuration.html#optional-set-cookies-to-https-only">enabling HTTPS-only cookies</a>, and setting your <a href="http://docs.snipeitapp.com/installation/configuration.html#optional-set-your-htaccess-to-redirect-to-ssl"><code>.htaccess</code> to redirect to the HTTPS version</a>.</p>
+                        <h1 id="importing-users-and-licenses">Importing Users and Licenses</h1>
+<div id="generated-toc" class="generate_from_h2"></div>
+<p>There is a license import tool in later versions of Snipe-IT ( &gt; <code>1.2.8</code>). It is available through the command-line only, as very large file uploading and processing will cause memory exhaustion issues on many servers. We'll be working on a way to make this web-based and chunk data in the future.</p>
+<h2 id="usage">Usage:</h2>
+<pre><code>php artisan license-import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Values</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>domain</code></td>
+<td>a domain name string formatted as yourdomain.com</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>email_format</code></td>
+<td><code>firstname</code>, <code>firstname.lastname</code>, or <code>filastname</code> (for first initial, last name)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="csv-format">CSV Format</h2>
+<p>The importer will be looking for a CSV in the format of:</p>
+<pre><code>User Name, User Email, Username, Software Name, Serial, Licensed to Name, Licensed to Email, Seats, Reassignable, Supplier, Maintained, Notes, Purchase Date</code></pre>
+<p>The importer will ignore the first line of your CSV, so if you don't have a header row, you should add one.</p>
+<p><a href="http://docs.snipeitapp.com/sample-licenses.csv"><strong>Download a sample CSV with dummy data</strong></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example Data</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User Name</td>
+<td><code>Firstname Lastname</code></td>
+<td>No</td>
+<td>No commas. First name first, last name last</td>
+</tr>
+<tr>
+<td>User Email</td>
+<td><code>you@example.com</code></td>
+<td>No</td>
+<td>If empty, will be generated using the <code>email_format</code> and <code>domain</code> you provide in the import command</td>
+</tr>
+<tr>
+<td>Username</td>
+<td><code>agianotto</code></td>
+<td>No</td>
+<td>This will be required in 2.0</td>
+</tr>
+<tr>
+<td>Software Name</td>
+<td><code>Adobe Photoshop 5</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Serial</td>
+<td><code>8495867487HJGJ</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Licensed To Name</td>
+<td><code>Grokability, Inc</code></td>
+<td>No</td>
+<td>Name the license was registered to, if applicable</td>
+</tr>
+<tr>
+<td>Licensed To Email</td>
+<td><code>snipe@grokability.com</code></td>
+<td>No</td>
+<td>Email the license was registered to, if applicable</td>
+</tr>
+<tr>
+<td>Seats</td>
+<td><code>5</code></td>
+<td>Yes</td>
+<td>Number of seats the license has, in numeric format</td>
+</tr>
+<tr>
+<td>Reassignable</td>
+<td><code>Yes</code></td>
+<td>No</td>
+<td>Whether the license can be reassigned</td>
+</tr>
+<tr>
+<td>Supplier</td>
+<td><code>Acme, Inc</code></td>
+<td>No</td>
+<td>Software supplier's name</td>
+</tr>
+<tr>
+<td>Maintained</td>
+<td><code>Yes</code></td>
+<td>No</td>
+<td>Whether the license is maintained by the supplier</td>
+</tr>
+<tr>
+<td>Asset Notes</td>
+<td><code>Expensed to client XYZ</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Date</td>
+<td><code>2015-01-12 07:30:30</code></td>
+<td>No</td>
+<td>Can take any date format that can be translated by <code>strtotime()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-it-does">What It Does</h2>
+<p>When you execute this command with a valid path to your CSV, the importer will:</p>
+<ul>
+<li>Split the user's name, creating <code>firstname</code> and <code>lastname</code>.</li>
+<li>If not user is provided, it assumes the asset is Ready to Deploy.</li>
+<li>If a user's name is provided, it assumes that asset is assigned to them</li>
+<li>If a user's name is provided but no email is provided, it will generate an email address using your domain and the pattern you specified in <code>email_format</code></li>
+<li>Generate a password for the new user if a user's name is provided</li>
+<li>Create the user if they don't exist (based on their email address)</li>
+<li>Determine if the supplier exists, create it if it doesn't</li>
+<li>Create the appropriate number of license seat records</li>
+</ul>
+<p>When using this, <strong>BACK UP YOUR DATABASE FIRST</strong>. This is experimental, and it might cause unexpected results with your data. There's some data cleansing and checking that needs to be built in before it's bulletproof.</p>
+<h2 id="limitations-amp-notes">Limitations &amp; Notes</h2>
+<p>The importer isn't very smart. It currently does not do any validation other than checking to see if the record already exists in the database. It doesn't know that <code>Aobe Acrobat</code> is the same asset as <code>Adobe Acrobat</code>. The quality of your data will make a big difference in the results you get, so if there's a lot of inconsistency, you're going to end up with with duplicates because the app has no way of knowing what you <strong>meant</strong> from what you wrote.</p>
                     </div>
 
                     <hr/>
