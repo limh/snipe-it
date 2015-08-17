@@ -239,7 +239,7 @@
 <p><strong>Always backup your database before upgrading.</strong> We try very hard to make sure that all database changes are non-destructive, but you should always backup beforehand anyway. You will never regret backing up your database. You may regret not doing so, so it’s just better to get into the habit.</p>
 <p>If you don’t plan on contributing code to Snipe-IT, you should always grab the latest stable release from the releases page, and avoid using the <code>develop</code> or <code>master</code> branches.</p>
 <p>Whenever you pull down a new version from master or develop, or when you grab the latest official release, make sure to run the following commands via command line:</p>
-<pre><code>php composer.phar install --no-dev
+<pre><code>php composer.phar install --no-dev --prefer-source
 php composer.phar dump-autoload
 php artisan migrate</code></pre>
 <p>(Developers should remove the <code>--no-dev</code> flag, so they have unit test frameworks and debugging tools.)</p>
