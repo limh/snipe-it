@@ -249,7 +249,7 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
-<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>no more than 32 characters</strong>.</p>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>exactly 32 characters</strong>.</p>
 <p>You can also run</p>
 <pre><code>php artisan key:generate</code></pre>
 <p>to auto-generate a key for you. Put the generated key in as the value of <code>key</code> in your config.</p>
