@@ -250,9 +250,10 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
 <p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>exactly 32 characters</strong>.</p>
-<p>You can also run</p>
+<p>You can run</p>
 <pre><code>php artisan key:generate</code></pre>
-<p>to auto-generate a key for you. Put the generated key in as the value of <code>key</code> in your config.</p>
+<p>to auto-generate a key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
+<pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
 <hr />
 <h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
 <p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within to be writable by the web server.</p>
