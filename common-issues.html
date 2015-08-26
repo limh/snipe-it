@@ -254,10 +254,17 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
-<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43. Manually change that to a random string that is <strong>exactly 32 characters</strong>.</p>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
 <p>You can run</p>
 <pre><code>php artisan key:generate</code></pre>
-<p>to auto-generate a key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
+<p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
+<pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
+<hr />
+<h2 id="error-message-mcrypt_encrypt-key-size-not-supported-by-this-algorithm-only-keys-of-sizes-16-24-or-32-supported">Error message: mcrypt_encrypt(): Key size not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported.</h2>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
+<p>You can run</p>
+<pre><code>php artisan key:generate</code></pre>
+<p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
 <pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
 <hr />
 <h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
