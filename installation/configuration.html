@@ -421,7 +421,8 @@ chmod -R 755 public/uploads</code></pre>
 <p>To set up your Snipe-IT installation to be able to use LDAP for user login and import, copy the <code>app/config/production/ldap.example.php</code> over to <code>app/config/production/ldap.php</code> and follow the directions to use your own LDAP settings.  </p>
 <p>If you don't have an LDAP server (or don't wish to import your users, or allow them to login using their LDAP credentials), you can skip this step.</p>
 <p>The LDAP functionality will import any users in your LDAP/Active Directory, but will leave existing users untouched.</p>
-<p>See the <code>app/config/production/ldap.example.php</code> for details on specific LDAP settings. </p>
+<p>See the <code>app/config/production/ldap.example.php</code> for details on specific LDAP settings.</p>
+<p><strong>Note: You must have the <code>php-ldap</code> extension installed for LDAP integration to work.</strong></p>
 <hr />
 <h2 id="optional-set-cookies-to-https-only">Optional: Set Cookies to HTTPS-only</h2>
 <p>As an extra security feature, Snipe-IT allows you to set your cookies to HTTPS-only, which will ensure that session cookies will only be sent back to the server if the browser has a HTTPS connection.</p>
