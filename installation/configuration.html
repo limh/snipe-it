@@ -405,6 +405,7 @@
 <h2 id="application-settings">Application Settings</h2>
 <p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
 <pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
+<p><strong>This value should begin with the protocol (http:// or https://), as reflected in the example above.</strong></p>
 <p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the <code>php artisan key:generate</code> command from the application root a little later in this process.</p>
 <hr />
 <h2 id="set-directory-permissions">Set Directory Permissions</h2>
