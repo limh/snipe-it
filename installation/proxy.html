@@ -263,9 +263,9 @@ Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> 
 <h2 id="reverse-proxy-server-configuration">Reverse Proxy Server Configuration</h2>
 <p>Laravel needs to be made aware of the presence of the Reverse Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Reverse Proxy Server to the Web Server.</p>
 <h3 id="server-configuration">Server Configuration</h3>
-<p>In Nginx, you would address</p>
+<p>In Nginx, you would use:</p>
 <pre><code>proxy_set_header X-Forwarded-Proto $scheme;</code></pre>
-<p>With Apache's Mod_Proxy, you would add</p>
+<p>With Apache's Mod_Proxy, you would add:</p>
 <pre><code>RequestHeader set X-Forwarded-Proto "https"</code></pre>
 <p>to your virtual host configuration.</p>
 <h3 id="reverse-proxy-server--configurations-in-snipe-it">Reverse Proxy Server  Configurations in Snipe-IT</h3>
