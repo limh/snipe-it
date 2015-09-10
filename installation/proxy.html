@@ -246,13 +246,13 @@
 <p>Internet -&gt; Proxy Server (Public &amp; Private IPs) -&gt; Web Server (Private IPs)</p>
 <p>The Proxy server is functioning as a reverse proxy (Nginx, Squid, Apache's Mod_Proxy, or Varnish).</p>
 <p>In most deployments the Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client. All communication between the Proxy and the Web Server occurs over HTTPS.</p>
-<p>With This Scenario: <strong>Has Issue</strong>
-Client &lt;-HTTPS-&gt; Proxy &lt;-HTTP-&gt; Web Server</p>
-<p>With This Scenario: <strong>Has Issue in Reverse</strong>
-Client &lt;-HTTP-&gt; Proxy &lt;-HTTPS-&gt; Web Server</p>
-<p>With This Scenario: <strong>No Issue</strong>
-Client &lt;-HTTP-&gt; Proxy &lt;-HTTP-&gt; Web Server
-Client &lt;-HTTPS-&gt; Proxy &lt;-HTTPS-&gt; Web Server</p>
+<p>With This Scenario: <strong>Has Issue</strong></p>
+<p>Client &lt;-HTTPS-&gt; Proxy &lt;-HTTP-&gt; Web Server</p>
+<p>With This Scenario: <strong>Has Issue in Reverse</strong></p>
+<p>Client &lt;-HTTP-&gt; Proxy &lt;-HTTPS-&gt; Web Server</p>
+<p>With This Scenario: <strong>No Issue</strong></p>
+<p>Client &lt;-HTTP-&gt; Proxy &lt;-HTTP-&gt; Web Server</p>
+<p>Client &lt;-HTTPS-&gt; Proxy &lt;-HTTPS-&gt; Web Server</p>
 <h2 id="the-issues">The Issues</h2>
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
 <p><strong>This assumes that your Proxy and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
