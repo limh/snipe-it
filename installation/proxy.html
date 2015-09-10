@@ -256,7 +256,7 @@
 <p>With This Scenario: <strong>WORKS</strong></p>
 <p>Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
 Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> Web Server</p>
-<h2 id="the-issues">The Issues</h2>
+<h2 id="explanation">Explanation</h2>
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
 <p><strong>This assumes that your Reverse Proxy Server and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
 <p>Snipe-IT is unaware that requests to the proxy are being handled through HTTPS instead of HTTP. As such no effort is made to generate HTTPS links for Assets.</p>
