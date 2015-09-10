@@ -251,9 +251,9 @@
 <p>Internet <i class="fa fa-arrow-right"></i> Reverse Proxy Server (Public &amp; Private IPs) <i class="fa fa-arrow-right"></i> Web Server (Private IPs)</p>
 <p>The Reverse Proxy Server is functioning as a reverse proxy (Nginx, Squid, Apache's Mod_Proxy, or Varnish).</p>
 <p>In most deployments the Reverse Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client.</p>
-<p>Scenario: <strong>BROKEN</strong></p>
+<p>Scenario: <span style="color: red;"><strong>BROKEN</strong></span></p>
 <p>Client  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server</p>
-<p>Scenario: <strong>WORKS</strong></p>
+<p>Scenario: <span style="color: green;"><strong>WORKS</strong></span></p>
 <p>Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
 Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> Web Server</p>
 <h2 id="explanation">Explanation</h2>
