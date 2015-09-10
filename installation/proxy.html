@@ -252,23 +252,23 @@
 <p>The Reverse Proxy Server is functioning as a reverse proxy (Nginx, Squid, Apache's Mod_Proxy, or Varnish).</p>
 <p>In most deployments the Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client. All communication between the Reverse Proxy Server and the Web Server occurs over HTTPS.</p>
 <p>With This Scenario: <strong>Has Issue</strong></p>
-<p>Client  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Proxy  <i class="fa fa-arrow-left"></i> HTTP<i class="fa fa-arrow-right"></i> Web Server</p>
+<p>Client  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP<i class="fa fa-arrow-right"></i> Web Server</p>
 <p>With This Scenario: <strong>No Issue</strong></p>
-<p>Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Proxy  <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
-Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Proxy <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> Web Server</p>
+<p>Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
+Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> Web Server</p>
 <h2 id="the-issues">The Issues</h2>
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
-<p><strong>This assumes that your Proxy and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
+<p><strong>This assumes that your Reverse Proxy Server and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
 <p>Laravel is unaware that requests to the proxy are being handled through HTTPS instead of HTTP. As such no effort is made to generate HTTPS links for Assets.</p>
 <h2 id="proxy-configuration">Proxy Configuration</h2>
-<p>Laravel needs to be made aware of the presence of the Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Proxy to the Web Server.</p>
+<p>Laravel needs to be made aware of the presence of the Reverse Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Reverse Proxy Server  to the Web Server.</p>
 <h3 id="server-configuration">Server Configuration</h3>
 <p>In Nginx, you would address</p>
 <pre><code>proxy_set_header X-Forwarded-Proto $scheme;</code></pre>
 <p>With Apache's Mod_Proxy, you would add</p>
 <pre><code>RequestHeader set X-Forwarded-Proto "https"</code></pre>
 <p>to your virtual host configuration.</p>
-<h3 id="proxy-configurations-in-snipe-it">Proxy Configurations in Snipe-IT</h3>
+<h3 id="reverse-proxy-server--configurations-in-snipe-it">Reverse Proxy Server  Configurations in Snipe-IT</h3>
 <p>Copy the <code>app/config/packages/fideloper/proxy/config.example.php</code> to <code>app/config/packages/fideloper/proxy/config.php</code>, and change</p>
 <pre><code>'proxies' =&gt; '*'</code></pre>
 <p>to</p>
