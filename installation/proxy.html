@@ -260,15 +260,14 @@ Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> 
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
 <p><strong>This assumes that your Reverse Proxy Server and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
 <p>Snipe-IT is unaware that requests to the proxy are being handled through HTTPS instead of HTTP. As such no effort is made to generate HTTPS links for Assets.</p>
-<h2 id="reverse-proxy-server-configuration">Reverse Proxy Server Configuration</h2>
 <p>Snipe-IT needs to be made aware of the presence of the Reverse Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Reverse Proxy Server to the Web Server.</p>
-<h3 id="server-configuration">Server Configuration</h3>
+<h2 id="server-configuration">Server Configuration</h2>
 <p>In Nginx, you would use:</p>
 <pre><code>proxy_set_header X-Forwarded-Proto $scheme;</code></pre>
 <p>With Apache's Mod_Proxy, you would add:</p>
 <pre><code>RequestHeader set X-Forwarded-Proto "https"</code></pre>
 <p>to your virtual host configuration.</p>
-<h3 id="reverse-proxy-server--configurations-in-snipe-it">Reverse Proxy Server  Configurations in Snipe-IT</h3>
+<h2 id="reverse-proxy-server--configurations-in-snipe-it">Reverse Proxy Server  Configurations in Snipe-IT</h2>
 <p>Copy the <code>app/config/packages/fideloper/proxy/config.example.php</code> to <code>app/config/packages/fideloper/proxy/config.php</code>, and change</p>
 <pre><code>'proxies' =&gt; '*'</code></pre>
 <p>to</p>
