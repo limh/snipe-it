@@ -253,8 +253,8 @@
 <p>In most deployments the Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client. All communication between the Reverse Proxy Server and the Web Server occurs over HTTPS.</p>
 <p>With This Scenario: <strong>Has Issue</strong></p>
 <p>Client  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Proxy  <i class="fa fa-arrow-left"></i> HTTP<i class="fa fa-arrow-right"></i> Web Server</p>
-<p>With This Scenario: <strong>No Issue</strong>
-Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Proxy  <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
+<p>With This Scenario: <strong>No Issue</strong></p>
+<p>Client <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i>  Proxy  <i class="fa fa-arrow-left"></i> HTTP <i class="fa fa-arrow-right"></i> Web Server <br>
 |Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Proxy <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> Web Server</p>
 <h2 id="the-issues">The Issues</h2>
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
