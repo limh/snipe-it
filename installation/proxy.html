@@ -250,7 +250,7 @@
 <p>A typical Reverse Proxy scenario looks like this:</p>
 <p>Internet <i class="fa fa-arrow-right"></i> Reverse Proxy Server (Public &amp; Private IPs) <i class="fa fa-arrow-right"></i> Web Server (Private IPs)</p>
 <p>The Reverse Proxy Server is functioning as a reverse proxy (Nginx, Squid, Apache's Mod_Proxy, or Varnish).</p>
-<p>In most deployments the Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client. All communication between the Reverse Proxy Server and the Web Server occurs over HTTPS.</p>
+<p>In most deployments the Reverse Proxy will perform HTTP to HTTPS redirection and only pass requests and responses via HTTPS to the remote client. All communication between the Reverse Proxy Server and the Web Server occurs over HTTPS.</p>
 <p>With This Scenario: <strong>BROKEN</strong></p>
 <p>Client  <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i>  Reverse Proxy Server   <i class="fa fa-arrow-left"></i> HTTP<i class="fa fa-arrow-right"></i> Web Server</p>
 <p>With This Scenario: <strong>WORKS</strong></p>
