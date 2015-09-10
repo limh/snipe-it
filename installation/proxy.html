@@ -260,8 +260,8 @@ Client <i class="fa fa-arrow-left"></i> HTTPS <i class="fa fa-arrow-right"></i> 
 <p>In the above scenario the generated HTML will reference <code>http://</code> instead of <code>https://</code> for all assets. This causes most browsers to throw security warnings and refuse to display the content. (Typically, you'll see mixed content warnings because the browser won't load insecure elements on an SSL page.)</p>
 <p><strong>This assumes that your Reverse Proxy Server and Web Server are correctly configured and working properly. Meaning you have other correctly functioning Applications behind the proxy and the Web Server for Snipe-IT works properly if accessed directly.</strong></p>
 <p>Laravel is unaware that requests to the proxy are being handled through HTTPS instead of HTTP. As such no effort is made to generate HTTPS links for Assets.</p>
-<h2 id="proxy-configuration">Proxy Configuration</h2>
-<p>Laravel needs to be made aware of the presence of the Reverse Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Reverse Proxy Server  to the Web Server.</p>
+<h2 id="reverse-proxy-server-configuration">Reverse Proxy Server Configuration</h2>
+<p>Laravel needs to be made aware of the presence of the Reverse Proxy Server. The <code>X-Forwarded-Proto</code> header should be passed from the Reverse Proxy Server to the Web Server.</p>
 <h3 id="server-configuration">Server Configuration</h3>
 <p>In Nginx, you would address</p>
 <pre><code>proxy_set_header X-Forwarded-Proto $scheme;</code></pre>
