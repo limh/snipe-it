@@ -254,7 +254,7 @@
 Add garbage text into the <code>public/.htaccess</code> file on your local install and hit the homepage again. If it bombs out (it should), then mod_rewrite is probably working. If it doesn't, it means your webserver isn't even looking for the .htaccess rules and you'll need to check your virtualhost config.</p>
 <p>(Make sure to take the garbage out of the .htaccess file once you've gotten it sorted!)</p>
 <hr />
-<h2 id="php-warning-requirevarwwwhtmlasset2bootstrapvendorautoloadphp-failed-to-open-stream-no-such-file-or-directory">PHP Warning: require(/var/www/html/asset2/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory</h2>
+<h2 id="php-warning-requirevarwwwhtmlsnipeitbootstrapvendorautoloadphp-failed-to-open-stream-no-such-file-or-directory">PHP Warning: require(/var/www/html/snipeit/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory</h2>
 <p>When you see this error, it means that you either forgot to install or run composer, or you did and it failed somewhere and didn't complete, so the dependencies Snipe-IT needs were not installed. See the docs on <a href="installation/composer.html">installing and running composer</a>, and check for any errors composer might return when you attempt to run <code>composer install</code>.</p>
 <p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
@@ -273,7 +273,7 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
 <hr />
 <h2 id="call-to-undefined-function-controllersadminldap_connect">Call to undefined function Controllers\Admin\ldap_connect()</h2>
-<p>The PHP LDAP extension is not installed on your server. While this extension is not required for all Snipe-IT installations, it must be installed if you wish to use any of the LDAP functionality. </p>
+<p>The PHP LDAP extension is not installed on your server. While this extension is not required for all Snipe-IT installations, it must be installed if you wish to use any of the LDAP functionality.</p>
 <hr />
 <h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
 <p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within to be writable by the web server.</p>
