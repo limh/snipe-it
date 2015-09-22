@@ -309,10 +309,13 @@ Snipe-IT will always default to production if it can't figure out what mode to r
 <h2 id="call-to-undefined-method-illuminatecookiecookiejarget">Call to undefined method IlluminateCookieCookieJar::get()</h2>
 <p>If you're using Snipe-IT 1.2.6 or earlier, grab the latest off of the develop branch and run <code>php composer install</code>, or edit your composer.json to use Sentry 2.1.* and then run <code>php composer update</code>.</p>
 <hr />
-<h2 id="installing-d11wtqboris-v108-downloading-connection-failed-to-download-d11wtqboris-from-dist">Installing d11wtq/boris (v1.0.8) Downloading: connection... Failed to download d11wtq/boris from dist</h2>
-<p>This error is due to the fact that the repo of the dependency required by one of the libraries has moved, and composer has cached its old location (where it doesn't exist anymore.) Composer may be caching the vendor location, even though the entry on Packagist was updated by the REPL author.</p>
-<p>To solve this, clear your composer cache by running <code>php composer clear-cache</code>.</p>
-<p>If this doesn't work, Try removing the <code>composer.lock</code> file from the main Snipe-IT directory, and running <code>php composer install</code>. (This will take a few moments, since composer will have to go through and resolve all of the dependencies itself instead of using the lock file.)</p>
+<h2 id="php-fatal-error-class-patchworkutf8bootup-not-found-in-bootstrapautoloadphp-on-line-43">PHP Fatal error: Class 'Patchwork\Utf8\Bootup' not found in \bootstrap\autoload.php on line 43</h2>
+<p>This happens sometimes with composer, though we don't really know why, as it's not specific to Snipe-IT. If you run into this error after running <code>php composer.phar install --no-dev --prefer-source</code>, try the following:</p>
+<ul>
+<li>delete your <code>composer.lock</code> file</li>
+<li>run <code>php composer.phar dump-autoload</code></li>
+<li>run <code>php composer.phar update --no-dev --prefer-source</code></li>
+</ul>
                     </div>
 
                     <hr/>
