@@ -248,8 +248,9 @@
 <div id="generated-toc" class="generate_from_h2"></div>
 <p>There is an asset import tool in later versions of Snipe-IT ( &gt; <code>1.2.8</code>). It is available through the command-line only, as very large file uploading and processing will cause memory exhaustion issues on many servers<sup>*</sup>.</p>
 <p><sup>*</sup>There is a beta web-based file-upload and import tool currently on the develop branch and slated for the next release. You'll find a <code>sample.csv</code> already in the import page which you can try out.</p>
+<p>Make sure you have your organization's domain name filled out in the <code>domain</code> value in <code>app/config/production/app.php</code>, so that it knows what domain to use when generating email addresses if none are provided in your CSV.</p>
 <h2 id="usage">Usage:</h2>
-<pre><code>php artisan asset-import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname --username_format=firstname.lastname</code></pre>
+<pre><code>php artisan asset-import:csv path/to/your/file.csv --email_format=firstname.lastname --username_format=firstname.lastname</code></pre>
 <table>
 <thead>
 <tr>
@@ -259,11 +260,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>domain</code></td>
-<td>a domain name string formatted as yourdomain.com</td>
-<td>Yes</td>
-</tr>
 <tr>
 <td><code>email_format</code></td>
 <td><code>firstname</code>, <code>firstname.lastname</code>, or <code>filastname</code> (for first initial, last name)</td>
