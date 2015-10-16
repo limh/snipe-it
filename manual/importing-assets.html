@@ -247,9 +247,9 @@
                         <h1 id="importing-users-and-assets">Importing Users and Assets</h1>
 <div id="generated-toc" class="generate_from_h2"></div>
 <p>There is an asset import tool in later versions of Snipe-IT ( &gt; <code>1.2.8</code>). It is available through the command-line only, as very large file uploading and processing will cause memory exhaustion issues on many servers<sup>*</sup>.</p>
-<p><sup>*</sup>There is a beta web-based file-upload and import tool currently on the develop branch and slated for the next release. You'll find a <code>sample.csv</code> already in the import page which you can try out. </p>
+<p><sup>*</sup>There is a beta web-based file-upload and import tool currently on the develop branch and slated for the next release. You'll find a <code>sample.csv</code> already in the import page which you can try out.</p>
 <h2 id="usage">Usage:</h2>
-<pre><code>php artisan asset-import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname</code></pre>
+<pre><code>php artisan asset-import:csv path/to/your/file.csv --domain=yourdomain.com --email_format=firstname.lastname --username_format=firstname.lastname</code></pre>
 <table>
 <thead>
 <tr>
@@ -267,6 +267,11 @@
 <tr>
 <td><code>email_format</code></td>
 <td><code>firstname</code>, <code>firstname.lastname</code>, or <code>filastname</code> (for first initial, last name)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>username_format</code></td>
+<td><code>firstname</code>, <code>firstname.lastname</code>, <code>filastname</code> (for first initial, last name) or <code>email</code></td>
 <td>Yes</td>
 </tr>
 </tbody>
@@ -297,6 +302,12 @@
 <td><code>you@example.com</code></td>
 <td>No</td>
 <td>If empty, will be generated using the <code>email_format</code> and <code>domain</code> you provide in the import command</td>
+</tr>
+<tr>
+<td>Username</td>
+<td><code>yourname.lastname</code></td>
+<td>No</td>
+<td>If empty, will be generated using the <code>username_format</code> you provide in the import command</td>
 </tr>
 <tr>
 <td>Asset Category</td>
