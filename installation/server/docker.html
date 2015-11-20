@@ -305,7 +305,7 @@ LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <ul>
 <li>If your Email solution requires its own container, start that container or service. Make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</li>
 </ul>
-<h5 id="start-your-snipe-it-container">Start your Snipe-IT container</h5>
+<h3 id="start-your-snipe-it-container">Start your Snipe-IT container</h3>
 <p>Now you can start your Snipe-IT container -</p>
 <pre><code class="language-sh">docker run -d -p $(docker-machine ip b2d)::80 --name="snipeit" --link snipe-mysql:mysql --env-file=my_env_file snipe-it</code></pre>
 <p>If you have a separate container running for email, you will also want a <code>--link</code> setting for email as well.</p>
