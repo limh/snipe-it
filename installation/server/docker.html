@@ -246,77 +246,93 @@
                     <div role="main" class="document">
                         <h1 id="installing-snipe-it-on-docker">Installing Snipe-IT on Docker</h1>
 <div id="generated-toc" class="generate_from_h2"></div>
-<p>Build the snipeit image using the Dockerfile at the root directory of Snipe-IT by doing this:</p>
-<pre><code>docker build -t snipeit .</code></pre>
-<p>Then you can use your newly built image as <code>snipeit</code>.</p>
-<h2 id="how-to-get-up-and-running">How to get up and running</h2>
-<p>First get a MySQL container running...</p>
-<p>Figure out what you want for your:</p>
+<p>The easiest way, by far, is to just use the version we push to Docker Hub:</p>
+<pre><code class="language-sh">docker pull snipe/snipe-it</code></pre>
+<p>Then you have a functioning Snipe-IT container. Skip ahead to &quot;How to get up and
+running&quot; to configure it and get it connected to your database.</p>
+<h4 id="how-to">How to <em>Build</em> the Snipe-IT docker image</h4>
+<p>This is more if you're doing development on the Docker piece of Snipe-IT.
+You can build the snipe-it image using the <code>Dockerfile</code> at the root directory of Snipe-IT by doing this:</p>
+<pre><code class="language-sh">docker build -t snipe-it .</code></pre>
+<p>Then you can use your newly built image as <code>snipe-it</code></p>
+<h3 id="how-to-get-up-and-running">How to get up and running</h3>
 <ul>
-<li>MySQL root password</li>
-<li>MySQL Database name for Snipe-IT</li>
-<li>MySQL User name for the user who will access Snipe-IT</li>
-<li>MySQL Password for that user</li>
+<li>The best way to handle all of the various settings for your various containers is to use an <code>env-file</code>.
+See the Docker documentation for more details. It should be just a simple text file with environment
+variable names and values, separated by <code>=</code> signs.</li>
 </ul>
-<pre><code>docker run --name mysql -e MYSQL_ROOT_PASSWORD=SUPERDUPERSECRETPASSWORD -e MYSQL_DATABASE=snipeit -e MYSQL_USER=snipeit -e MYSQL_PASSWORD=tinglewingler -d -p $(boot2docker ip)::3306 mysql</code></pre>
-<p>That should set you up with your database to use. (You can also use an environment file using <code>--env-file</code>; see <code>docker run --help</code> for details)</p>
-<p>You will want to set the URL that will be used to access the server. This value is used as the URL for the dashboard page, as well as in emails.</p>
+<p>Your docker.env should look something like this:</p>
+<pre><code class="language-env"># Mysql Parameters
+MYSQL_ROOT_PASSWORD=YOUR_SUPER_SECRET_PASSWORD
+MYSQL_DATABASE=snipeit
+MYSQL_USER=snipeit
+MYSQL_PASSWORD=YOUR_snipeit_USER_PASSWORD
+
+# Email Parameters
+# - the hostname/IP address of your mailserver
+MAIL_PORT_587_TCP_ADDR=smtp.whatever.com
+#the port for the mailserver (probably 587, could be another)
+MAIL_PORT_587_TCP_PORT=587
+# the default from address, and from name for emails
+MAIL_ENV_FROM_ADDR=youremail@yourdomain.com
+MAIL_ENV_FROM_NAME=Your Full Email Name
+# - pick 'tls' for SMTP-over-SSL, 'tcp' for unencrypted
+MAIL_ENV_ENCRYPTION=tcp
+# SMTP username and password
+MAIL_ENV_USERNAME=your_email_username
+MAIL_ENV_PASSWORD=your_email_password
+
+# Snipe-IT Settings
+SNIPEIT_TIMEZONE=UTC
+SNIPEIT_LOCALE=en
+SERVER_URL=https://myserver.com
+
+# LDAP Parameters (or omit if not using LDAP)
+# See ldap.php for more info
+LDAP_URL=ldap://ldap.yourserver.com
+LDAP_USERNAME=admin
+LDAP_PASSWORD=adminpass
+LDAP_BASEDN=dc=example,dc=com
+LDAP_FILTER=&amp;(cn=*)
+LDAP_RESULT_USERNAME=username
+LDAP_RESULT_LAST_NAME=sn
+LDAP_RESULT_FIRST_NAME=gn
+LDAP_RESULT_ACTIVE_FLAG=active
+LDAP_RESULT_EMP_NUM=emp-num
+LDAP_RESULT_EMAIL=email
+LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <ul>
-<li>SERVER_URL – the server's URL (example: <a href="http://snipeit.example.com">http://snipeit.example.com</a>)</li>
+<li>First get a MySQL container running. MySQL 5.6 or earlier are easiest.</li>
 </ul>
-<p>You'll want to handle E-Mail – you can do this with a Docker container (not documented here), or point to any other external mail server. If you did want to do it using Docker, make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</p>
-<p>Regardless, the environment variables necessary are:</p>
+<pre><code class="language-sh">docker run --name snipe-mysql --env-file=my_env_file -d -p $(docker-machine ip b2d)::3306 mysql:5.6</code></pre>
+<p><strong>WARNING:</strong> Newer MySQL containers (5.7 and later, or MariaDB) may run in strict-mode by default, and the initial
+migrations and application setup will fail in strict mode. If you want to use one of those versions, you need to disable strict
+mode first!</p>
+<p>That should set you up with your database to use. (You can also specify environment variables on the command-line instead of the env-file, but that can get very clunky very quickly; see <code>docker run --help</code> for details)</p>
 <ul>
-<li>MAIL_PORT_587_TCP_ADDR – the hostname/IP address of your mailserver</li>
-<li>MAIL_PORT_587_TCP_PORT – the port for the mailserver (probably 587, could be another)</li>
-<li>MAIL_ENV_FROM_ADDR, MAIL_ENV_FROM_NAME – the default from address, and from name for emails</li>
-<li>MAIL_ENV_ENCRYPTION – pick ‘tls' for SMTP-over-SSL, ‘tcp' for unencrypted</li>
-<li>MAIL_ENV_USERNAME – SMTP username</li>
-<li>MAIL_ENV_PASSWORD – SMTP password</li>
+<li>If your Email solution requires its own container, start that container or service. Make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</li>
 </ul>
-<p>You can assemble these options into an env-file, or specify them on the command line when you run your Snipe-IT container.</p>
-<p>Likewise, there are environment variables available to configure the (optional) LDAP support:</p>
-<ul>
-<li>LDAP_URL – the URL for your LDAP server (ldap://ldap.example.com)</li>
-<li>LDAP_USERNAME – LDAP 'browse' username</li>
-<li>LDAP_PASSWORD – LDAP 'browse' password</li>
-<li>LDAP_BASEDN – the base where the search for users will be executed</li>
-<li>LDAP_FILTER – the search filter for the LDAP query</li>
-<li>LDAP_RESULT_USERNAME – the LDAP field to use as the username</li>
-<li>LDAP_RESULT_LAST_NAME – the LDAP field to use as the last name</li>
-<li>LDAP_RESULT_FIRST_NAME – the LDAP field to use as the first name</li>
-<li>LDAP_RESULT_ACTIVE_FLAG – the LDAP field used to specify if the user is active (optional)</li>
-<li>LDAP_RESULT_EMP_NUM – the LDAP field used to specify the employee number (optional)</li>
-<li>LDAP_RESULT_EMAIL – the LDAP field used to specify the email address (optional)</li>
-<li>LDAP_AUTHENTICATION_FILTER_QUERY – the LDAP query to execute when authenticating a user (optional)</li>
-</ul>
-<p>Now you can start your Snipe-IT container:</p>
-<pre><code>docker run -d -p $(boot2docker ip)::80 --name="snipeit" --link mysql:mysql [--env-file or -e options...] snipeit</code></pre>
+<p>Now you can start your Snipe-IT container -</p>
+<pre><code class="language-sh">docker run -d -p $(docker-machine ip b2d)::80 --name="snipeit" --link snipe-mysql:mysql --env-file=my_env_file snipe-it</code></pre>
+<p>If you have a separate container running for email, you will also want a <code>--link</code> setting for email as well.</p>
 <p>You can find out what port Snipe-IT is running on with:</p>
-<pre><code>docker port snipeit</code></pre>
+<pre><code class="language-sh">docker port snipeit</code></pre>
 <p>And finally, you can initialize the application and database like this:</p>
-<pre><code>docker exec -i -t snipeit php artisan app:install</code></pre>
-<p>(Go ahead and answer the questions however you like. Type <code>y</code> when asked whether or not you want to run migrations.)</p>
-<p>NOTE:</p>
-<p>You may have to run:</p>
-<pre><code>docker exec -i -t snipeit php artisan key:generate --env=production</code></pre>
-<p>to get the production application key set correctly.</p>
-<p>If you want to seed</p>
-<p>You can load out some initial data into the DB if you like by doing this:</p>
-<pre><code>~~docker -p $(boot2docker ip):8000:80 --link mysql:mysql php artisan db:seed~~</code></pre>
-<h4 id="for-developers">For Developers</h4>
-<p>When you call <code>docker run</code> – make sure to mount your own snipe-it directory over the <code>`/var/www/html</code> directory.</p>
-<p>Something like:</p>
-<pre><code>docker run -d -v /Path/To/My/snipe-it/checkout:/var/www/html -p $(boot2docker ip)::80  --name="snipeit" --link mysql:mysql snipeit</code></pre>
-<p>Then your local changes to the code will be reflected. You will have to re-run <code>composer install</code>:</p>
-<pre><code>docker exec -i -t snipeit composer install</code></pre>
-<p>You'll need to copy the docker/database.php file to <code>app/config/production/</code> , and copy the <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>.</p>
-<p>And also <code>app:install</code>:</p>
-<pre><code>docker exec -i -t snipeit php artisan app:install</code></pre>
-<p>And you may still need to generate the key with:</p>
-<pre><code>docker exec -i -t snipeit php artisan key:generate --env=production</code></pre>
-<p>While you're developing, you may need to occasionally run:</p>
-<pre><code>docker exec snipeit composer dump-autoload</code></pre>
+<pre><code class="language-sh">docker exec -i -t snipeit php artisan app:install</code></pre>
+<p>(Go ahead and answer the questions however you like. Type 'yes' when asked whether or not you want to run migrations.)</p>
+<h3 id="for-development">For Development</h3>
+<p>When you call <code>docker run</code> - make sure to mount your own snipe-it directory <em>over</em> the /var/www/html directory. Something like:</p>
+<pre><code class="language-sh">docker run -d -v /Path/To/My/snipe-it/checkout:/var/www/html -p $(docker-machine ip b2d)::80  --name="snipeit" --link mysql:mysql snipeit</code></pre>
+<p>Then your local changes to the code will be reflected. You will have to re-run <code>composer install</code> -</p>
+<pre><code class="language-sh">docker exec -i -t snipeit composer install</code></pre>
+<p>You'll need to copy the docker/database.php file to <code>app/config/production/</code> , and copy the <code>app/config/production/app.example.php to app/config/production/app.php</code></p>
+<p>And also app:install -</p>
+<pre><code class="language-sh">docker exec -i -t snipeit php artisan app:install</code></pre>
+<p>And you may still need to generate the key with -</p>
+<pre><code class="language-sh">docker exec -i -t snipeit php artisan key:generate --env=production</code></pre>
+<p>While you're developing, you may need to occasionally run -</p>
+<pre><code class="language-sh">docker exec snipeit composer dump-autoload</code></pre>
+<p>To fix the autoloading cache (if, for example, your class names change, or you add new ones...)</p>
                     </div>
 
                     <hr/>
