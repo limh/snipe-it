@@ -251,11 +251,9 @@
 <p>Then you have a functioning Snipe-IT container. Skip ahead to &quot;How to get up and
 running&quot; to configure it and get it connected to your database.</p>
 <h2 id="how-to-get-up-and-running">How to get up and running</h2>
-<ul>
-<li>The best way to handle all of the various settings for your various containers is to use an <code>env-file</code>.
+<p>The best way to handle all of the various settings for your various containers is to use an <code>env-file</code>.
 See the Docker documentation for more details. It should be just a simple text file with environment
-variable names and values, separated by <code>=</code> signs.</li>
-</ul>
+variable names and values, separated by <code>=</code> signs.</p>
 <p>Your <code>docker.env</code> should look something like this:</p>
 <pre><code class="language-env"># Mysql Parameters
 MYSQL_ROOT_PASSWORD=YOUR_SUPER_SECRET_PASSWORD
@@ -296,9 +294,7 @@ LDAP_RESULT_ACTIVE_FLAG=active
 LDAP_RESULT_EMP_NUM=emp-num
 LDAP_RESULT_EMAIL=email
 LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
-<ul>
-<li>First get a MySQL container running. MySQL 5.6 or earlier are easiest.</li>
-</ul>
+<p>First get a MySQL container running. MySQL 5.6 or earlier are easiest.</p>
 <pre><code class="language-sh">docker run --name snipe-mysql --env-file=my_env_file -d -p $(docker-machine ip b2d)::3306 mysql:5.6</code></pre>
 <p><strong>WARNING:</strong> Newer MySQL containers (5.7 and later, or MariaDB) may run in strict-mode by default, and the initial migrations and application setup will fail in strict mode. If you want to use one of those versions, you need to disable strict mode first!</p>
 <p>That should set you up with your database to use. (You can also specify environment variables on the command-line instead of the env-file, but that can get very clunky very quickly; see <code>docker run --help</code> for details)</p>
