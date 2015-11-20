@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="table-multiple-sort">Table Multiple Sort</h1>
+<p>Use Plugin: <a href="https://github.com/dimbslmh/bootstrap-table/tree/master/src/extensions/multiple-sort">bootstrap-table-multiple-sort</a></p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-html">&lt;script src="extensions/multiple-sort/bootstrap-table-multiple-sort.js"&gt;&lt;/script&gt;</code></pre>
+<h2 id="options">Options</h2>
+<h3 id="showmultisort">showMultiSort</h3>
+<ul>
+<li>type: Boolean</li>
+<li>description: Set true to allow the multiple sort.</li>
+<li>default: <code>false</code></li>
+</ul>
+<h3 id="sortpriority">sortPriority</h3>
+<ul>
+<li>type: Object</li>
+<li>description: Set one or multiple sort priority. Example: '[{&quot;sortName&quot;: &quot;forks_count&quot;,&quot;sortOrder&quot;:&quot;desc&quot;},{&quot;sortName&quot;:&quot;stargazers_count&quot;,&quot;sortOrder&quot;:&quot;desc&quot;}]'</li>
+<li>default: null</li>
+</ul>
+<h3 id="icons">Icons</h3>
+<ul>
+<li>sort: <code>glyphicon-sort</code></li>
+<li>plus: <code>glyphicon-plus</code></li>
+<li>minus: <code>glyphicon-minus</code></li>
+</ul>
+<h2 id="locales">Locales</h2>
+<h3 id="formatmultiplesort">formatMultipleSort</h3>
+<ul>
+<li>description: Title of the advanced search modal</li>
+<li>default: <code>Multiple Sort</code></li>
+</ul>
+<h3 id="formataddlevel">formatAddLevel</h3>
+<ul>
+<li>description: Text of the add level button</li>
+<li>default: <code>Add Level</code></li>
+</ul>
+<h3 id="formatdeletelevel">formatDeleteLevel</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Delete Level</code></li>
+</ul>
+<h3 id="formatcolumn">formatColumn</h3>
+<ul>
+<li>description: Text of Column header</li>
+<li>default: <code>Column</code></li>
+</ul>
+<h3 id="formatorder">formatOrder</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Order</code></li>
+</ul>
+<h3 id="formatsortby">formatSortBy</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Sort by</code></li>
+</ul>
+<h3 id="formatthenby">formatThenBy</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Then by</code></li>
+</ul>
+<h3 id="formatsort">formatSort</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Sort</code></li>
+</ul>
+<h3 id="formatcancel">formatCancel</h3>
+<ul>
+<li>description: Text of the delete level button</li>
+<li>default: <code>Cancel</code></li>
+</ul>
+<h3 id="formatduplicatealerttitle">formatDuplicateAlertTitle</h3>
+<ul>
+<li>description: Title of the duplicate alert</li>
+<li>default: <code>Duplicate(s) detected!</code></li>
+</ul>
+<h3 id="formatduplicatealertdescription">formatDuplicateAlertDescription</h3>
+<ul>
+<li>description: Text of the duplicate alert</li>
+<li>default: <code>Please remove or change any duplicate column.</code></li>
+</ul>
+<h2 id="events">Events</h2>
+<h3 id="onmultiplesortmultiple-sortbstable">onMultipleSort(multiple-sort.bs.table)</h3>
+<ul>
+<li>Fires when sorting with one or multiple Sort Priority.</li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

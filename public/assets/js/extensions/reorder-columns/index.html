@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="table-reorder-columns">Table Reorder Columns</h1>
+<p>Use Plugin: <a href="https://github.com/wenzhixin/bootstrap-table/tree/master/src/extensions/reorder-columns">bootstrap-table-reorder-columns</a> </br>
+Dependence: <a href="https://github.com/akottr/dragtable/">dragTable</a> v2.0.14 (must include the css file), </br>
+<a href="https://code.jquery.com/ui/">jquery-ui</a> v1.11</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-html">&lt;link rel="stylesheet" href=".../dragtable.css"&gt;
+&lt;script src=".../jquery-ui.js"&gt;&lt;/script&gt;
+&lt;script src=".../jquery.dragtable.js"&gt;&lt;/script&gt;
+&lt;script src="extensions/reorder-columns/bootstrap-table-reorder-columns.js"&gt;&lt;/script&gt;</code></pre>
+<h2 id="options">Options</h2>
+<h3 id="reorderablecolumns">reorderableColumns</h3>
+<ul>
+<li>type: Boolean</li>
+<li>description: Set true to allow the reorder feature.</li>
+<li>default: <code>false</code></li>
+</ul>
+<h3 id="maxmovingrows">maxMovingRows</h3>
+<ul>
+<li>type: Integer</li>
+<li>description: Moving only the header. Recommended for very large tables (cells &gt; 1000)</li>
+<li>default: <code>10</code></li>
+</ul>
+<h3 id="dragaccept">dragaccept</h3>
+<ul>
+<li>type: String</li>
+<li>description: Allow to drag only the rows that have the css class as attribute.</li>
+<li>default: <code>null</code></li>
+</ul>
+<h2 id="events">Events</h2>
+<h3 id="onreordercolumnreorder-columnbstable">onReorderColumn(reorder-column.bs.table)</h3>
+<p>Fired when the column was dropped, receive as parameter the new header fields order</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

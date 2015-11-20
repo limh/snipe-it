@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="table-editable">Table Editable</h1>
+<p>Use Plugin: <a href="https://github.com/vitalets/x-editable">x-editable</a></p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-html">&lt;script src="extensions/editable/bootstrap-table-editable.js"&gt;&lt;/script&gt;</code></pre>
+<h2 id="options">Options</h2>
+<h3 id="editable">editable</h3>
+<ul>
+<li>type: Boolean</li>
+<li>description: Set false to disabled editable of all columns.</li>
+<li>default: <code>true</code></li>
+</ul>
+<h2 id="column-options">Column options</h2>
+<h3 id="editable-1">editable</h3>
+<ul>
+<li>type: Object</li>
+<li>description: Configuration of x-editable. Full list of options: <a href="http://vitalets.github.io/x-editable/docs.html#editable">http://vitalets.github.io/x-editable/docs.html#editable</a></li>
+<li>default: <code>undefined</code></li>
+</ul>
+<h2 id="events">Events</h2>
+<h3 id="oneditableiniteditable-initbstable">onEditableInit(editable-init.bs.table)</h3>
+<p>Fired when all columns was initialized by <code>$().editable()</code> method.</p>
+<h3 id="oneditablesaveeditable-savebstable">onEditableSave(editable-save.bs.table)</h3>
+<p>Fired when an editable cell is saved.</p>
+<p>parameters: field, row, oldValue, $el</p>
+<h3 id="oneditableshowneditable-shownbstable">onEditableShown(editable-shown.bs.table)</h3>
+<p>Fired when an editable cell is opened for edits.</p>
+<p>parameters: field, row, $el, editable</p>
+<h3 id="oneditablehiddeneditable-hiddenbstable">onEditableHidden(editable-hidden.bs.table)</h3>
+<p>Fired when an editable cell is hidden / closed.</p>
+<p>parameters: field, row, $el, reason</p>
+<h2 id="the-existing-problems">The existing problems</h2>
+<ul>
+<li>Editable extension does not support searchable in the select type.</li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
