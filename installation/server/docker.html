@@ -255,7 +255,7 @@ running&quot; to configure it and get it connected to your database.</p>
 You can build the snipe-it image using the <code>Dockerfile</code> at the root directory of Snipe-IT by doing this:</p>
 <pre><code class="language-sh">docker build -t snipe-it .</code></pre>
 <p>Then you can use your newly built image as <code>snipe-it</code></p>
-<h3 id="how-to-get-up-and-running">How to get up and running</h3>
+<h2 id="how-to-get-up-and-running">How to get up and running</h2>
 <ul>
 <li>The best way to handle all of the various settings for your various containers is to use an <code>env-file</code>.
 See the Docker documentation for more details. It should be just a simple text file with environment
@@ -320,7 +320,7 @@ mode first!</p>
 <p>And finally, you can initialize the application and database like this:</p>
 <pre><code class="language-sh">docker exec -i -t snipeit php artisan app:install</code></pre>
 <p>(Go ahead and answer the questions however you like. Type 'yes' when asked whether or not you want to run migrations.)</p>
-<h3 id="for-development">For Development</h3>
+<h2 id="for-development">For Development</h2>
 <p>When you call <code>docker run</code> - make sure to mount your own snipe-it directory <em>over</em> the /var/www/html directory. Something like:</p>
 <pre><code class="language-sh">docker run -d -v /Path/To/My/snipe-it/checkout:/var/www/html -p $(docker-machine ip b2d)::80  --name="snipeit" --link mysql:mysql snipeit</code></pre>
 <p>Then your local changes to the code will be reflected. You will have to re-run <code>composer install</code> -</p>
