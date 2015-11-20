@@ -250,18 +250,13 @@
 <pre><code class="language-sh">docker pull snipe/snipe-it</code></pre>
 <p>Then you have a functioning Snipe-IT container. Skip ahead to &quot;How to get up and
 running&quot; to configure it and get it connected to your database.</p>
-<h4 id="how-to">How to <em>Build</em> the Snipe-IT docker image</h4>
-<p>This is more if you're doing development on the Docker piece of Snipe-IT.
-You can build the snipe-it image using the <code>Dockerfile</code> at the root directory of Snipe-IT by doing this:</p>
-<pre><code class="language-sh">docker build -t snipe-it .</code></pre>
-<p>Then you can use your newly built image as <code>snipe-it</code></p>
-<h2 id="how-to-get-up-and-running">How to get up and running</h2>
+<h2 id="get-up-and-running">Get up and running</h2>
 <ul>
 <li>The best way to handle all of the various settings for your various containers is to use an <code>env-file</code>.
 See the Docker documentation for more details. It should be just a simple text file with environment
 variable names and values, separated by <code>=</code> signs.</li>
 </ul>
-<p>Your docker.env should look something like this:</p>
+<p>Your <code>docker.env</code> should look something like this:</p>
 <pre><code class="language-env"># Mysql Parameters
 MYSQL_ROOT_PASSWORD=YOUR_SUPER_SECRET_PASSWORD
 MYSQL_DATABASE=snipeit
@@ -305,13 +300,12 @@ LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <li>First get a MySQL container running. MySQL 5.6 or earlier are easiest.</li>
 </ul>
 <pre><code class="language-sh">docker run --name snipe-mysql --env-file=my_env_file -d -p $(docker-machine ip b2d)::3306 mysql:5.6</code></pre>
-<p><strong>WARNING:</strong> Newer MySQL containers (5.7 and later, or MariaDB) may run in strict-mode by default, and the initial
-migrations and application setup will fail in strict mode. If you want to use one of those versions, you need to disable strict
-mode first!</p>
+<p><strong>WARNING:</strong> Newer MySQL containers (5.7 and later, or MariaDB) may run in strict-mode by default, and the initial migrations and application setup will fail in strict mode. If you want to use one of those versions, you need to disable strict mode first!</p>
 <p>That should set you up with your database to use. (You can also specify environment variables on the command-line instead of the env-file, but that can get very clunky very quickly; see <code>docker run --help</code> for details)</p>
 <ul>
 <li>If your Email solution requires its own container, start that container or service. Make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</li>
 </ul>
+<h3 id="start-your-snipe-it-container">Start your Snipe-IT container</h3>
 <p>Now you can start your Snipe-IT container -</p>
 <pre><code class="language-sh">docker run -d -p $(docker-machine ip b2d)::80 --name="snipeit" --link snipe-mysql:mysql --env-file=my_env_file snipe-it</code></pre>
 <p>If you have a separate container running for email, you will also want a <code>--link</code> setting for email as well.</p>
@@ -321,6 +315,10 @@ mode first!</p>
 <pre><code class="language-sh">docker exec -i -t snipeit php artisan app:install</code></pre>
 <p>(Go ahead and answer the questions however you like. Type 'yes' when asked whether or not you want to run migrations.)</p>
 <h2 id="for-development">For Development</h2>
+<h4 id="how-to">How to <em>Build</em> the Snipe-IT docker image</h4>
+<p>You can build the snipe-it image using the <code>Dockerfile</code> at the root directory of Snipe-IT by doing this:</p>
+<pre><code class="language-sh">docker build -t snipe-it .</code></pre>
+<p>Then you can use your newly built image as <code>snipe-it</code></p>
 <p>When you call <code>docker run</code> - make sure to mount your own snipe-it directory <em>over</em> the /var/www/html directory. Something like:</p>
 <pre><code class="language-sh">docker run -d -v /Path/To/My/snipe-it/checkout:/var/www/html -p $(docker-machine ip b2d)::80  --name="snipeit" --link mysql:mysql snipeit</code></pre>
 <p>Then your local changes to the code will be reflected. You will have to re-run <code>composer install</code> -</p>
