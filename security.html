@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -55,7 +55,7 @@
                                         Requirements
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/security.html">
                                         Security
                                     </a>
@@ -244,24 +244,13 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
-<hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
-<hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
-<hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+                        <h1 id="some-notes-on-security">Some Notes on Security</h1>
+<p>Snipe-IT was built with security in mind. We utilize bcrypt to handle passwords, which is an adaptive hash function based on the Blowfish symmetric block cipher cryptographic algorithm. Additionally, the software is designed in such a way to prevent brute forcing the password, with IP addresses and usernames locked out for 10 minutes after a specified number of login attempts.</p>
+<h2 id="additional-security">Additional Security</h2>
+<p>Although this is web-based software and must run on a web server, you may want to consider whether you actually need it accessible to the outside world. Running it on an internal network with ports closed to the outside world, or on AWS using a security group that prevents access from outside a selected static IP range (like your company network IP), may be something to consider.</p>
+<p>While most use cases won't be storing Personally Identifiable Information (PII), someone with the right motivation could gain useful knowledge about the number of employees, types of assets, etc you maintain. While this information in and of itself isn't harmful, it could be helpful to Bad Guys in a targeted attack, so you should consider whether you want to limit access to it via IP or network rules.</p>
+<p>Also, running Snipe-IT over SSL is not required, but a good idea. (Running everything ever over SSL is a good idea at this point.)</p>
+<p>There are some optional configuration options that you can enable if you run Snipe-IT over HTTPS, such as <a href="http://docs.snipeitapp.com/installation/configuration.html#optional-set-cookies-to-https-only">enabling HTTPS-only cookies</a>, and setting your <a href="http://docs.snipeitapp.com/installation/configuration.html#optional-set-your-htaccess-to-redirect-to-ssl"><code>.htaccess</code> to redirect to the HTTPS version</a>.</p>
                     </div>
 
                     <hr/>

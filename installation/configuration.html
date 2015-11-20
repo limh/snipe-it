@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -76,7 +76,7 @@
                                         1. Downloading
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/installation/configuration.html">
                                         2. Configuration
                                     </a>
@@ -244,24 +244,204 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
+                        <h1 id="snipe-it-configuration-files">Snipe-IT Configuration Files</h1>
+<div id="generated-toc" class="generate_from_h2"></div>
+<h2 id="set-your-environment">Set Your Environment</h2>
+<p>Update the file <code>bootstrap/start.php</code> under the section Detect The Application Environment to include your server's hostname in the <code>production</code> array. This configuration option tells Snipe-IT whether it should run in development mode (local), staging, or production mode. <strong>Unless you are a PHP developer setting up a local installation so that you can contribute code towards Snipe-IT, you should be running Snipe-IT in production mode</strong>.</p>
+<p>To find out your local machine’s hostname, type <code>hostname</code> from a terminal prompt on the machine you’re installing it on. The command-line response is that machine’s hostname. <strong>Please note that the hostname is usually NOT the same as the domain name</strong>.</p>
+<p>So for example, if you’re installing this on your server named <code>CentOS-ip-9875</code>, the environmental variable section of <code>bootstrap/start.php</code> might look like this:</p>
+<pre><code class="language-php">$env = $app-&gt;detectEnvironment(array(
+    ...
+    'production'     =&gt; array('CentOS-ip-9875')
+));</code></pre>
 <hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
+<h2 id="set-timezone-and-language-preferences">Set Timezone and Language Preferences</h2>
+<p>Open up <code>app/config/app.php</code> and edit the <code>timezone</code> and <code>language</code> settings to reflect your desired timezone and language. The default timezone is UTC. The timezone you use should be formatted as <a href="http://php.net/manual/en/timezones.php">an accepted PHP timezone</a>, so for example, for Pacific Time, you could use <code>America/Los_Angeles</code>:</p>
+<pre><code>'timezone' =&gt; 'America/Los_Angeles',</code></pre>
+<p>The default language is US English, however we have additional language translations available, thanks to a great community of people <a href="../translations.html">helping us translate Snipe-IT</a>.</p>
+<pre><code>'locale' =&gt; 'en',</code></pre>
+<p>If you wish to use one of the other available languages, simply replace the default value of <code>locale</code> from <code>en</code> to one of the values listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arabic</td>
+<td><code>ar</code></td>
+</tr>
+<tr>
+<td>Chinese Simplified</td>
+<td><code>zh-CN</code></td>
+</tr>
+<tr>
+<td>Czech</td>
+<td><code>cs</code></td>
+</tr>
+<tr>
+<td>Danish</td>
+<td><code>nl</code></td>
+</tr>
+<tr>
+<td>Dutch</td>
+<td><code>nl</code></td>
+</tr>
+<tr>
+<td>English</td>
+<td><code>en</code></td>
+</tr>
+<tr>
+<td>English, UK</td>
+<td><code>en-GB</code></td>
+</tr>
+<tr>
+<td>Finnish</td>
+<td><code>fi</code></td>
+</tr>
+<tr>
+<td>French</td>
+<td><code>fr</code></td>
+</tr>
+<tr>
+<td>German</td>
+<td><code>de</code></td>
+</tr>
+<tr>
+<td>Hungarian</td>
+<td><code>hu</code></td>
+</tr>
+<tr>
+<td>Italian</td>
+<td><code>it</code></td>
+</tr>
+<tr>
+<td>Japanese</td>
+<td><code>ja</code></td>
+</tr>
+<tr>
+<td>Korean</td>
+<td><code>ko</code></td>
+</tr>
+<tr>
+<td>Malay</td>
+<td><code>ms</code></td>
+</tr>
+<tr>
+<td>Norwegian</td>
+<td><code>no</code></td>
+</tr>
+<tr>
+<td>Polish</td>
+<td><code>pl</code></td>
+</tr>
+<tr>
+<td>Portuguese</td>
+<td><code>pr-PT</code></td>
+</tr>
+<tr>
+<td>Portuguese, Brazilian</td>
+<td><code>pr-BR</code></td>
+</tr>
+<tr>
+<td>Romanian</td>
+<td><code>ro</code></td>
+</tr>
+<tr>
+<td>Russian</td>
+<td><code>ru</code></td>
+</tr>
+<tr>
+<td>Spanish</td>
+<td><code>es-ES</code></td>
+</tr>
+<tr>
+<td>Swedish</td>
+<td><code>sv-SE</code></td>
+</tr>
+<tr>
+<td>Thai</td>
+<td><code>th</code></td>
+</tr>
+<tr>
+<td>Turkish</td>
+<td><code>tr</code></td>
+</tr>
+<tr>
+<td>Vietnamese</td>
+<td><code>vi</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you're interested in additional languages, or would like to help us translate some of the incomplete existing languages, please see the <a href="../translations.html">Translations</a> page.</p>
 <hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
+<h2 id="edit-database-settings">Edit Database Settings</h2>
+<p><strong>Note: You must create the database yourself. Snipe-IT does not create the database or database users for you.</strong></p>
+<p>Copy the example database config from <code>app/config/production/database.example.php</code> to <code>app/config/production/database.php</code>. Update the file <code>app/config/production/database.php</code> with your database name and credentials, replacing <code>snipeit_laravel</code> with your database name, <code>travis</code> with your database username, and so on:</p>
+<pre><code>'mysql'=&gt; array(
+    'driver'   =&gt; 'mysql',
+    'host'     =&gt; 'localhost',
+    'database' =&gt; 'snipeit_laravel',
+    'username' =&gt; 'travis',
+    'password' =&gt; '',
+    'charset'  =&gt; 'utf8',
+    'collation'=&gt; 'utf8_unicode_ci',
+    'prefix'   =&gt; '',
+),</code></pre>
+<p>You can generally leave <code>charset</code>, <code>collation</code> and <code>prefix</code> as they are.</p>
 <hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+<h2 id="edit-mail-settings">Edit Mail Settings</h2>
+<p>Copy the example mail config from <code>app/config/production/mail.example.php</code> to <code>app/config/production/mail.php</code>, and update the new <code>app/config/production/mail.php</code> file with your settings for SMTP server, email username and password.</p>
+<p>These settings will be used to send emails to your users, when they register and when they request a password reset.</p>
+<p>While your mail settings will vary depending on how you've set up your server, the one line you must change regardless of your configuration is:</p>
+<pre><code>'from' =&gt; array('address' =&gt; null, 'name' =&gt; null),</code></pre>
+<p><strong>Make sure as you edit this section that you change the <strong>values</strong>, not the <strong>keys</strong>.</strong> For example,</p>
+<pre><code>'from' =&gt; array('address' =&gt; 'me@example.com', 'name' =&gt; 'John Smith'),</code></pre>
+<p>is <strong>correct</strong>, while</p>
+<pre><code>'from' =&gt; array('me@example.com' =&gt; null, 'John Smith' =&gt; null),</code></pre>
+<p>is <strong>incorrect</strong> and will cause errors when it tries to send email.</p>
+<p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
+<p>If you don't have an SMTP server to use, you can set the <code>driver</code> value to <code>mail</code>:</p>
+<pre><code>'driver' =&gt; 'mail',</code></pre>
+<p>If you're using GoDaddy for hosting, you will need to set your mail server to use <code>relay-hosting.secureserver.net</code> on port <code>25</code>, with <code>username</code> and <code>password</code> left as null values. See the <a href="https://www.godaddy.com/help/what-is-the-name-of-my-hosting-accounts-relay-server-953">GoDaddy relay server documentation</a> for more specifics.</p>
+<hr />
+<h2 id="application-settings">Application Settings</h2>
+<p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
+<pre><code>'url'=&gt; 'http://www.yourserver.com',</code></pre>
+<p><strong>This value should begin with the protocol (http:// or https://), as reflected in the example above.</strong></p>
+<p>You should also change your secret key here from <code>Change_this_key_or_snipe_will_get_ya</code> to a random 32 character string. If you prefer to have your key randomly generated, run the <code>php artisan key:generate</code> command from the application root a little later in this process.</p>
+<hr />
+<h2 id="set-directory-permissions">Set Directory Permissions</h2>
+<p>You’ll need to make sure that the <code>app/storage</code> directory and its subdirectories are writable by your web server, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your web server configured. You also need to change permissions for your <code>uploads</code> directory for user avatars and model images.</p>
+<p>On Linux/OSX, you would do something like this:</p>
+<pre><code>chmod -R 755 app/storage
+chmod -R 755 app/private_uploads
+chmod -R 755 public/uploads</code></pre>
+<p>For help fixing permissions on IIS, see the <a href="server/windows.html">Windows Installation guide</a>.</p>
+<p>If you still run into a permissions error, you may need to increase the permissions to 775, or twiddle your user/group permissions on your server so that the web server itself (Apache, IIS, etc) can write to files owned by the Snipe-IT user.</p>
+<p><strong>Note: It should go without saying, but make sure the Snipe-IT project directory is not owned by root. Your webserver should be running as your webserver’s user (often apache, nobody, or www-data). But never, ever root. Ever.</strong></p>
+<hr />
+<h2 id="optional-ldap-configuration">Optional: LDAP Configuration</h2>
+<p>To set up your Snipe-IT installation to be able to use LDAP for user login and import, copy the <code>app/config/production/ldap.example.php</code> over to <code>app/config/production/ldap.php</code> and follow the directions to use your own LDAP settings.  </p>
+<p>If you don't have an LDAP server (or don't wish to import your users, or allow them to login using their LDAP credentials), you can skip this step.</p>
+<p>The LDAP functionality will import any users in your LDAP/Active Directory, but will leave existing users untouched.</p>
+<p>See the <code>app/config/production/ldap.example.php</code> for details on specific LDAP settings.</p>
+<p><strong>Note: You must have the <code>php-ldap</code> extension installed for LDAP integration to work.</strong></p>
+<hr />
+<h2 id="optional-set-cookies-to-https-only">Optional: Set Cookies to HTTPS-only</h2>
+<p>As an extra security feature, Snipe-IT allows you to set your cookies to HTTPS-only, which will ensure that session cookies will only be sent back to the server if the browser has a HTTPS connection.</p>
+<p>If you are running Snipe-IT over SSL and wish to use this feature, copy the example session config from <code>app/config/production/session.example.php</code> to <code>app/config/production/session.php</code>, and then update your new <code>app/config/production/session.php</code> file to reflect:</p>
+<pre><code>'secure' =&gt; true,</code></pre>
+<p>If you have this option set to <code>true</code> in your session config, your users will not be able to login if they access Snipe-IT over the non-HTTPS connection.</p>
+<p><strong>Note: If you are NOT running Snipe-IT over SSL and you enable this option, your users will not be able to login. Only use this option if you are running Snipe-IT over SSL.</strong></p>
+<hr />
+<h2 id="optional-set-your-htaccess-to-redirect-to-ssl">Optional: Set Your .htaccess to Redirect to SSL</h2>
+<p>If you are running Snipe-IT over HTTPS and wish to automatically redirect the user to the HTTPS version if they accidentally go to the HTTP version, uncomment the following lines from the <code>public/.htaccess</code> file:</p>
+<pre><code>RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]</code></pre>
+<p><strong>Note: If you are NOT running Snipe-IT over SSL and you enable this option, your users will not be able to access the site. Only use this option if you are running Snipe-IT over SSL.</strong></p>
                     </div>
 
                     <hr/>

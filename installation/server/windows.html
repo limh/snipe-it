@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -101,7 +101,7 @@
                                         <span class='subnav-indent'><i class='fa fa-caret-right'></i> Linux/OSX</span>
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/installation/server/windows.html">
                                         <span class='subnav-indent'><i class='fa fa-caret-right'></i> Windows</span>
                                     </a>
@@ -244,24 +244,82 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
-<hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
-<hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
-<hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+                        <h1><i class="fa fa-windows"></i> Install Snipe-IT on Windows 2008 R2 with IIS</h1>
+<h3 id="setting-up-an-iis-website">Setting Up an IIS Website</h3>
+<ul>
+<li>Extract <a href="../downloading.html">Snipe-IT</a> to <code>C:\inetpub\wwwroot\snipe-it</code> (folder name can be changed but we will reference it as is shown here)</li>
+<li>Run IIS Manager</li>
+<li>Right Click <code>Sites</code> and <code>Add Website</code></li>
+</ul>
+<pre><code>Site name: Snipe IT
+Physical path: C:\inetpub\wwwroot\snipe-it\public
+Binding
+Type: http
+IP address: All Unassigned or a specific IP if you have one you will be using
+Port: 80 or any you wish to use
+Host name: assets.portal.local (this can be changed to suit your needs)</code></pre>
+<ul>
+<li>Click <code>OK</code></li>
+</ul>
+<p>Your site will now appear in the list.</p>
+<ul>
+<li>Double click on your site</li>
+<li>Double Click <code>URL Rewrite</code>
+<ul>
+<li>In the action pane click <code>Import Rules...</code></li>
+<li>Click the <code>...</code> button</li>
+<li>Go to <code>C:\inetpub\wwwroot\snipe-it\public</code></li>
+<li>Select <code>.htaccess</code> file</li>
+<li>Click <code>Open</code> then <code>Import</code></li>
+<li>In the action pane click <code>Apply</code></li>
+</ul></li>
+</ul>
+<h2 id="fix-permissions">Fix Permissions</h2>
+<p>Add permissions for the IIS user for the <code>uploads</code> folder:</p>
+<ul>
+<li>Go to <code>C:\inetpub\wwwroot\snipe-it\public</code></li>
+<li>Right Click uploads -&gt; Properties</li>
+<li>Go to Security Tab -&gt; Edit</li>
+<li>Click Add and change location to local machine</li>
+<li>Type IUSR in object name box</li>
+<li>Click OK</li>
+<li>Give IUSR full control</li>
+<li>Click OK twice</li>
+</ul>
+<p>Add permissions for the IIS user for the <code>private_uploads</code> folder:</p>
+<ul>
+<li>Go to <code>C:\inetpub\wwwroot\snipe-it\app</code></li>
+<li>Right Click private_uploads -&gt; Properties</li>
+<li>Goto Security Tab -&gt; Edit</li>
+<li>Click Add and change location to local machine</li>
+<li>Type IUSR in object name box</li>
+<li>Click OK</li>
+<li>Give IUSR full control</li>
+<li>Click OK twice</li>
+</ul>
+<p>Add permissions for the IIS user for the <code>c:\windows\temp\</code> folder:</p>
+<ul>
+<li>Goto <code>C:\windows\</code></li>
+<li>Right Click temp -&gt; Properties</li>
+<li>Goto Security Tab -&gt; Edit</li>
+<li>Click Add and change location to local machine</li>
+<li>Type IUSR in object name box</li>
+<li>Click OK</li>
+<li>Give IUSR modify permissions</li>
+<li>Click OK twice</li>
+</ul>
+<p>Add permissions for the IIS user for the <code>storage</code> folder:</p>
+<ul>
+<li>Go to <code>C:\inetpub\wwwroot\snipe-it\app</code></li>
+<li>Right Click storage -&gt; Properties</li>
+<li>Goto Security Tab -&gt; Edit</li>
+<li>Click Add and change location to local machine</li>
+<li>Type IUSR in object name box</li>
+<li>Click OK</li>
+<li>Give IUSR full control</li>
+<li>Click OK twice</li>
+</ul>
+<p>Much <i class="fa fa-heart heart" style="color:red"></i> to <a href="http://github.com/madd15">@madd15</a> for writing up the Windows installation guide!</p>
                     </div>
 
                     <hr/>

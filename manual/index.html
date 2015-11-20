@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -173,7 +173,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/manual/index.html">
                                         Basic Concepts
                                     </a>
@@ -244,24 +244,32 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
+                        <h1 id="snipe-it-users-manual">Snipe-IT User's Manual</h1>
+<p>(This manual is a work in progress - please check back often.)</p>
+<h2 id="basic-concepts">Basic concepts</h2>
+<h3 id="checkincheckout">Checkin/Checkout</h3>
+<p>Checking in and checking out are two primary concepts behind Snipe-IT. When you checkout an asset, license or accessory, you’re marking them as being in the possession of someone else. This means that they cannot subsequently be checked out to another person until they are checked back in. This prevents “double-booking” assets, where one asset has been promised to or assigned to multiple people.</p>
+<p>When an employee leaves your company, or if an asset, license or accessory is not functioning properly, you would check it back in. Checking it back in indicates that it’s back in your possession, or potentially out for repair. It’s up to you to decide what status to assign it, based on the condition of the asset.</p>
 <hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
+<h3 id="status-labels">Status Labels</h3>
+<p>Status labels are used to describe the state of the asset. You can add as many status labels as you’d like. Each status label will have one of four characteristics that describe the state of assets with that status label:</p>
+<p>Undeployable: these assets cannot be assigned to anyone.</p>
+<p>Deployable: these assets can be assigned to people</p>
+<p>Archived: these assets cannot be assigned to people, and will only show up in the Archived view</p>
+<p>Pending – these assets can not yet be assigned to anyone.</p>
+<p>Use status labels however you see fit. You can just keep the starter labels we set up for you, or you can flesh out a detailed set of statuses that will make sure your team always knows exactly what’s going on with each asset.</p>
+<p>If you set up your status labels well, they can be enormously useful. A status label that is a pending label named “Awaiting Re-Imaging” tells your team that this item can’t be deployed because it’s still in the re-imaging stage and isn’t ready yet. Once it’s ready, your team can update the status to “Ready to Deploy”, and then it’s added to the pool of available deployable resources.</p>
 <hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
-<hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="setting-up-locations">Setting up Locations</h3>
+<p>If you have a fresh install of Snipe-IT, it can be confusing on where to get started. The best place to start is to set up your locations. Even if you only have one location, you’ll want to get that set up first, since users, assets and many other things within the Snipe-IT system rely on it.</p>
+<p>From here you can start adding users if you want, or move on to adding asset models and assets.</p>
+<h3 id="asset-categories">Asset Categories</h3>
+<p>Asset categories are used by both assets and accessories. Categories describe the general type of asset or accessory, such as “wireless keyboards”, “laptops”, and so on. Categories are important because they contain attributes that are inherited by both the assets and accessories that long to them, such as whether to require the user to click on a link to show that they have received the asset or accessory, and whether or not the user should be emailed a EULA.</p>
+<p>Every asset and accessory needs to belong to a category, so you’ll need to set these up before adding assets.</p>
+<h3 id="asset-models">Asset Models</h3>
+<p>Every asset needs an asset model, so setting these up next will help you start adding assets. Asset models can be things like the make and model of a laptop or desktop machine (Apple 13″ Retina, for example). When you create new assets, you’ll select whichever asset model makes sense.</p>
+<p>Asset models are important because they carry certain attributes which are inherited by the assets you, such as depreciation type, end of life, and whether or not to show MAC address fields on the asset.</p>
                     </div>
 
                     <hr/>

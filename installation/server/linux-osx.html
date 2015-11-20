@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -96,7 +96,7 @@
                                         5. Server Configuration
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/installation/server/linux-osx.html">
                                         <span class='subnav-indent'><i class='fa fa-caret-right'></i> Linux/OSX</span>
                                     </a>
@@ -244,24 +244,118 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
+                        <h1><i class="fa fa-linux"></i> Installing Snipe-IT on Linux/OSX</h1>
+<div id="generated-toc" class="generate_from_h2"></div>
+<h2 id="using-apache">Using Apache</h2>
+<p>The most common setup for Snipe-IT on a linux server is to use Apache, so if you're not sure what to pick, Apache might be the best bet, as it's free, easy to configure, and well documented.</p>
+<p><strong>The <code>DocumentRoot</code> for the app should be set to the <code>public</code> directory.</strong> </p>
+<p>In a standard Apache virtualhost setup, that might look something like this:</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    &lt;Directory /var/www/html/public&gt;
+        Allow From All
+        AllowOverride All
+        Options +Indexes
+    &lt;/Directory&gt;
+
+    DocumentRoot /var/www/html/public
+    ServerName www.yourserver.com
+    # Other directives here
+&lt;/VirtualHost&gt;</code></pre>
+<p>An OS X virtualhost setup could look more like:</p>
+<pre><code>&lt;Directory "/Users/youruser/Sites/snipe-it/public/"&gt;
+    Allow From All
+    AllowOverride All
+    Options +Indexes
+&lt;/Directory&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerName "www.yourserver.com"
+    DocumentRoot "/Users/youruser/Sites/snipe-it/public"
+&lt;/VirtualHost&gt;</code></pre>
+<p>Snipe-IT requires <code>mod_rewrite</code> to be installed and enabled on systems running Apache. For more information on how to set up <code>mod_rewrite</code>, <a href="http://xmodulo.com/2013/01/how-to-enable-mod_rewrite-in-apache2-on-debian-ubuntu.html">click here</a>.</p>
+<p><strong>Note that in Apache 2.4, you may need to use <code>Require all granted</code> instead of <code>Allow From All</code>.</strong></p>
 <hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
+<h2 id="using-nginx-and-php-fpm">Using Nginx and PHP-FPM</h2>
+<p>If you wish to use Nginx and PHP-FPM instead of Apache, PHP-FPM will need to be installed and setup to listen on a socket.  For more information on how to setup PHP-FPM, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04#step-five—configure-php">click here</a>.</p>
+<pre><code>server {
+    listen 80;
+    server_name localhost;
+
+    root /Users/youruser/Sites/snipe-it/public/;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        try_files $uri $uri/ =404;
+        fastcgi_pass unix:/var/run/php5-fpm-www.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}</code></pre>
+<p>If you prefer to use a forced SSL setup, you can use the following configuration instead.</p>
+<pre><code>server {
+    listen 80;
+    server_name localhost;
+
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name localhost;
+
+    ssl_certificate /path/to/your.crt;
+    ssl_certificate_key /path/to/your.key;
+    ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RC4-SHA:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!DSS:!PKS;
+    ssl_session_timeout 5m;
+    ssl_session_cache builtin:1000 shared:SSL:10m;
+
+    root /Users/youruser/Sites/snipe-it/public/;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        try_files $uri $uri/ =404;
+        fastcgi_pass unix:/var/run/php5-fpm-www.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}</code></pre>
+<p>Note that with the SSL configuration you will need to adjust the path to your SSL certificate or it will not work.  You can use a proper certificate generated from a CA or a self-signed certificate.  For more information on creating a self-signed certificate, <a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-nginx-for-ubuntu-12-04">click here</a>.</p>
 <hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
+<h2 id="running-this-on-an-ec2-micro-instance">Running this on an EC2 Micro Instance</h2>
+<p>Depending on your needs, you could probably run this system in an EC2 micro instance. It doesn't take up very much memory and typically won't be a super-high-traffic application. EC2 micros fall into the free/dirt-cheap tier, which might make this a nice option. One thing to note though - composer can be a little memory-intensive while you're running updates, and you may have trouble with it failing on a micro. You can crank the memory_limit up in php.ini, but EC2 micros have swap disabled by default, so even that may not cut it. If you run into totally unhelpful error messages while running composer updates (like simply 'Killed') or fatal memory issues mentioning phar, your best bet will be to enable swap:</p>
+<pre><code>sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1</code></pre>
+<p>If you need more than 1024MB then change that to something higher.</p>
+<p>To enable it by default after reboot, add this line to /etc/fstab:</p>
+<pre><code>/var/swap.1 swap swap defaults 0 0</code></pre>
 <hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+<h2 id="notes-on-selinux">Notes on SELinux</h2>
+<p>If you’re running SELinux, you’ll need to change the security context in order for the web server to be able to write to files where needed (log files, image uploads, sessions, etc).</p>
+<p>If you’re not sure, don’t worry about it unless you’ve set up Snipe-IT and you’re hitting permission errors even after you’ve updated the directory permissions to be writable.</p>
+<p>To tell if you’re running SELinux, you can run:</p>
+<pre><code>cat /etc/sysconfig/selinux</code></pre>
+<p>or</p>
+<pre><code>sestatus</code></pre>
+<p>If it turns out you’re running SELinux, the syntax for changing the security context on a directory is:</p>
+<pre><code>chcon -type &lt;type&gt; &lt;file&gt;
+chcon --reference &lt;file1&gt; &lt;file2&gt;</code></pre>
+<p>So for example, you might do something like:</p>
+<pre><code>chcon -R --type httpd_sys_rw_content_t /srv/snipeit
+chcon -R --reference=/var/www/html /srv/snipeit</code></pre>
+<p>Depending on where your Snipe-IT files are located.</p>
                     </div>
 
                     <hr/>

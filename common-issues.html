@@ -45,7 +45,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/index.html">
                                         Introduction
                                     </a>
@@ -157,7 +157,7 @@
                         </p>
 
                         <ul class="nav nav-pills nav-stacked">
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/common-issues.html">
                                         Common Issues
                                     </a>
@@ -244,24 +244,78 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="snipe-it-installation-guide">Snipe-IT Installation Guide</h1>
-<p>Snipe-IT is a Free Open Source (FOSS) project for IT asset management, to enable IT departments to track who has which laptop, when it was purchased, which software licenses and accessories are available, and so on.</p>
-<p>It is built on <a href="http://laravel.com">Laravel 4.2</a> and uses the <a href="https://github.com/cartalyst/sentry">Sentry 2</a> package.</p>
-<p>This project is  actively developed and we <a href="https://github.com/snipe/snipe-it/releases">release quite frequently</a>. <strong>Check out the <a href="http://www.snipeitapp.com">Snipe-IT website</a> for a demo, a comprehensive list of features, screenshots and <a href="http://snipeitapp.com/news/">our blog</a> for updates on new versions.</strong></p>
-<p><strong>This is web-based software</strong>. This means there there is no executable file (aka no .exe files), and it must be run on a web server and accessed through a web browser. It runs on any flavor of Linux or OSX as well as Windows.</p>
+                        <h1 id="common-issues">Common Issues</h1>
+<div id="generated-toc" class="generate_from_h2"></div>
+<p>While installation should be pretty simple, here are some of the more common questions/issues people have.</p>
 <hr />
-<center>
-    <span style="font-size: 200%; font-weight: bold;">We </span>
-    <i class="fa fa-heart fa-3x heart pulse2" style="padding: 10px;"></i> <i class="fa fa-linux fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-windows fa-3x" style="padding: 10px;"></i> <i class="fa fa-plus fa-2x" style="padding: 10px;"></i> <i class="fa fa-apple fa-3x" style="padding: 10px;"></i>
-</center>
+<h2 id="the-requested-url-authsignin-was-not-found-on-this-server">The requested URL /auth/signin was not found on this server</h2>
+<p>Chances are that <code>mod_rewrite</code> is either not installed on your system, or has not been configured correctly for your virtualhost using AllowOverride.</p>
+<p><strong>Troubleshooting:</strong>
+Add garbage text into the <code>public/.htaccess</code> file on your local install and hit the homepage again. If it bombs out (it should), then mod_rewrite is probably working. If it doesn't, it means your webserver isn't even looking for the .htaccess rules and you'll need to check your virtualhost config.</p>
+<p>(Make sure to take the garbage out of the .htaccess file once you've gotten it sorted!)</p>
 <hr />
-<h3 id="bug-reports-amp-feature-requests">Bug Reports &amp; Feature Requests</h3>
-<p>Feel free to check out the <a href="https://github.com/snipe/snipe-it/issues">GitHub Issues for this project</a> to open a bug report or see what open issues you can help with. Please search through existing issues (open and closed) to see if your question hasn't already been answered before opening a new issue.</p>
-<p>We use Waffle.io to help better communicate our roadmap with users. Our <a href="http://waffle.io/snipe/snipe-it">project page there</a> will show you the backlog, what's ready to be worked on, what's in progress, and what's completed.</p>
-<p><a href="http://waffle.io/snipe/snipe-it"><img src="https://badge.waffle.io/snipe/snipe-it.png?label=ready+for+dev&amp;title=Ready+for+development" alt="Stories in Ready" /></a></p>
+<h2 id="php-warning-requirevarwwwhtmlsnipeitbootstrapvendorautoloadphp-failed-to-open-stream-no-such-file-or-directory">PHP Warning: require(/var/www/html/snipeit/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory</h2>
+<p>When you see this error, it means that you either forgot to install or run composer, or you did and it failed somewhere and didn't complete, so the dependencies Snipe-IT needs were not installed. See the docs on <a href="installation/composer.html">installing and running composer</a>, and check for any errors composer might return when you attempt to run <code>composer install</code>.</p>
+<p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
-<h3 id="announcement-list">Announcement List</h3>
-<p>To be notified of important news (such as new releases, security advisories, etc), <a href="http://eepurl.com/XyZKz">sign up for our list</a>. We'll never sell or give away your info, and we'll only email you when it's important.</p>
+<h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
+<p>You can run</p>
+<pre><code>php artisan key:generate</code></pre>
+<p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
+<pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
+<hr />
+<h2 id="error-message-mcrypt_encrypt-key-size-not-supported-by-this-algorithm-only-keys-of-sizes-16-24-or-32-supported">Error message: mcrypt_encrypt(): Key size not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported.</h2>
+<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
+<p>You can run</p>
+<pre><code>php artisan key:generate</code></pre>
+<p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
+<pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
+<hr />
+<h2 id="call-to-undefined-function-controllersadminldap_connect">Call to undefined function Controllers\Admin\ldap_connect()</h2>
+<p>The PHP LDAP extension is not installed on your server. While this extension is not required for all Snipe-IT installations, it must be installed if you wish to use any of the LDAP functionality.</p>
+<hr />
+<h2 id="white-page-with-error-error-in-exception-handler">White page with error: Error in exception handler.</h2>
+<p>Make sure you've changed the permissions on the <code>app/storage</code> directory and all of the directories within to be writable by the web server.</p>
+<hr />
+<h2 id="database--not-configured">Database [] not configured</h2>
+<p>This happens when you think you're running the app in a different environment than your app thinks it's running in. The most common reason for this is you either forgot to edit <code>bootstrap/start.php</code> to include your hostname in whichever environment you want to run it as, or the hostname you entered there is incorrect.
+Snipe-IT will always default to production if it can't figure out what mode to run in.</p>
+<p>To find your hostname, type <code>hostname</code> in a terminal prompt and copy the output to whichever of the environments in <code>bootstrap/start.php</code> that you want to run it in. The app examines this array, and if it finds a hostname there that matches the actual hostname, that's the environment it will run in.</p>
+<p>Alternatively, you can try just copying your config files over into <code>app/config/production</code> and just letting it default to production if you don't plan on doing any code development.</p>
+<hr />
+<h2 id="fatalerrorexception-syntax-error-unexpected--expecting-">FatalErrorException. Syntax error, unexpected '[', expecting ')'</h2>
+<p>The version of PHP you're using is too old to run Snipe-IT, which <a href="requirements.html">requires</a> PHP 5.4 or later.</p>
+<p>After upgrading PHP, you should also delete the contents of the cached views in <code>app/storage/views</code> once you upgrade PHP, to resolve any cached issues.</p>
+<hr />
+<h2 id="error-message-error-output-php-fatal-error-call-to-undefined-method-illuminatefoundationapplicationregistercorecontaineraliases-in-srcilluminatefoundationstartphp-on-line-106">Error message: Error Output: PHP Fatal error: Call to undefined method IlluminateFoundationApplication::registerCoreContainerAliases() in ../src/Illuminate/Foundation/start.php on line 106</h2>
+<p>Remove <code>bootstrap/compiled.php</code> and your vendors dir, and try running <code>php composer.phar update</code>.</p>
+<hr />
+<h2 id="image-source-not-readable">Image Source not readable</h2>
+<p>This usually means that the temporary directory is not writable by the web server. Check the permissions section of the documentation for your server OS and make sure you've granted the user the ability to write to the temp directory.</p>
+<hr />
+<h2 id="while-running-composer-interventionimage-dev-master-requires-ext-fileinfo---gt-the-requested-php-extension-fileinfo-is-missing-or-not-enabled-on-your-system">While running composer: intervention/image dev-master requires ext-fileinfo * -&gt; the requested PHP extension fileinfo is missing or not enabled on your system.</h2>
+<p>As the error states, your server is missing the <code>fileinfo</code> extension, which is one of the requirements for running Snipe-IT.</p>
+<p>Windows users must include the bundled <code>php_fileinfo.dll</code>DLL file in <code>php.ini</code> to enable this extension. To enable Fileinfo, add or uncomment this line in your php.ini:</p>
+<pre><code>extension=php_fileinfo.dll</code></pre>
+<p>and restart the web server.</p>
+<p>Linux users need to add or uncomment the following in their <code>php.ini</code>:</p>
+<pre><code>extension=fileinfo.so</code></pre>
+<p>and restart the web server.</p>
+<hr />
+<h2 id="during-composer-install-its-asking-me-for-my-github-credentials">During composer install, it's asking me for my Github credentials</h2>
+<p>This is an artifact of Github having a very low API rate limit for unauthenticated accounts. Make sure you're using the <code>--prefer-source</code> flag when doing your composer installs and updates.</p>
+<hr />
+<h2 id="call-to-undefined-method-illuminatecookiecookiejarget">Call to undefined method IlluminateCookieCookieJar::get()</h2>
+<p>If you're using Snipe-IT 1.2.6 or earlier, grab the latest off of the develop branch and run <code>php composer install</code>, or edit your composer.json to use Sentry 2.1.* and then run <code>php composer update</code>.</p>
+<hr />
+<h2 id="php-fatal-error-class-patchworkutf8bootup-not-found-in-bootstrapautoloadphp-on-line-43">PHP Fatal error: Class 'Patchwork\Utf8\Bootup' not found in \bootstrap\autoload.php on line 43</h2>
+<p>This happens sometimes with composer, though we don't really know why, as it's not specific to Snipe-IT. If you run into this error after running <code>php composer.phar install --no-dev --prefer-source</code>, try the following:</p>
+<ul>
+<li>delete your <code>composer.lock</code> file</li>
+<li>run <code>php composer.phar dump-autoload</code></li>
+<li>run <code>php composer.phar update --no-dev --prefer-source</code></li>
+</ul>
                     </div>
 
                     <hr/>
