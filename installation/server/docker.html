@@ -305,7 +305,7 @@ LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <ul>
 <li>If your Email solution requires its own container, start that container or service. Make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</li>
 </ul>
-<h3 id="start-your-snipe-it-container">Start your Snipe-IT container</h3>
+<h5 id="start-your-snipe-it-container">Start your Snipe-IT container</h5>
 <p>Now you can start your Snipe-IT container -</p>
 <pre><code class="language-sh">docker run -d -p $(docker-machine ip b2d)::80 --name="snipeit" --link snipe-mysql:mysql --env-file=my_env_file snipe-it</code></pre>
 <p>If you have a separate container running for email, you will also want a <code>--link</code> setting for email as well.</p>
@@ -315,7 +315,6 @@ LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <pre><code class="language-sh">docker exec -i -t snipeit php artisan app:install</code></pre>
 <p>(Go ahead and answer the questions however you like. Type 'yes' when asked whether or not you want to run migrations.)</p>
 <h2 id="for-development">For Development</h2>
-<h4 id="how-to">How to <em>Build</em> the Snipe-IT docker image</h4>
 <p>You can build the snipe-it image using the <code>Dockerfile</code> at the root directory of Snipe-IT by doing this:</p>
 <pre><code class="language-sh">docker build -t snipe-it .</code></pre>
 <p>Then you can use your newly built image as <code>snipe-it</code></p>
