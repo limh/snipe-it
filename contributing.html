@@ -259,9 +259,6 @@
 <h2 id="database-considerations">Database Considerations</h2>
 <p>Always make sure you're eager loading queries where possible, to avoid &quot;N+1 query&quot; issues with large data sets. The debugbar at the bottom of your development installation will show you the number of queries you're executing, which should alert you to any issues.</p>
 <hr />
-<h2 id="localization-support">Localization Support</h2>
-<p>When developing on Snipe-IT, please always use language strings (<code>@lang('path/to/file.string')</code> in blades, <code>Lang::get('path/to/file.string')</code> in controllers) instead of regular text on any user-facing text, so that we can easily extend your changes out to the translation community. You do not need to add new strings to all of the languages in the <code>app/lang</code> directory, only the <code>app/lang/en</code>. The translation platform we use will handle the rest.</p>
-<hr />
 <h2 id="setting-up-a-dev-installation">Setting Up a Dev Installation</h2>
 <p>The only real difference in setting Snipe-IT up for local development versus setting it up for production usage is the configuration files, and remembering to add the local environment flag on the artisan commands.</p>
 <p>You’ll notice in your <code>app/config directory</code>, you have directories such as <code>local</code>, <code>staging</code>, and <code>production</code>. (The <code>testing</code> directory is reserved for unit tests, so don’t mess with that one.)</p>
@@ -278,7 +275,7 @@ php artisan app:install --env=local</code></pre>
 <p>If you’re doing any development on this, make sure you purge the auto-loader if you see any errors stating the new model you created can’t be found, etc, otherwise your new models won’t be grokked.</p>
 <pre><code>php composer.phar dump-autoload</code></pre>
 <hr />
-<h2 id="translations">Translations</h2>
+<h2 id="localization-support">Localization Support</h2>
 <p>You do not need to provide translated strings for all of the languages we support, only English (<code>app/lang/en</code>). We use CrowdIn for translation management by native speakers, so you only need to provide English strings. More info on translation is <a href="translations.html">available here</a>.</p>
 <hr />
 <h2 id="contributor-code-of-conduct">Contributor Code of Conduct</h2>
