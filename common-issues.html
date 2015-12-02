@@ -272,8 +272,15 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
 <pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
 <hr />
-<h2 id="during-install-or-running-migrations---sqlstatehy000-general-error-1005-cant-create-table-snipeitsql-3626_1c6-errno-150-sql-alter-table-users-add-constraint-users_company">During install or running migrations - SQLSTATE[HY000]: General error: 1005 Can't create table 'snipeit.#sql-3626_1c6' (errno: 150) (SQL: alter table users add constraint users_company</h2>
+<h2 id="during-install-or-running-migrations---sqlstatehy000-general-error-1005-cant-create-table-snipeitsql-3626_1c6-errno-150">During install or running migrations - SQLSTATE[HY000]: General error: 1005 Can't create table 'snipeit.#sql-3626_1c6' (errno: 150)</h2>
 <p>This happens when your default table engine is set to MyISAM (which in general is weird. InnoDB has been the default table engine in MySQL for quite some time).  </p>
+<p>If you see this error:</p>
+<pre><code>Illuminate\Database\QueryException]
+SQLSTATE[HY000]: General error: 1005 Can't create table 'snipeit.#sql-3626_1c6' (errno: 150) (SQL: alter table users add constraint users_company
+_id_foreign foreign key (company_id) references companies (id))
+
+[PDOException]
+SQLSTATE[HY000]: General error: 1005 Can't create table 'snipeit.#sql-3626_1c6' (errno: 150)</code></pre>
 <p>Try running:</p>
 <pre><code>ALTER TABLE companies ENGINE = InnoDB;</code></pre>
 <p>on your MySQL database and then re-run migrations.</p>
