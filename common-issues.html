@@ -284,7 +284,6 @@ SQLSTATE[HY000]: General error: 1005 Can't create table 'snipeit.#sql-3626_1c6' 
 <p>Try running:</p>
 <pre><code>ALTER TABLE companies ENGINE = InnoDB;</code></pre>
 <p>on your MySQL database and then re-run migrations.</p>
-<p>New installations shouldn't run into this issue, as we now specify storage engines on each table, but older versions may run into this issue.</p>
 <hr />
 <h2 id="call-to-undefined-function-controllersadminldap_connect">Call to undefined function Controllers\Admin\ldap_connect()</h2>
 <p>The PHP LDAP extension is not installed on your server. While this extension is not required for all Snipe-IT installations, it must be installed if you wish to use any of the LDAP functionality.</p>
