@@ -180,7 +180,7 @@
                                 </li>
                                                             <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/manual/user-management/index.html">
-                                        User Management
+                                        LDAP / User Management
                                     </a>
                                 </li>
                                                             <li class="navitems">
@@ -245,10 +245,109 @@
                 <div class="rst-content">
                     <div role="main" class="document">
                         <h1 id="user-management">User Management</h1>
+<div id="generated-toc" class="generate_from_h2"></div>
 <p>Snipe-IT comes with ability to manage users within the system.</p>
-<h3 id="user-throttling--unsuspending-users">User Throttling / Unsuspending Users</h3>
+<h2 id="user-throttling--unsuspending-users">User Throttling / Unsuspending Users</h2>
 <p>If a user locks themselves out by attempting and failing to login too many times (default is 5 failed attempts), they will be locked out of the system for 15 minutes. If you need to unlock them before the 15 minutes is up, you can manually unsuspend them by going to the People section, searching for their name, and then clicking the unsuspend icon.</p>
 <p><img src="/img/unsuspend-user.png" alt="Unsuspend" /></p>
+<hr />
+<h2 id="optional-ldap-configuration">Optional: LDAP Configuration</h2>
+<p><strong>Note: You must have the <code>php-ldap</code> extension installed for LDAP integration to work.</strong></p>
+<p>To set up your Snipe-IT installation to be able to use LDAP for user login and import, go to <code>Admin &gt; Settings</code> and scroll down to the LDAP settings sections.</p>
+<p>If you don't have an LDAP server (or don't wish to import your users, or allow them to login using their LDAP credentials), you can skip this step.</p>
+<p>The LDAP functionality will import any users in your LDAP/Active Directory, but will leave existing users untouched.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Example</th>
+<th>Notes</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LDAP Server</td>
+<td><code>ldap://ldap.example.com</code></td>
+<td>The URL of the LDAP server.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Bind Username</td>
+<td><code>cn=read-only-admin,dc=example,dc=com</code></td>
+<td>Username to use to connect authenticate to LDAP.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Bind Password</td>
+<td><code>password</code></td>
+<td>Password to use when authenticating to LDAP.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Base Bind DN</td>
+<td><code>dc=example,dc=com</code></td>
+<td>The base where the search for users will be executed.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Filter</td>
+<td><code>&amp;(cn=*)</code></td>
+<td>The search filter for the LDAP query.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Username Field</td>
+<td><code>uid</code></td>
+<td>The name of the field in your LDAP that you want to use for Snipe-IT username.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Last Name</td>
+<td><code>sn</code></td>
+<td>The name of the field in your LDAP to use for last name. This is often <code>sn</code> (for surname)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP First Name</td>
+<td><code>cn</code></td>
+<td>The name of the field in your LDAP to use for first name.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Authentication query</td>
+<td><code>uid="</code></td>
+<td>The LDAP query we should use to search your LDAP users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Version</td>
+<td><code>3</code></td>
+<td>Version of LDAP. This is usually going to be <code>3</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>LDAP Active Flag</td>
+<td><code>active</code></td>
+<td>Only necessary if you use a field in LDAP to indicate if the user is active. Can otherwise be left blank.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>LDAP Employee Number</td>
+<td></td>
+<td>Only necessary if you use a field in LDAP to store an employee number. Can otherwise be left blank.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>LDAP Email</td>
+<td><code>mail</code></td>
+<td>LDAP field that should map to an email address for the user</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-settings">Example Settings</h3>
+<p>We use a public LDAP server by <a href="http://www.forumsys.com/tutorials/integration-how-to/ldap/online-ldap-test-server/">Forumsys</a> to test LDAP functionality. To test using this server, use the LDAP Server <code>ldap://ldap.forumsys.com</code>.</p>
                     </div>
 
                     <hr/>
