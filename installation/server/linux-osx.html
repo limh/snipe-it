@@ -248,7 +248,7 @@
 <div id="generated-toc" class="generate_from_h2"></div>
 <h2 id="using-apache">Using Apache</h2>
 <p>The most common setup for Snipe-IT on a linux server is to use Apache, so if you're not sure what to pick, Apache might be the best bet, as it's free, easy to configure, and well documented.</p>
-<p><strong>The <code>DocumentRoot</code> for the app should be set to the <code>public</code> directory.</strong> </p>
+<p><strong>The <code>DocumentRoot</code> for the app should be set to the <code>public</code> directory.</strong></p>
 <p>In a standard Apache virtualhost setup, that might look something like this:</p>
 <pre><code>&lt;VirtualHost *:80&gt;
     &lt;Directory /var/www/html/public&gt;
@@ -261,6 +261,7 @@
     ServerName www.yourserver.com
     # Other directives here
 &lt;/VirtualHost&gt;</code></pre>
+<p><strong>Note</strong>: <code>/var/www/html/public</code> is a common path used on web servers, however you will want to change <code>/var/www/html/public</code> to wherever the <code>public</code> directory is in Snipe-IT files. If you are using the installer script for Centos6+/Ubuntu 14+ remember to change your directory and <code>DocumentRoot</code> to <code>/var/www/html/snipeit/public</code>.</p>
 <p>An OS X virtualhost setup could look more like:</p>
 <pre><code>&lt;Directory "/Users/youruser/Sites/snipe-it/public/"&gt;
     Allow From All
