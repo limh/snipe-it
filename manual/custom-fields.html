@@ -198,7 +198,7 @@
                                         Configuring Alerts
                                     </a>
                                 </li>
-                                                            <li class="navitems active">
+                                                            <li class="navitems">
                                     <a href="http://docs.snipeitapp.com/manual/labels.html">
                                         Generating Labels
                                     </a>
@@ -208,7 +208,7 @@
                                         Backups
                                     </a>
                                 </li>
-                                                            <li class="navitems">
+                                                            <li class="navitems active">
                                     <a href="http://docs.snipeitapp.com/manual/custom-fields.html">
                                         Custom Fields and Fieldsets
                                     </a>
@@ -249,12 +249,16 @@
             <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="generating-asset-labels">Generating Asset Labels</h1>
-<p>Generating labels for your assets is very simple in Snipe-IT. Simply go to any of the asset listing views (Ready to Deploy, Deployed, etc) and use the checkboxes in the leftmost column to select the assets you'd like to generate labels for. Once you've finished your selection, scroll down to the bottom of the asset listing table, and select &quot;Generate Labels&quot; from the dropdown list.</p>
-<p><img src="/img/labels.png" alt="Generate labels" /></p>
-<p>This will generate labels that should fit Avery 5027, 5026<sup>*</sup> and 8425 in portrait mode, or a similarly-sized two-across, eighteen-label (in portrait mode) sheet. There is enough padding around the labels to provide some flexibility with your choice of label sheets.</p>
-<p><strong>NOTE: You must have barcodes enabled in Admin &gt; Settings for labels to be generated.</strong></p>
-<p><sup>*</sup>   Avery 5026 has a color band on the left that may make the QR code difficult to read</p>
+                        <h1 id="custom-fields-and-fieldsets">Custom Fields and Fieldsets</h1>
+<p>Custom fields allow you to track additional information about your assets that the default asset attributes don't cover.</p>
+<p>Think of custom fieldsets as collections of custom fields. Custom fieldsets are assigned at the asset model level. So, for example, if you track mobile phones as Assets, you could create custom fields for IMEI, SIM, Phone Number, etc. You would then add all of those mobile phone related fields to a new &quot;Mobile Phones&quot; custom fieldset, and assign it to one of your mobile phone asset models.</p>
+<p>Then, for any mobile phone assets you create that belong to that asset model, the custom fields attributes will automatically appear.</p>
+<p>To break it down step by step:</p>
+<ul>
+<li>Create the new custom fields you want in your custom fieldset.</li>
+<li>Create the new custom fieldset, and add the custom fields you just created.</li>
+<li>Go to Admin &gt; Asset Models and edit an asset model, selecting the custom fieldset you just created.</li>
+</ul>
                     </div>
 
                     <hr/>

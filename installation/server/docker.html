@@ -208,6 +208,11 @@
                                         Backups
                                     </a>
                                 </li>
+                                                            <li class="navitems">
+                                    <a href="http://docs.snipeitapp.com/manual/custom-fields.html">
+                                        Custom Fields and Fieldsets
+                                    </a>
+                                </li>
                                                     </ul>
                                             <p class="menu-section">
                             
@@ -277,22 +282,7 @@ MAIL_ENV_PASSWORD=your_email_password
 # Snipe-IT Settings
 SNIPEIT_TIMEZONE=UTC
 SNIPEIT_LOCALE=en
-SERVER_URL=https://myserver.com
-
-# LDAP Parameters (or omit if not using LDAP)
-# See ldap.php for more info
-LDAP_URL=ldap://ldap.yourserver.com
-LDAP_USERNAME=admin
-LDAP_PASSWORD=adminpass
-LDAP_BASEDN=dc=example,dc=com
-LDAP_FILTER=&amp;(cn=*)
-LDAP_RESULT_USERNAME=username
-LDAP_RESULT_LAST_NAME=sn
-LDAP_RESULT_FIRST_NAME=gn
-LDAP_RESULT_ACTIVE_FLAG=active
-LDAP_RESULT_EMP_NUM=emp-num
-LDAP_RESULT_EMAIL=email
-LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
+SERVER_URL=https://myserver.com</code></pre>
 <p>First get a MySQL container running. MySQL 5.6 or earlier are easiest.</p>
 <pre><code class="language-sh">docker run --name snipe-mysql --env-file=my_env_file -d -p $(docker-machine ip b2d)::3306 mysql:5.6</code></pre>
 <p><strong>WARNING:</strong> Newer MySQL containers (5.7 and later, or MariaDB) may run in strict-mode by default, and the initial migrations and application setup will fail in strict mode. If you want to use one of those versions, you need to disable strict mode first!</p>
@@ -301,8 +291,15 @@ LDAP_AUTHENTICATION_FILTER_QUERY="uid="</code></pre>
 <li>If your Email solution requires its own container, start that container or service. Make sure to expose port 587 for mail submission, and use <code>--link mail:...</code>.</li>
 </ul>
 <h3 id="start-your-snipe-it-container">Start your Snipe-IT container</h3>
-<p>Now you can start your Snipe-IT container -</p>
+<p>First off, decide whether or not you want to have your Snipe-IT container manage SSL for you, or not.</p>
+<h4 id="ssl-disabled">SSL disabled</h4>
+<p>Start your Snipe-IT container -</p>
 <pre><code class="language-sh">docker run -d -p $(docker-machine ip b2d)::80 --name="snipeit" --link snipe-mysql:mysql --env-file=my_env_file snipe-it</code></pre>
+<h4 id="ssl-enabled">SSL enabled</h4>
+<p>Start your Snipe-IT container - but make sure you can &quot;mount&quot; your local copies of your SSL key and SSL certificate onto the container.</p>
+<p>They're expected to be named exactly: <code>/etc/ssl/private/snipeit-ssl.key</code> and <code>/etc/ssl/private/snipeit-ssl.crt</code> for the key and certificate, respectively.</p>
+<pre><code class="language-sh">docker run -d -P --name="snipeit" --link snipe-mysql:mysql -v /Absolute/Path/To/Your/SSL_Cert_directory:/etc/ssl/private --env-file=my_env_file snipe-it</code></pre>
+<h3 id="email-management-access">Email, Management, Access</h3>
 <p>If you have a separate container running for email, you will also want a <code>--link</code> setting for email as well.</p>
 <p>You can find out what port Snipe-IT is running on with:</p>
 <pre><code class="language-sh">docker port snipeit</code></pre>

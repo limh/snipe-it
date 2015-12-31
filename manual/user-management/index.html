@@ -208,6 +208,11 @@
                                         Backups
                                     </a>
                                 </li>
+                                                            <li class="navitems">
+                                    <a href="http://docs.snipeitapp.com/manual/custom-fields.html">
+                                        Custom Fields and Fieldsets
+                                    </a>
+                                </li>
                                                     </ul>
                                             <p class="menu-section">
                             
@@ -250,6 +255,390 @@
 <h2 id="user-throttling--unsuspending-users">User Throttling / Unsuspending Users</h2>
 <p>If a user locks themselves out by attempting and failing to login too many times (default is 5 failed attempts), they will be locked out of the system for 15 minutes. If you need to unlock them before the 15 minutes is up, you can manually unsuspend them by going to the People section, searching for their name, and then clicking the unsuspend icon.</p>
 <p><img src="/img/unsuspend-user.png" alt="Unsuspend" /></p>
+<hr />
+<h2 id="permissions">Permissions</h2>
+<h3 id="super-user">Super User</h3>
+<table>
+<thead>
+<tr>
+<th>Super User permissions:</th>
+<th>Ability</th>
+<th>Allowed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create Companies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Companies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Models</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Models</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Categories</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Categories</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Manufacturer</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Manufacturer</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Suppliers</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Suppliers</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Status Labels</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Status Labels</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Depreciation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Depreciation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Locations</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Locations</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Groups</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Groups</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Take Backup</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Backup</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit System Settings</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Remove Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Assets</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit Super Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Unlock Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit Users Permissions</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>View Items Assigned to User</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Requset Assets</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="admin-user-permissions">Admin User Permissions:</h3>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th>Allowed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create Companies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Companies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Models</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Models</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Categories</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Categories</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Manufacturer</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Manufacturer</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Suppliers</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Suppliers</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Status Labels</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Status Labels</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Asset Depreciation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Asset Depreciation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Locations</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Locations</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Groups</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Delete Groups</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Take Backup</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Backup</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Edit System Settings</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Create Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Remove Users</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Assets</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit Super Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Unlock Users</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Edit Users Permissions</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>View Items Assigned to User</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Requset Assets</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user-permissions">User Permissions</h3>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th>Allowed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create Companies</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Companies</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Asset Models</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Asset Models</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Asset Categories</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Asset Categories</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Manufacturer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Manufacturer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Suppliers</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Suppliers</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Status Labels</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Status Labels</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Asset Depreciation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Asset Depreciation</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Locations</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Locations</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Groups</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Groups</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Take Backup</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Delete Backup</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Edit System Settings</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Users</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Remove Users</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Create Assets</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Edit Super Users</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Unlock Users</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Edit Users Permissions</td>
+<td>No</td>
+</tr>
+<tr>
+<td>View Items Assigned to User</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Requset Assets</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="optional-ldap-configuration">Optional: LDAP Configuration</h2>
 <p><strong>Note: You must have the <code>php-ldap</code> extension installed for LDAP integration to work.</strong></p>
