@@ -267,6 +267,42 @@
 </ul>
 <p>You can create the fields first, or the fieldset first, but be sure to add the new fields to your fieldset, and then associate that fieldset to an asset model to see those new fields on your asset forms.</p>
 <p>Once your asset models have custom fieldsets associated with them, your new values will appear on the asset view and edit pages, and in the main asset listing table. You will be able to search/sort on these fields (as well as show/hide them in the table view) the same as you can the other built-in fields.</p>
+<h3 id="custom-field-validation">Custom Field Validation</h3>
+<p>We have provided support for basic input validation on the custom fields you create. When creating the fields, you'll have the option of selecting the <code>Format</code> the text input for your new fields should be in when your admins add or edit assets. You have several pre-definied options:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANY</code></td>
+<td>No input validation. Any text is acceptable.</td>
+</tr>
+<tr>
+<td><code>ALPHA</code></td>
+<td>Any alpha numeric text</td>
+</tr>
+<tr>
+<td><code>NUMERIC</code></td>
+<td>Any numeric text</td>
+</tr>
+<tr>
+<td><code>MAC</code></td>
+<td>Text formatted in MAC address format</td>
+</tr>
+<tr>
+<td><code>IP</code></td>
+<td>Text formatted as an IPv4 address. (IPv6 is coming soon.)</td>
+</tr>
+<tr>
+<td><code>CUSTOM</code></td>
+<td>Your custom regex, to be entered in the Custom Format box.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="notes">Notes:</h3>
 <p>There is currently no ability to import custom fields while importing assets. That's coming soon.</p>
                     </div>
