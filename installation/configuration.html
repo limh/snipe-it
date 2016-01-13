@@ -415,7 +415,9 @@
 <p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
 <p>If you don't have an SMTP server to use, you can set the <code>driver</code> value to <code>mail</code>:</p>
 <pre><code>'driver' =&gt; 'mail',</code></pre>
+<h4 id="godaddy-email">GoDaddy Email</h4>
 <p><strong>If you're using GoDaddy for hosting</strong>, you will need to set your mail server to use <code>relay-hosting.secureserver.net</code> on port <code>25</code>, with <code>username</code> and <code>password</code> left as null values. See the <a href="https://www.godaddy.com/help/what-is-the-name-of-my-hosting-accounts-relay-server-953">GoDaddy relay server documentation</a> for more specifics.</p>
+<h4 id="using-gmail">Using Gmail</h4>
 <p><strong>If you're using Gmail to send your emails</strong>, you'll want to use the settings below (in addition to filling out the from address and name in the config file):</p>
 <table>
 <thead>
@@ -456,6 +458,7 @@
 <li>Sign into the Gmail account in a browser</li>
 <li>Go <a href="https://www.google.com/settings/security/lesssecureapps">here</a> and enable access for &quot;less secure&quot; apps:</li>
 <li>Then go <a href="https://accounts.google.com/b/0/DisplayUnlockCaptcha">here</a> and click Continue.</li>
+<li>If you're still getting errors, try <a href="http://stackoverflow.com/a/26041277/200021">this solution on StackOverflow</a>.</li>
 </ul>
 <p>(More info on sending email through Laravel and Gmail is <a href="http://code.tutsplus.com/tutorials/sending-emails-with-laravel-4-gmail--net-36105">available here</a>, and more info on why Google makes you jump through these hoops is <a href="https://googleonlinesecurity.blogspot.co.uk/2014/04/new-security-measures-will-affect-older.html">available here</a>.)</p>
 <hr />
