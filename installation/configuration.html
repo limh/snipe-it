@@ -412,12 +412,12 @@
 <p>is <strong>correct</strong>, while</p>
 <pre><code>'username' =&gt; myusername,</code></pre>
 <p>is <strong>incorrect</strong> and will cause errors when it tries to send email.</p>
-<p>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month.</p>
+<p><strong>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>.</strong> Their free tier allows for 12k free sends a month, which should more than cover normal Snipe-IT email usage.</p>
 <p>If you don't have an SMTP server to use, you can set the <code>driver</code> value to <code>mail</code>:</p>
 <pre><code>'driver' =&gt; 'mail',</code></pre>
-<h4 id="godaddy-email">GoDaddy Email</h4>
+<h3 id="godaddy-email">GoDaddy Email</h3>
 <p>If you're using GoDaddy for hosting, you will need to set your mail server to use <code>relay-hosting.secureserver.net</code> on port <code>25</code>, with <code>username</code> and <code>password</code> left as null values. See the <a href="https://www.godaddy.com/help/what-is-the-name-of-my-hosting-accounts-relay-server-953">GoDaddy relay server documentation</a> for more specifics.</p>
-<h4 id="using-gmail">Using Gmail</h4>
+<h3 id="using-gmail">Using Gmail</h3>
 <p>If you're using Gmail to send your emails, you'll want to use the settings below (in addition to filling out the from address and name in the config file):</p>
 <table>
 <thead>
