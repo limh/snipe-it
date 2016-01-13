@@ -412,7 +412,6 @@
 <p>is <strong>correct</strong>, while</p>
 <pre><code>'username' =&gt; myusername,</code></pre>
 <p>is <strong>incorrect</strong> and will cause errors when it tries to send email.</p>
-<p><strong>If you don’t have easy access to a mail server, we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>.</strong> Their free tier allows for 12k free sends a month, which should more than cover normal Snipe-IT email usage.</p>
 <p>If you don't have an SMTP server to use, you can set the <code>driver</code> value to <code>mail</code>:</p>
 <pre><code>'driver' =&gt; 'mail',</code></pre>
 <h3 id="godaddy-email">GoDaddy Email</h3>
@@ -461,6 +460,8 @@
 <li>If you're still getting errors, try <a href="http://stackoverflow.com/a/26041277/200021">this solution on StackOverflow</a>.</li>
 </ul>
 <p>(More info on sending email through Laravel and Gmail is <a href="http://code.tutsplus.com/tutorials/sending-emails-with-laravel-4-gmail--net-36105">available here</a>, and more info on why Google makes you jump through these hoops is <a href="https://googleonlinesecurity.blogspot.co.uk/2014/04/new-security-measures-will-affect-older.html">available here</a>.)</p>
+<h3 id="if-youre-still-having-problems">If you're still having problems</h3>
+<p>If you don’t have easy access to a mail server (or you can't get your settings to work for some reason), we suggest signing up for <a href="http://mandrillapp.com">Mandrill</a>. Their free tier allows for 12k free sends a month, which should more than cover normal Snipe-IT email usage.</p>
 <hr />
 <h2 id="application-settings">Application Settings</h2>
 <p>Copy the example app config from <code>app/config/production/app.example.php</code> to <code>app/config/production/app.php</code>, and then update your new <code>app/config/production/app.php</code> with your URL settings.</p>
