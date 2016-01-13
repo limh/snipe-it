@@ -251,7 +251,7 @@
                     <div role="main" class="document">
                         <h1 id="upgrading">Upgrading</h1>
 <p>Updating Snipe-IT should be pretty straightforward. Simply pull down the newest release, copy the files over, and run whatever commands the release notes specify. Your configuration files won’t be overwritten, since you had to copy them over from the example configs, and your version isn’t in version control.</p>
-<p>You may want to backup the <code>app/config/app.php</code> file however, as that one file will be overwritten. If you forget to back it up, it's not usually a big deal, just go back in after upgrading and set your timezone back to the one you had before.  </p>
+<p>You may want to backup the <code>app/config/app.php</code> file however, as that one file will be overwritten. If you forget to back it up, it's not usually a big deal, just go back in after upgrading and set your timezone back to the one you had before. </p>
 <p><strong>Always backup your database and configuration files before upgrading.</strong> We try very hard to make sure that all database changes are non-destructive, but you should always backup beforehand anyway. You will never regret backing up your database. You may regret not doing so, so it’s just better to get into the habit.</p>
 <p>If you don’t plan on contributing code to Snipe-IT, you should always grab the latest stable release from the releases page, and avoid using the <code>develop</code> or <code>master</code> branches.</p>
 <p>Whenever you pull down a new version from master or develop, or when you grab the latest official release, make sure to run the following commands via command line:</p>
