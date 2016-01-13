@@ -55,10 +55,6 @@ color: #ffffff;
 text-decoration: underline;
 }
 
-li {
-padding-bottom: 10px;
-}
-
 li:before {
 font-family: 'FontAwesome';
 content: '\f101';
