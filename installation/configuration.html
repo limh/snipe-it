@@ -471,7 +471,11 @@
 <hr />
 <h2 id="set-directory-permissions">Set Directory Permissions</h2>
 <p>You’ll need to make sure that the <code>app/storage</code> directory and its subdirectories are writable by your web server, since caches and log files get written there. You should use the minimum permissions available for writing, based on how you’ve got your web server configured. You also need to change permissions for your <code>uploads</code> directory for user avatars and model images.</p>
-<p>On Linux/OSX, you would do something like this:</p>
+<p>First, you'll need to figure out which user your webserver is running under. On Linux/OS X systems, it's usually something like &quot;nobody&quot;, &quot;apache&quot;, &quot;httpd&quot;, &quot;www&quot;, or &quot;_www&quot; Determine that by using <code>ps auxwww</code> - then you can see who the server is running as.</p>
+<p>Once you've determined your webserver's user, you will want to make sure your webserver has ownership of the appropriate directories:</p>
+<pre><code class="language-sh">chown -R that_username app/storage app/private_uploads public/uploads</code></pre>
+<p>Next, you'll want to ensure that this user has write permissions to those directories.</p>
+<p>On Linux/OS X, you would do something like this:</p>
 <pre><code>chmod -R 755 app/storage
 chmod -R 755 app/private_uploads
 chmod -R 755 public/uploads</code></pre>
