@@ -322,6 +322,7 @@ SERVER_URL=https://myserver.com</code></pre>
 <p>While you're developing, you may need to occasionally run -</p>
 <pre><code class="language-sh">docker exec snipeit composer dump-autoload</code></pre>
 <p>To fix the autoloading cache (if, for example, your class names change, or you add new ones...)</p>
+<p><strong>NOTE: When upgrading your docker install, make a note of the app key in <code>app/config/production/app.php</code>. If you are using LDAP, your LDAP server password is encrypted using this app key, and you will have a bad time if your app key changes. The upgraded docker WILL change your app key, so just replace the newly created on with your old one. </strong> </p>
                     </div>
 
                     <hr/>
