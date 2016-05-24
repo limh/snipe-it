@@ -264,14 +264,14 @@ Add garbage text into the <code>public/.htaccess</code> file on your local insta
 <p>Once your composer errors are resolved, you can <a href="installation/command-line.html">continue with the installation</a>.</p>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-size-of-key-is-too-large-for-this-algorithm">Error message: mcrypt_encrypt(): Size of key is too large for this algorithm</h2>
-<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
+<p>In <code>app/config/production/app.php</code>, find the <code>key</code> on line 56.</p>
 <p>You can run</p>
 <pre><code>php artisan key:generate</code></pre>
 <p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
 <pre><code>'key' =&gt; '36VpJ9xE3WyPQu4GYgckF82hRh9AVjYM',</code></pre>
 <hr />
 <h2 id="error-message-mcrypt_encrypt-key-size-not-supported-by-this-algorithm-only-keys-of-sizes-16-24-or-32-supported">Error message: mcrypt_encrypt(): Key size not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported.</h2>
-<p>In <code>app/production/config/app.php</code>, find the <code>key</code> on line 43.</p>
+<p>In <code>app/config/production/app.php</code>, find the <code>key</code> on line 56.</p>
 <p>You can run</p>
 <pre><code>php artisan key:generate</code></pre>
 <p>to auto-generate a 32-character key for you. Paste the generated key in as the value of <code>key</code> in your config (within single quotes):</p>
@@ -333,6 +333,19 @@ Snipe-IT will always default to production if it can't figure out what mode to r
 <li>delete your <code>composer.lock</code> file</li>
 <li>run <code>php composer.phar dump-autoload</code></li>
 <li>run <code>php composer.phar update --no-dev --prefer-source</code></li>
+</ul>
+<hr />
+<h2 id="error-insufficient-permissions-after-upgrading">Error: Insufficient permissions! after upgrading</h2>
+<p>While older versions of Snipe can be updated rather painlessly by simply using <code>php artisan migrate</code>, when upgrading from ancient versions (i.e. v1.1) to newer versions you may experience issues with user deletion, viewing backups etc.</p>
+<p>This is due to the fact that migrations will not automatically add &quot;Admin&quot; users to the new &quot;Super User&quot; permission group.</p>
+<p>To resolve (without raw SQL/db queries) try the following:</p>
+<ul>
+<li>login as an admin user</li>
+<li>create a new (throw away) admin user with Super User permissions</li>
+<li>log out and log back in as new user</li>
+<li>elevate all the users who need Super User</li>
+<li>log out and back into your regular admin account, that has just been elevated</li>
+<li>delete the throw away user you created earlier to ensure elevation worked</li>
 </ul>
                     </div>
 
